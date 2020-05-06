@@ -9,22 +9,12 @@ class Destination(models.Model):
     destno = models.IntegerField(default="0")
 
 
-class Instructor(models.Model):
-	# instName=models.CharField(max_length=50)
-	Name = models.CharField(max_length=50)
-	email = models.CharField(max_length=50, primary_key=True)
-	password = models.CharField(max_length=50)
-	gender = models.CharField(max_length=50)
-	dateofBirth = models.DateField()
-	address =  models.CharField(max_length=50)
-	designation = models.CharField(max_length=50)
-
-
 class Course(models.Model):
-	courseName: models.CharField(max_length=50)
-	instructor: models.ForeignKey(Instructor, on_delete=models.CASCADE)
-	courseDescriotion: models.CharField(max_length=50)
-	courseImage: models.ImageField('course')
+	courseName= models.CharField(max_length=50, default=" ")
+	courseDesc= models.TextField(default=" ")
+	courseImage= models.ImageField(upload_to='pics2/', default=" ")
+	price=models.IntegerField(default="100")
+	bought=models.BooleanField(default=True)
 
 
 # modules
@@ -39,27 +29,14 @@ class Student(models.Model):
 	dateofBirth = models.DateField()
 	address = models.CharField(max_length=50)
 	# enrolledCourses=list of courses elrolled
-	courses: models.ManyToManyField(Course)
+	courses= models.ManyToManyField(Course,blank=True)
 
-
-class Subject(models.Model):
-	# class Meta:
-	# 	unique_together = (('instName', 'batch', 'subject'))
-
-	# instName=models.CharField(max_length=50)instName
-	# batch=models.CharField(max_length=50)
-	subject = models.CharField(max_length=50)
-	teacher = models.CharField(max_length=50)
-# teacherEmail=models.CharField(max_length=50)
-
-
-
-# list of modules
 
 
 class Module(models.Model):
-	moduleName:models.CharField(max_length=50)
-	course:models.ForeignKey(Course,on_delete=models.CASCADE,default=" ")
+	moduleName=models.CharField(max_length=50,default=" ")
+	course=models.ForeignKey(Course,on_delete=models.CASCADE,default=1)
+	file1=models.FileField(upload_to='files12/',default=" ")
 	#quizz
 	#material
 
@@ -67,7 +44,7 @@ class Module(models.Model):
 class Quiz(models.Model):
 	#instName=models.CharField(max_length=50)
 	quizName=models.CharField(max_length=50)
-	module=models.ForeignKey(Module,on_delete=models.CASCADE)
+	#module=models.ForeignKey(Module,on_delete=models.CASCADE)
 	#batch=models.CharField(max_length=50)
 	#subject=models.CharField(max_length=50)
 	#teacher=models.CharField(max_length=50)
