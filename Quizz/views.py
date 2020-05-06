@@ -1,16 +1,83 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import context,loader
-from Quizz.models import Institute,Batch,Student,Subject,Instructor,Quiz,ReadyQuiz,QuizResult,StudyFolder
+from Quizz.models import Student,Subject,Instructor,Course,Destination
+
+from .models import Destination
+
 
 from datetime import date,datetime
 
 def index(request):
 	
-	return render(request,'index.html')
+	return render(request,'index2.html')
+
+
+# Create your views here.
+def home(request):
+    dests =Destination.objects.all()
+
+    return render(request,'index2.html', {'dests': dests})
+
+def module(request):
+    dests = Destination.objects.all()
+
+    return render(request, 'next2.html', {'dests': dests})
 	
-	
-	
+# Create your views here.
+def register(request):
+    if request.method == 'POST':
+        f_name = request.POST['f_name']
+        l_name = request.POST['l_name']
+        u_name = request.POST['u_name']
+        email = request.POST['email']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+        if password1 == password2:
+            # f = OpinionForm(request.POST)
+            if User.objects.filter(username=u_name).exists():
+                messages.info(request, "username already exists")
+                return redirect('register')
+            elif User.objects.filter(email=email).exists():
+                messages.info(request, "email already registered")
+                return redirect('register')
+            # elif form_is_blank(f_name):
+            #     print("cant leave first name blank")
+            else:
+                user = User.objects.create_user(username=u_name, password=password1, email=email, first_name=f_name,
+                                                last_name=l_name)
+                user.save()
+                messages.info(request, "user created successfully")
+                return redirect('login')
+        else:
+            messages.info(request, "passwords are not same")
+            return redirect('register')
+        return redirect('/')
+    else:
+        return render(request, 'register.html')
+
+
+def login(request):
+    if request.method == 'POST':
+        u_name = request.POST['u_name']
+        password = request.POST['password']
+
+        user = auth.authenticate(username=u_name, password=password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect('/')
+        else:
+            messages.info(request, 'Invalid credentials')
+            return redirect('login')
+    else:
+        return render(request, 'login.html')
+
+def news(request):
+    pass
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
 	
 	
 	
@@ -664,7 +731,8 @@ def getTeacherList(request):
 	v+="</select>"
 	resp=HttpResponse(v)
 	return(resp)
-		
+	return(resp)
+
 
 		
 	
