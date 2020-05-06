@@ -59,7 +59,7 @@ class Subject(models.Model):
 
 class Module(models.Model):
 	moduleName:models.CharField(max_length=50)
-	course:models.ForeignKey(Course,on_delete=models.CASCADE)
+	course:models.ForeignKey(Course,on_delete=models.CASCADE,default=" ")
 	#quizz
 	#material
 
