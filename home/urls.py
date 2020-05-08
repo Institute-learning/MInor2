@@ -6,5 +6,6 @@ from django.conf import settings
 
 urlpatterns = [
    path('home',views.index),
-   path('acont',views.module)
+   path('acont',views.module),
+   path('tp',views.idk)
 ]

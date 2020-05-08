@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Destination
 #from ..Quizz.models import Course 
+from .models import Course
 
 # Create your views here.
 def index(request):
@@ -17,3 +18,10 @@ def module(request):
     dests = Destination.objects.all()
 
     return render(request, 'next2.html', {'dests': dests})
+
+
+def idk(request):
+    c=Course(courseName="sanchit",courseDesc="pta nhi ")
+	#c.save()
+    c.save()
+    return render(request,"hello")
