@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-__init__",
+      "appliesTo": "home/migrations/__init__.py",
+      "type": "launch"
+    }
+  ]
+}

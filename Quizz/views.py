@@ -23,7 +23,7 @@ def module(request):
     dests = Destination.objects.all()
 
     return render(request, 'next2.html', {'dests': dests})
-	
+
 # Create your views here.
 def register(request):
     if request.method == 'POST':
@@ -78,9 +78,7 @@ def news(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
-	
-	
-	
+
 def register(request):
 	return render(request,'register.html')
 	
@@ -142,7 +140,8 @@ def instructorLogin(request):
 	return render(request,'instructorLogin.html')
 	
 	
-	
+def homeInstitute(request):
+	return render(request,'homeInstitute.html')
 	
 	
 	
@@ -156,7 +155,7 @@ def loginCheckInstitute(request):
 		
 		b=lt[0].instName
 		c=b.capitalize()
-		request.session["iname"]=b
+		#request.session["iname"]=b
 		
 		
 		

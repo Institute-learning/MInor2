@@ -16,6 +16,7 @@ urlpatterns = [
    path('loginCheckInstitute',views.loginCheckInstitute),   path('loginCheckStudent',views.loginCheckStudent),path('loginCheckInstructor',views.loginCheckInstructor),
    path('addOpen',views.addOpen),path('quizOpen',views.quizOpen),
    path('batchSave',views.batchSave),path('quizSave',views.quizSave),
+   
 path('getBatch',views.getBatch),path('getSubject',views.getSubject),path('getBatchFromTeacher',views.getBatchFromTeacher),
 path('stuSave',views.stuSave),path('subjectSave',views.subjectSave),path('instructSave',views.instructSave),path('getTeacher',views.getTeacher),
 path('classRoom',views.classRoom),

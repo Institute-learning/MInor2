@@ -8,6 +8,7 @@ urlpatterns = [path('', include('Quizz.urls')),
     path('admin/', admin.site.urls),
     path('access/', include('access.urls')),
     path('meenal/', include('home.urls')),
+    path('Login/', include('Login_Auth.urls')),
  ]
 
 
