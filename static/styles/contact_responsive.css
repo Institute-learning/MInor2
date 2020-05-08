@@ -22,22 +22,19 @@
 ******************************/
 
 /************
-1. 1800px
+1. 1600px
 ************/
 
-@media only screen and (max-width: 1800px)
+@media only screen and (max-width: 1600px)
 {
-	.header_social
-	{
-		display: none !important;
-	}
+	
 }
 
 /************
-2. 1480px
+2. 1440px
 ************/
 
-@media only screen and (max-width: 1480px)
+@media only screen and (max-width: 1440px)
 {
 	
 }
@@ -66,13 +63,41 @@
 
 @media only screen and (max-width: 1199px)
 {
-	.main_nav
+	.about_col_left
 	{
-		margin-left: 150px;
+		padding-right: 15px;
 	}
-	.header_phone
+	.about_col_right
 	{
-		margin-right: 0;
+		padding-left: 15px;
+	}
+	.about_col_middle
+	{
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	.feature_content
+	{
+		padding-right: 0;
+	}
+	.feature_video
+	{
+		width: 100%;
+		left: auto;
+	}
+	.team_image
+	{
+		width: 160px;
+		height: 140px;
+	}
+	.milestone:not(:last-child)::after
+	{
+		display: none;
+	}
+	.partners_slider_container
+	{
+		width: calc(100% + 160px);
+		left: -80px;
 	}
 }
 
@@ -101,51 +126,85 @@
 @media only screen and (max-width: 991px)
 {
 	.main_nav,
-	.header_phone
+	.search_button
 	{
 		display: none;
 	}
+	.top_bar_contact_list li i,
+	.top_bar_contact_list li > div,
+	.login_button a
+	{
+		font-size: 12px;
+	}
+	.login_button
+	{
+		width: 140px;
+	}
 	.hamburger
 	{
-		display: block;
+		display: inline-block;
+		margin-left: 33px;
 	}
-	.home_search
+	.contact_form
 	{
-		height: auto;
-	}
-	.home_search_container
-	{
-		position: relative;
-		top: auto;
-		width: 100%;
-		left: auto;
-	}
-	.home_search_content
-	{
-		padding-left: 0;
 		padding-right: 0;
 	}
-	.search_input
+	.contact_info
 	{
-		width: 100%;
-		margin-bottom: 12px;
+		padding-left: 0;
+		margin-top: 80px;
 	}
-	.home_search_button
+	.newsletter_container
 	{
-		width: 100%;
-		margin-top: 10px;
+		height: auto;
+		padding-top: 40px;
+		padding-bottom: 40px;
 	}
-	.contact
+	.newsletter_form_container
 	{
-		padding-top: 27px;
+		margin-top: 19px;
 	}
-	.contact_form_container
-	{
-		margin-top: 90px;
-	}
-	.footer_contact_col:not(:last-child)
+	.footer_col:not(:last-child)
 	{
 		margin-bottom: 60px;
+	}
+	.footer_contact,
+	.footer_links
+	{
+		padding-left: 0;
+	}
+	.footer_links ul
+	{
+		columns: 1;
+		-webkit-columns: 1;
+		-moz-columns: 1;
+	}
+	.footer_mobile
+	{
+		float: none;
+	}
+	.footer_logo_container
+	{
+		margin-top: 0;
+	}
+	.copyright
+	{
+	    height: auto;
+	    padding-top: 30px;
+	    padding-bottom: 30px;
+	}
+	.cr_list
+	{
+		margin-top: 30px;
+	}
+	.cr_list li:not(:last-child)
+	{
+		margin-right: 20px;
+	}
+	.copyright div,
+	.cr_list li a
+	{
+		font-size: 13px;
 	}
 }
 
@@ -182,49 +241,21 @@
 
 @media only screen and (max-width: 767px)
 {
-	.home_search_container
+	.top_bar
 	{
-		padding-left: 0;
-		padding-right: 0;
+		display: none;
 	}
-	.newsletter_form > div:not(:last-child)
+	.home
 	{
-		margin-right: 0px;
+		height: 140px;
 	}
-	.newsletter_form > div:first-child
+	.header.scrolled
+	{
+		top: 0px;
+	}
+	.blog_post
 	{
 		width: 100%;
-	}
-	.newsletter_form > div:first-child > div:first-child
-	{
-		width: 100%;
-		margin-bottom: 15px;
-	}
-	.newsletter_form > div:first-child > div:last-child
-	{
-		width: 100%;
-		margin-bottom: 20px;
-	}
-	.newsletter_form > div:last-child
-	{
-		margin-left: auto;
-		margin-right: auto;
-	}
-	.newsletter_input
-	{
-		height: 40px;
-	}
-	.newsletter_button
-	{
-		font-size: 14px;
-	}
-	.newsletter_title
-	{
-		font-size: 28px;
-	}
-	.newsletter_subtitle
-	{
-		font-size: 16px;
 	}
 }
 
@@ -234,102 +265,53 @@
 
 @media only screen and (max-width: 575px)
 {
+	h2
+	{
+		font-size: 24px;
+	}
 	p
 	{
 		font-size: 13px;
 	}
-	.section_title h2
+	.menu
 	{
-		font-size: 36px;
+		width: 100%;
+		right: -100%;
 	}
-	.text_highlight
+	.dropdown_item_select,
+	.home_search_button
 	{
-		font-size: 16px;
+		font-size: 12px;
 	}
-	.button
+	.comments_list li ul
 	{
-		width: 141px;
-		height: 40px;
+		padding-left: 30px;
 	}
-	.button a
+	.comment_notify span,
+	.form_title
 	{
 		font-size: 14px;
-		line-height: 40px;
 	}
-	.menu_content ul li a
+	.google_map
+	{
+		height: 300px;
+	}
+	.contact_info_title
 	{
 		font-size: 24px;
 	}
-	.home
+	.contact_info_location_title
 	{
-		height: 40vh;
+		font-size: 16px;
 	}
-	.home_title h2
+	.input_col:not(:last-child)
 	{
-		font-size: 48px;
+		margin-bottom: 30px;
 	}
-	.search_input
+	.newsletter_form_container
 	{
-		height: 40px;
-	}
-	.search_input::-webkit-input-placeholder
-	{
-		font-size: 13px !important;
-	}
-	.search_input:-moz-placeholder
-	{
-		font-size: 13px !important;
-	}
-	.search_input::-moz-placeholder
-	{
-		font-size: 13px !important;
-	} 
-	.search_input:-ms-input-placeholder
-	{ 
-		font-size: 13px !important;
-	}
-	.search_input::input-placeholder
-	{
-		font-size: 13px !important;
-	}
-	.home_search_button
-	{
-		height: 42px;
-		font-size: 12px;
-	}
-	.contact_button
-	{
-		width: 131px;
-		height: 42px;
-		font-size: 14px;
-	}
-	.contact_input
-	{
-		height: 43px;
-	}
-	.contact_input::-webkit-input-placeholder
-	{
-		font-size: 13px !important;
-	}
-	.contact_input:-moz-placeholder
-	{
-		font-size: 13px !important;
-	}
-	.contact_input::-moz-placeholder
-	{
-		font-size: 13px !important;
-	} 
-	.contact_input:-ms-input-placeholder
-	{ 
-		font-size: 13px !important;
-	}
-	.contact_input::input-placeholder
-	{
-		font-size: 13px !important;
-	}
-	.contact_map
-	{
-		height: 350px;
+		width: 100%;
+		padding-left: 0;
 	}
 }
 
