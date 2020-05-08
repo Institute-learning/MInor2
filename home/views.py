@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Destination
 #from ..Quizz.models import Course 
-from .models import Course
+from .models import Student
 
 # Create your views here.
 def index(request):
@@ -21,7 +21,7 @@ def module(request):
 
 
 def idk(request):
-    c=Course(courseName="sanchit",courseDesc="pta nhi ")
+    c=Student(courseName="sanchit",courseDesc="pta nhi ")
 	#c.save()
     c.save()
     return render(request,"hello")

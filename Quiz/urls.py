@@ -4,10 +4,10 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 
-urlpatterns = [path('', include('Quizz.urls')),
+urlpatterns = [path('abc/', include('Quizz.urls')),
     path('admin/', admin.site.urls),
     path('access/', include('access.urls')),
-    path('meenal/', include('home.urls')),
+    path('', include('home.urls')),
  ]
 
 
