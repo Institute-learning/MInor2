@@ -1,10 +1,12 @@
 {% load static  %}
 {% static "images" as baseUrl %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>E-Learning</title>
+<meta name="csrf-token" content="{{ csrf_token }}" />
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Unicat project">
@@ -18,6 +20,8 @@
 <link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
 
+
+
 	<style >
 		#sss{
 		padding:0px;
@@ -29,9 +33,14 @@
 		height:300px;
 	}
 	</style>
+	
 
 </head>
-co<body>
+<body>
+
+
+
+
 
 <div class="super_container">
 
@@ -225,8 +234,38 @@ co<body>
 
 			</div>
 		</div>
-
+	
+{% csrf_token %}
 	<!-- Popular Courses -->
+	<script>
+	
+		function querySomething(){
+			$.ajax({
+				type: "POST",
+				url: "/course/",
+				dataType: "json",
+				headers: {
+					'Content-Type': 'multipart/form-data', 'boundary':'63c5979328c44e2c869349443a94200e',
+					"HTTP_GROUP_NAME": "groups_name",
+					
+				},
+				data: {
+					"na":"sanchitis great",
+					'csrfmiddlewaretoken': "{{csrf_token}}",
+				},
+				success: function(data){
+					console.log("success");
+					console.log(data);
+				},
+				failure: function(data){
+					console.log("failure");
+					console.log(data);
+				},
+			});
+			alert('marcusShep function ran.')
+		}
+		
+	</script>
 
 	<div class="courses">
 		<div class="section_background parallax-window" data-parallax="scroll" data-image-src="{% static 'images/courses_background.jpg' %}" data-speed="0.8"></div>
@@ -259,10 +298,10 @@ co<body>
 <!--						</div>-->
 						<div class="course_image ">
 							<img src="{{ dest.courseImage.url }}" alt="">
-
+{% comment %}    add a function {% endcomment %}
 						</div>
 						<div class="course_body">
-							<h3 class="course_title"><a href="courses">{{dest.courseName}}</a></h3>
+							<h3 class="course_title" onclick="querySomething()">{{dest.courseName}}</h3>
 							<div class="course_teacher">Online</div>
 							<div class="course_text">
 								<p>{{ dest.courseDesc }}
@@ -293,7 +332,25 @@ co<body>
 			</div>
 		</div>
 	</div>
+<div>
 
+<script type="text/javascript">
+function submitform()
+{
+	document.forms["myform"].submit();
+	alert("Value is sumitted");
+}
+</script>
+
+<form method="POST" action="course/" id="san" name="myform">
+	<input name="na" type="text" value="sanchit">
+	{%csrf_token%}
+	{% comment %} <div type="submit">abcd</div> {% endcomment %}
+	<a onclick="submitform()">Submitkjdsfvksfvbk</a>
+	{% comment %} <input type="submit">fuck</input> {% endcomment %}
+	
+</form>
+</div>
 	<!-- Footer -->
 
 	<footer class="footer">
@@ -384,7 +441,7 @@ co<body>
 	</footer>
 </div>
 <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
-<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+{% comment %} <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script> {% endcomment %}
 <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
 <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
 <script src="{% static 'plugins/greensock/TweenMax.min.js' %}"></script>

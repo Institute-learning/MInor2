@@ -1,7 +1,8 @@
 from django.contrib import admin
 
-from .models import Student,StudyFolder,Course,Module,Quiz,QuizResult,ReadyQuiz,Destination
+from .models import Student,StudyFolder,Course,Module,Quiz,QuizResult,ReadyQuiz,Destination,stud
 
+admin.site.register(stud)
 #admin.site.register(Institute)
 #admin.site.register(Batch)
 admin.site.register(Student)

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Destination,Course
 
 #from ..Quizz.models import Course 
+from .models import Course
 
 # Create your views here.
 def index(request):
@@ -26,20 +27,30 @@ def content(request):
     return render(request, 'coursepage.html', {'dests': dests})
 
 def about(request):
-    return  render(request,'about.html');
+    return  render(request,'about.html')
+
 
 def course(request):
-    return  render(request,'course.html');
+    if(request.method== 'POST'):
+        name=request.POST["na"]
+        print(name)
+    return  render(request,'course.html')
 
 def courses(request):
 
-    return  render(request,'courses.html');
+    return  render(request,'courses.html')
 
 def contact(request):
-    return  render(request,'contact.html');
+    return  render(request,'contact.html')
 
 
+def idk(request):
+    c=Course(courseName="sanchit",courseDesc="pta nhi ")
+	#c.save()
+    c.save()
+    return render(request,"hello")
 
 
+def check12(request,name):
 
-
+    return (request,name)
