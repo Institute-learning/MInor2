@@ -1,45 +1,27 @@
 from django.shortcuts import render
-from .models import Destination,Course
-
+from .models import Destination
 #from ..Quizz.models import Course 
+from .models import Student
 
 # Create your views here.
 def index(request):
-    dests = Course.objects.all()
-    return render(request,'index.html', {'dests': dests})
+    return render(request,'index2.html')
     
 # Create your views here.
 
 def acont(request):
     dests =Destination.objects.all()
 
-    return render(request,'index.html', {'dests': dests})
+    return render(request,'index2.html', {'dests': dests})
 
 def module(request):
     dests = Destination.objects.all()
 
     return render(request, 'next2.html', {'dests': dests})
 
-def content(request):
-    dests = Destination.objects.all()
 
-    return render(request, 'coursepage.html', {'dests': dests})
-
-def about(request):
-    return  render(request,'about.html');
-
-def course(request):
-    return  render(request,'course.html');
-
-def courses(request):
-
-    return  render(request,'courses.html');
-
-def contact(request):
-    return  render(request,'contact.html');
-
-
-
-
-
-
+def idk(request):
+    c=Student(courseName="sanchit",courseDesc="pta nhi ")
+	#c.save()
+    c.save()
+    return render(request,"hello")

@@ -1,4 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
+
+class stud(User):
+	sub=models.CharField(max_length=50,default=" ")
 
 class Destination(models.Model):
     name= models.CharField(max_length=50, default=" ")
