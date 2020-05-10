@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>E-Learning</title>
+<title>E-Learners</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Unicat project">
@@ -31,14 +31,15 @@
 	</style>
 
 </head>
-co<body>
+
+<body>
 
 <div class="super_container">
 
 	<!-- Header -->
 
 	<header class="header">
-			
+
 
 
 		<!-- Header Content -->
@@ -49,15 +50,15 @@ co<body>
 						<div class="header_content d-flex flex-row align-items-center justify-content-start">
 							<div class="logo_container">
 								<a href="#">
-									<div class="logo_text"><span>E-</span>Learning</div>
+									<div class="logo_text"><span>E-</span>Learners</div>
 								</a>
 							</div>
 							<nav class="main_nav_contaner ml-auto">
 								<ul class="main_nav">
 									<li class="active"><a href="#">Home</a></li>
-									<li><a href="about">About</a></li>
-									<li><a href="courses">Courses</a></li>
-									<li><a href="contact">Contact</a></li>
+									<li><a href="about.html">About</a></li>
+									<li><a href="courses.html">Courses</a></li>
+									<li><a href="contact.html">Contact</a></li>
 								</ul>
 
 
@@ -90,8 +91,8 @@ co<body>
 						</div>
 					</div>
 				</div>
-			</div>			
-		</div>			
+			</div>
+		</div>
 	</header>
 
 	<!-- Menu -->
@@ -115,7 +116,7 @@ co<body>
 			</ul>
 		</nav>
 	</div>
-	
+
 	<!-- Home -->
 
 	<div class="home" style="height:700px;">
@@ -132,8 +133,8 @@ co<body>
 						<div class="container">
 							<div class="row">
 								<div class="col text-center">
-									<div class="home_slider_title">Welcome To <span>E-</span>Learning</div>
-									<div class="home_slider_subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</div>
+									<div class="home_slider_title">Welcome To <span>E-</span>Learners</div>
+									<div class="home_slider_subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div>
 
 								</div>
 							</div>
@@ -165,7 +166,7 @@ co<body>
 							<div class="row">
 								<div class="col text-center" style="color:white;">
 									<div class="home_slider_title" style="color:white;">Learn Anytime from Anywhere</div>
-									<div class="home_slider_subtitle" style="color:white;">Lorem ipsum dolor sit amet</div>
+									<div class="home_slider_subtitle" style="color:white;">Lorem ipsum dolor sit amet</p></div>
 
 								</div>
 							</div>
@@ -183,12 +184,12 @@ co<body>
 	</div>
 
 	<!-- Features -->
+	<div class="container">
 
-
-			<div class="features row features_row" id="sss">
+			<div class=" features row features_row" id="sss">
 
 				<!-- Features Item -->
-				<div class="col-lg-3 feature_col">
+				<div class=" col-lg-3 feature_col">
 					<div class="feature text-center trans_400">
 						<div class="feature_icon"><img src="{% static 'images/icon_1.png' %}" alt=""></div>
 						<h3 class="feature_title">The Experts</h3>
@@ -226,10 +227,11 @@ co<body>
 			</div>
 		</div>
 
+
 	<!-- Popular Courses -->
 
 	<div class="courses">
-		<div class="section_background parallax-window" data-parallax="scroll" data-image-src="{% static 'images/courses_background.jpg' %}" data-speed="0.8"></div>
+		<div class="section_background parallax-window" data-parallax="scroll" data-image-src="images/courses_background.jpg" data-speed="0.8"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col">
@@ -243,7 +245,6 @@ co<body>
 
 				<!-- Course -->
 				{% for dest in dests %}
-
 				<div class="col-lg-4 course_col">
 					<div class="course">
 <!--						<div class="destination item">-->
@@ -288,7 +289,7 @@ co<body>
 			</div>
 			<div class="row">
 				<div class="col">
-					<div class="courses_button trans_200"><a href="#">view all courses</a></div>
+					<div class="courses_button trans_200"><a href="courses">view all courses</a></div>
 				</div>
 			</div>
 		</div>
@@ -297,7 +298,7 @@ co<body>
 	<!-- Footer -->
 
 	<footer class="footer">
-		<div class="footer_background" style="background-image:url({% static 'images/footer_background.png' %})"></div>
+		<div class="footer_background" style="background-image:url(images/footer_background.png)"></div>
 		<div class="container">
 			<div class="row footer_row">
 				<div class="col">
@@ -310,7 +311,7 @@ co<body>
 								<div class="footer_section footer_about">
 									<div class="footer_logo_container">
 										<a href="#">
-											<div class="footer_logo_text"><span>E-</span>Learning</div>
+											<div class="footer_logo_text"><span>E-</span>Learners</div>
 										</a>
 									</div>
 									<div class="footer_about_text">
@@ -394,7 +395,6 @@ co<body>
 <script src="{% static 'plugins/greensock/ScrollToPlugin.min.js' %}"></script>
 <script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
 <script src="{% static 'plugins/easing/easing.js' %}"></script>
-
 <script src="{% static 'js/custom.js' %}"></script>
 </body>
 </html>
