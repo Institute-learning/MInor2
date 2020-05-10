@@ -14,7 +14,9 @@ urlpatterns = [
    path('courses',views.courses),
    path('contact',views.contact),
    #path('check',views.check12),
+   path('cart',views.cart),
    url(r'^course/$',views.course),
+   path('vid',views.vid),
 ]
 
 

@@ -6,7 +6,7 @@ from django.contrib import admin
 
 urlpatterns =[
    
-    path('/homeInstitute',views.homeInstitute),
+    path('homeInstitute',views.homeInstitute),
     path('homeMenu',views.homeMenu),
     path('stuSave',views.stuSave),
     path('stuOTP',views.stuOTP),

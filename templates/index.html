@@ -61,12 +61,24 @@
 									<div class="logo_text"><span>E-</span>Learning</div>
 								</a>
 							</div>
+							{% comment %} <alert>{{ request.session.username }}</alert> {% endcomment %}
 							<nav class="main_nav_contaner ml-auto">
 								<ul class="main_nav">
 									<li class="active"><a href="#">Home</a></li>
 									<li><a href="about">About</a></li>
 									<li><a href="courses">Courses</a></li>
 									<li><a href="contact">Contact</a></li>
+									{% if request.session.modified == True %}
+									bdsiodson
+									{% endif %}
+									{% if request.session.username %}
+										<li><a href="#">Hello, {{ request.session.username }}</a><li>
+										<li><a href="#">Logout</a></li>
+										{{ username }}
+									{%else%}
+										<li><a href="#">Register </a></li>
+										<li><a href="about">Login</a></li>
+									{% endif %}
 								</ul>
 
 
@@ -76,6 +88,11 @@
 								<div class="hamburger menu_mm">
 									<i class="fa fa-bars menu_mm" aria-hidden="true"></i>
 								</div>
+								
+								
+									
+								
+
 							</nav>
 
 						</div>
@@ -343,7 +360,7 @@ function submitform()
 </script>
 
 <form method="POST" action="course/" id="san" name="myform">
-	<input name="na" type="text" value="sanchit">
+	<input name="na" type="text" value="sanchit" >
 	{%csrf_token%}
 	{% comment %} <div type="submit">abcd</div> {% endcomment %}
 	<a onclick="submitform()">Submitkjdsfvksfvbk</a>

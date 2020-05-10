@@ -8,7 +8,7 @@ urlpatterns = [path('abc/', include('Quizz.urls')),
     path('admin/', admin.site.urls),
     path('access/', include('access.urls')),
     path('', include('home.urls')),
-    path('log',include('Login_Auth.urls'))
+    path('log/',include('Login_Auth.urls'))
  ]
 
 

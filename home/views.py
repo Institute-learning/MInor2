@@ -7,6 +7,8 @@ from .models import Course
 # Create your views here.
 def index(request):
     dests = Course.objects.all()
+    #print(request.session.username)
+    request.session.modified = True
     return render(request,'index.html', {'dests': dests})
     
 # Create your views here.
@@ -54,3 +56,10 @@ def idk(request):
 def check12(request,name):
 
     return (request,name)
+
+def cart(request):
+    return render(request,'cart_page.html')
+
+    
+def vid(request):
+    return render(request,'vid.html')

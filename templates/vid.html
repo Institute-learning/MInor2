@@ -83,7 +83,30 @@ fieldset.scheduler-border {
         border-bottom:none;
     }
 </style>
-	
+<style type="text/css">
+.container {
+  width: 100%;
+  height: 700px;
+  
+  margin: auto;
+  padding: 0px;
+}
+
+.one {
+  width: 20%;
+  height: 100%;
+  background: #d6d6d6;
+  float: left;
+}
+
+.two {
+  margin-left: 15%;
+  height: 100%;
+
+  background: #545151;
+  
+}
+</style>	
 
 </head>
 <body>
@@ -116,7 +139,8 @@ fieldset.scheduler-border {
 									<li class="active"><a href="#">Home</a></li>
 									<li><a href="about">About</a></li>
 									<li><a href="courses">Courses</a></li>
-									<li><a href="contact">Contact</a></li>
+									<li><a href="contact">Hello, Sanchit</a></li>
+                                    <li><a href="contact">Log Out</a></li>
 								</ul>
 
 
@@ -170,7 +194,8 @@ fieldset.scheduler-border {
 				<li class="menu_mm"><a href="index">Home</a></li>
 				<li class="menu_mm"><a href="about">About</a></li>
 				<li class="menu_mm"><a href="courses">Courses</a></li>
-				<li class="menu_mm"><a href="contact">Contact</a></li>
+                <li class="menu_mm"><a href="Hello, Sanchit">Contact</a></li>
+                <li class="menu_mm"><a href="Logout">Contact</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -182,44 +207,14 @@ fieldset.scheduler-border {
     <br><br><br><br><br><br><br>
     <div >
 
-<br><br>
-<div class="container" style=" ">
-<div class="panel-group" style="">
-<div class="panel panel-danger">
-<div class="panel-heading"><h1>Student OTP Verification</h1></div><br><br>
-<form method=POST action="stuOTP" class="form-horizontal"  >
-{% csrf_token %}
+<section class="container">
+  <div class="one"></div>
+  <div class="two">
+  	<div style="margin-top: 20px;"><h2 style="color: white;">Module 1: Getting Started</h2></div>
+  	<embed type="application/pdf" src="{% static 'abc/assignment solution.pdf' %}" style="width: 80%; height: 600px; padding: 40px;" ></embed>
+  </div>
+</section>
 
-<input type="hidden" id="fname" name="fname" value="{{user.name}} ">
-<input type="hidden" id="pass" name="pass" value="{{user.pwd}} " readonly >
-<input type="hidden" id="dob" name="dob" value="{{user.dob}}" readonly >
-<input type="hidden" id="gen" name="gen" value="{{user.Gen}}" readonly >
-
-
-
-<div class="form-group">
-<label class="control-label col-sm-2 text-primary" for="eid" > Email Id </label>
-
-<div class="col-sm-6">
-<input type=text id="e_id" name="e_id" value={{user.email}} class=form-control readonly />
-</div> 
-</div>
-
-<div class="form-group">
-<label class="control-label col-sm-2 text-primary" for="pwd" > OTP </label>
-<div class="col-sm-6">
-<input type="number" id="otp" name="otp" class=form-control required />
-</div>
-</div>
-<label color = blue >OTP has been sent to the given Email address</label>
-<div style="text-align:left;">
-<button type=submit class="btn btn-danger">Submit</button>
-</div>
-<br><br><br><br>
-</form>
-</div>
-</div>
-</div>
 </div>
 
 	<!-- Footer -->
@@ -293,7 +288,6 @@ fieldset.scheduler-border {
 
 								<!-- Footer links -->
 								
-
 							</div>
 
 						</div>
