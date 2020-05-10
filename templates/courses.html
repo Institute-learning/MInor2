@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>E-Learning</title>
+<title>E-Learners</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Unicat project">
@@ -33,6 +33,7 @@
 	</style>
 
 </head>
+
 <body>
 
 <div class="super_container">
@@ -40,7 +41,7 @@
 	<!-- Header -->
 
 	<header class="header">
-			
+
 
 
 		<!-- Header Content -->
@@ -51,19 +52,21 @@
 						<div class="header_content d-flex flex-row align-items-center justify-content-start">
 							<div class="logo_container">
 								<a href="#">
-									<div class="logo_text">Unic<span>at</span></div>
+									<div class="logo_text"><span>E-</span>Learners</div>
 								</a>
 							</div>
 							<nav class="main_nav_contaner ml-auto">
 								<ul class="main_nav">
-									<li><a href="index.html">Home</a></li>
+									<li class="active"><a href="#">Home</a></li>
 									<li><a href="about.html">About</a></li>
 									<li class="active"><a href="courses.html">Courses</a></li>
 									<li><a href="blog.html">Hello, Sanchit</a></li>
 									<li><a href="#">Log Out</a></li>
 								{% comment %} <li><a href="contact.html">Contact</a></li> {% endcomment %}
+									<li><a href="courses.html">Courses</a></li>
+									<li><a href="contact.html">Contact</a></li>
 								</ul>
-								<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
+
 
 								<!-- Hamburger -->
 
@@ -94,8 +97,8 @@
 						</div>
 					</div>
 				</div>
-			</div>			
-		</div>			
+			</div>
+		</div>
 	</header>
 
 	<!-- Menu -->
@@ -121,54 +124,8 @@
 			</ul>
 		</nav>
 	</div>
-	
 
-		<div class="row courses_row">
 
-				<!-- Course -->
-				{% for dest in dests %}
-
-				<div class="col-lg-4 course_col">
-					<div class="course">
-<!--						<div class="destination item">-->
-<!--							<div class="destination_image">-->
-<!--								<img src="{{ desc.courseImage.url }}" alt="">-->
-<!--&lt;!&ndash;								{{ dest.img.url }}&ndash;&gt;-->
-<!--								{% if dest.bought %}-->
-<!--								<div class="spec_offer text-center"><a href="content">View Content</a></div>-->
-<!--								{% else %}-->
-<!--								<div class="spec_offer text-center"><a href="content">Buy Course</a></div>-->
-<!--								{% endif %}-->
-<!--							</div>-->
-<!--						</div>-->
-						<div class="course_image ">
-							<img src="{{ dest.courseImage.url }}" alt="">
-
-						</div>
-						<div class="course_body">
-							<h3 class="course_title"><a href="course">{{dest.courseName}}</a></h3>
-							<div class="course_teacher">Online</div>
-							<div class="course_text">
-								<p>{{ dest.courseDesc }}
-							</div>
-						</div>
-						<div class="course_footer">
-							<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-<!--								<div class="course_info">-->
-<!--									<i class="fa fa-graduation-cap" aria-hidden="true"></i>-->
-<!--									<span>20 Student</span>-->
-<!--								</div>-->
-<!--								<div class="course_info">-->
-<!--									<i class="fa fa-star" aria-hidden="true"></i>-->
-<!--									<span>5 Ratings</span>-->
-<!--								</div>-->
-								<div class="course_price ml-auto">Price: ${{ dest.price }}</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				{% endfor %}
-	</div>
 
 
 
@@ -179,7 +136,7 @@
 
 				<!-- Course -->
 				<div class="col-lg-12">
-
+					<br><br><br><br><br><br>
 					<div class="course_container">
 						<div class="course_title">Software Training</div>
 

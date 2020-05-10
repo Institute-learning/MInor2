@@ -8,6 +8,8 @@ from django.conf.urls import url
 urlpatterns = [
    path('home',views.index),
    path('acont',views.module),
+   path('tp',views.idk),
+   
    path('content',views.content),
    path('about',views.about),
    #path('course',views.course),
@@ -18,10 +20,5 @@ urlpatterns = [
    url(r'^course/$',views.course),
    path('vid',views.vid),
 ]
-
-
-# urlpatterns = patterns('',
-#     url(r'^check/$', 'views.check12'),
-#     )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
