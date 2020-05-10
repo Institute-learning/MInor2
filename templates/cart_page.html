@@ -20,6 +20,22 @@
 <link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+    <!--delete icon-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
 	<style >
@@ -33,57 +49,43 @@
 		height:300px;
 	}
 	</style>
-    <script>
-function check(){
-pw=$("#pwd").val()
-cpw=$("#cpwd").val()
-if(pw===cpw)
-{
-return true
-}
-else
-alert("Password don't match")
-return false
+	<style>
 
-}
-function check()
-{
-eid=$("#eid").val();
-//alert("eid");
-$.get("checkEmail?eid="+eid,function(data,status){
-if(data=="true")
-{
-$("eid").addClass("has-success")
-alert("available");
-}
-else
-{
-alert("Not available");
-}
-});
-}
-</script> 
-<style>
-fieldset.scheduler-border {
-    border: 3px groove #ddd !important;
-    padding: 0 1.4em 1.4em 1.4em !important;
-	width:60%; height=100%;
-    align:center;
-    -webkit-box-shadow:  0px 0px 0px 0px #000;
-            box-shadow:  0px 0px 0px 0px #000;
-			background-color:white;
-}
+      div.col-sm-4{
+                      text-align:center;
 
-    legend.scheduler-border {
-        font-size: 1.2em !important;
-        font-weight: bold !important;
-        text-align: left !important;
-        width:auto;
-        padding:0 10px;
-        border-bottom:none;
-    }
-</style>
-	
+                              }
+
+
+            input[type=text] {
+                          width: 100%;
+                          margin-bottom: 20px;
+                          padding: 12px;
+                          border: 1px solid #ccc;
+                          border-radius: 3px;
+                          }
+
+
+                  .btn {
+                          background-color: #14bdee;
+                          color: white;
+                          padding: 12px;
+                          margin: 10px 0;
+                          border: none;
+                          width: 100%;
+                          border-radius: 3px;
+                          cursor: pointer;
+                          font-size: 17px;
+                        }
+
+
+        .jumbotron {
+
+                    min-height: 50%;
+
+
+        }
+        </style>
 
 </head>
 <body>
@@ -113,19 +115,26 @@ fieldset.scheduler-border {
 							</div>
 							<nav class="main_nav_contaner ml-auto">
 								<ul class="main_nav">
-									<li class="active"><a href="#">Home</a></li>
+									<li><a href="#">Home</a></li>
 									<li><a href="about">About</a></li>
 									<li><a href="courses">Courses</a></li>
 									<li><a href="contact">Contact</a></li>
+									<li><a href="#">Hello, Sanchit </a></li>
+									<li><a href="about">Logout</a></li>
 								</ul>
 
 
 								<!-- Hamburger -->
 
-								<div class="shopping_cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
+								<div class="shopping_cart" ><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
 								<div class="hamburger menu_mm">
 									<i class="fa fa-bars menu_mm" aria-hidden="true"></i>
 								</div>
+								
+								
+									
+								
+
 							</nav>
 
 						</div>
@@ -179,49 +188,115 @@ fieldset.scheduler-border {
 
 
 
-    <br><br><br><br><br><br><br>
-    <div >
+		
 
-<br><br>
-<div class="container" style=" ">
-<div class="panel-group" style="">
-<div class="panel panel-danger">
-<div class="panel-heading"><h1>Student OTP Verification</h1></div><br><br>
-<form method=POST action="stuOTP" class="form-horizontal"  >
-{% csrf_token %}
-
-<input type="hidden" id="fname" name="fname" value="{{user.name}} ">
-<input type="hidden" id="pass" name="pass" value="{{user.pwd}} " readonly >
-<input type="hidden" id="dob" name="dob" value="{{user.dob}}" readonly >
-<input type="hidden" id="gen" name="gen" value="{{user.Gen}}" readonly >
+			
 
 
+	<!-- Features -->
 
-<div class="form-group">
-<label class="control-label col-sm-2 text-primary" for="eid" > Email Id </label>
+<br><br><br><br><br><br>
+      <div class="jumbotron jumbotron-fluid">
+              <div class="container">
+                <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Course Purchased</th>
+                              <th scope="col">Remove</th>
+                              <th scope="col">Price</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td>C++</td>
+                              <td>
+                                  <a href="#">
+                                  <i class="material-icons">&#xe872;</i>
+                                  </a>
+                              </td>
+                              <td>100</td>
+                            </tr>
+                            
 
-<div class="col-sm-6">
-<input type=text id="e_id" name="e_id" value={{user.email}} class=form-control readonly />
-</div> 
-</div>
+                          </tbody>
+                </table>
 
-<div class="form-group">
-<label class="control-label col-sm-2 text-primary" for="pwd" > OTP </label>
-<div class="col-sm-6">
-<input type="number" id="otp" name="otp" class=form-control required />
-</div>
-</div>
-<label color = blue >OTP has been sent to the given Email address</label>
-<div style="text-align:left;">
-<button type=submit class="btn btn-danger">Submit</button>
-</div>
-<br><br><br><br>
-</form>
-</div>
-</div>
-</div>
-</div>
+                  <div class="row">
+                      <div class="col-sm-8"><h6> Total </h6></div>
+                      <div class="col-sm-4"><h6>100</h6></div>
+                  </div>
 
+              </div>
+            </div>
+
+
+           <div class="jumbotron jumbotron-fluid">
+              <div class="container">
+                  <div class="row">
+                <h1>Payment</h1>
+                  </div>
+                <form>
+                     <div class="row">
+                    <label><h6>Accepted Cards</h6><br></label><br>
+                        <div class="icon-container">
+                          <i class="fa fa-cc-visa" style="color:navy;"></i>
+                          <i class="fa fa-cc-amex" style="color:blue;"></i>
+                          <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                          <i class="fa fa-cc-discover" style="color:orange;"></i>
+                        </div>
+
+                     </div>
+
+                    <div class="row">
+                    <label for="cname">Name on Card</label>
+                        <input type="text" id="cname" name="cardname" placeholder="Your Full Name ">
+                    </div>
+
+                    <div class="row">
+                        <label for="ccnum">Credit card number</label>
+                        <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                    </div>
+
+                    <div class="row">
+                        <label for="expmonth">Exp Month</label>
+                        <input type="text" id="expmonth" name="expmonth" placeholder="September">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-50">
+                            <label for="expyear">Exp Year</label>
+                            <input type="text" id="expyear" name="expyear" placeholder="2024">
+
+                        </div>
+
+                        <div class="col-50">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" name="cvv" placeholder="352">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                    <input type="submit" value="Continue to checkout" class="btn">
+
+                    </div>
+
+
+
+
+                </form>
+              </div>
+            </div>
+
+        <!--div class="jumbotron">
+            <h6> this will be for checkout section</h6>
+        </div-->
+
+
+
+</div>
+			
 	<!-- Footer -->
 
 	<footer class="footer">
@@ -292,7 +367,13 @@ fieldset.scheduler-border {
 							<div class="col-lg-3 footer_col clearfix">
 
 								<!-- Footer links -->
-								
+								<div class="footer_section footer_mobile">
+									<div class="footer_title">Mobile</div>
+									<div class="footer_mobile_content">
+										<div class="footer_image"><a href="#"><img src="{% static 'images/mobile_1.png' %}" alt=""></a></div>
+										<div class="footer_image"><a href="#"><img src="{% static 'images/mobile_2.png' %}" alt=""></a></div>
+									</div>
+								</div>
 
 							</div>
 

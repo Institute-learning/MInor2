@@ -4,21 +4,17 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.http import HttpResponse
 import random
+from home.models import Course
+from home.views import index
 
 # Create your views here.
 
-#def homeInstitute(request):
-#	return render(request,'homeInstitute.html')
+def homeInstitute(request):
+	return render(request,'reg.html')
 
 
 		
 def homeMenu(request):
-	b=request.GET["a"]
-		
-	if b=="register":
-		return render(request,'stuSave.html')
-
-	elif b=="login":
 		return render(request,'studentLogin.html')
 			
 	
@@ -42,7 +38,7 @@ def stuSave(request):#yeah call hoga
 	send_mail(subject,message,from_email,[to_list],fail_silently=False)
 	
 	user1=user()
-	user1.otp=otpGen
+	#user1.otp=otpGen
 	user1.pwd=Password
 	user1.Gen=Gender
 	user1.dob=Dob
@@ -72,9 +68,15 @@ def stuOTP(request):
 	if (Otp==str(otpGen)):
 		c=Student(stuName=StuName,email=Email,password=Password1,gender=Gender,dateofBirth=Dob)
 		c.save()
-		a="<h1>Student Saved</h1>"
-		resp=HttpResponse(a)
-		return(resp)
+		# a="<h1>Student Saved</h1>"
+		request.session.username=StuName
+		return index(request)
+    	#
+		#)
+
+
+		#resp=HttpResponse(a)
+		#return(resp)
 	else:
 		a = "<h1>OTP Verification Failed</>"
 		resp = HttpResponse(a)
@@ -88,8 +90,8 @@ def loginCheckStudent(request):
 	pwd=pwd+" "
 	print(type(Student.email))
 	lt=Student.objects.filter(email=eid,password=pwd)
-	print(eid)
-	print("Hello")
+	#print(eid)
+	#print("Hello")
 	
 	if lt:
 		request.session["id"]=eid
@@ -97,9 +99,12 @@ def loginCheckStudent(request):
 		
 		b=lt[0].stuName
 		
-		request.session["iname"]=b
+		request.session.username=b
 		c=b.capitalize()
-		return render(request,'homeStudent.html',{"uname":c})
+		request.session.modified = True
+		print(request.session.username)
+
+		return index(request)
 	else:
 		return render(request,'retry.html')
 

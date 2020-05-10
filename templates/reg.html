@@ -181,45 +181,62 @@ fieldset.scheduler-border {
 
     <br><br><br><br><br><br><br>
     <div >
-
-<br><br>
-<div class="container" style=" ">
-<div class="panel-group" style="">
-<div class="panel panel-danger">
-<div class="panel-heading"><h1>Student OTP Verification</h1></div><br><br>
-<form method=POST action="stuOTP" class="form-horizontal"  >
+<form method=post action="stuSave" class="form-horizontal" onSubmit="return check()" >
 {% csrf_token %}
-
-<input type="hidden" id="fname" name="fname" value="{{user.name}} ">
-<input type="hidden" id="pass" name="pass" value="{{user.pwd}} " readonly >
-<input type="hidden" id="dob" name="dob" value="{{user.dob}}" readonly >
-<input type="hidden" id="gen" name="gen" value="{{user.Gen}}" readonly >
-
-
+<div class="form-group">
+<label class="control-label col-sm-2 text-primary" for="name"  >Name</label>
+<div class="col-sm-6">
+<input type=text id="name" name="name" placeholder="Student Name" class=form-control required /></div>
+</div>
 
 <div class="form-group">
 <label class="control-label col-sm-2 text-primary" for="eid" > Email Id </label>
-
 <div class="col-sm-6">
-<input type=text id="e_id" name="e_id" value={{user.email}} class=form-control readonly />
-</div> 
+<input type=text id="eid" name="eid" placeholder=Email  class=form-control required /></div>
 </div>
 
 <div class="form-group">
-<label class="control-label col-sm-2 text-primary" for="pwd" > OTP </label>
+<label class="control-label col-sm-2 text-primary" for="pwd" > Password </label>
 <div class="col-sm-6">
-<input type="number" id="otp" name="otp" class=form-control required />
+<input type=password id=pwd name=pwd class=form-control placeholder="Password" required />
 </div>
 </div>
-<label color = blue >OTP has been sent to the given Email address</label>
-<div style="text-align:left;">
-<button type=submit class="btn btn-danger">Submit</button>
+
+<div class="form-group">
+<label class="control-label col-sm-2 text-primary" for="cpwd" > Confirm Password</label>
+<div class="col-sm-6">
+<input type=password id=cpwd name=cpwd class=form-control placeholder="Confirm Password" required />
 </div>
-<br><br><br><br>
+</div>
+
+
+<div class="form-group">
+<label class="control-label col-sm-2 text-primary" for="contact" >Gender</label>
+<div class="col-sm-6">
+<select id='gender' name='gender' class='form-control'  required>
+<option value=disabled>Select Gender</option>
+<option value="male">Male</option>
+<option value="female">Female</option>
+</select>
+</div>
+</div>
+
+
+<div class="form-group">
+<label class="control-label col-sm-2 text-primary" for="dob" >Date of Birth</label>
+<div class="col-sm-6">
+<input type=date id="dob" name="dob" class="form-control" required />
+</div>
+</div>
+
+
+
+
+<div style="text-align:center;">
+<button type=submit name=submit id=submit class="btn btn-info">Submit</button><br><br>
+</div>
+</div>
 </form>
-</div>
-</div>
-</div>
 </div>
 
 	<!-- Footer -->
@@ -293,7 +310,6 @@ fieldset.scheduler-border {
 
 								<!-- Footer links -->
 								
-
 							</div>
 
 						</div>

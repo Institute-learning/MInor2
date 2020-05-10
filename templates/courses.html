@@ -59,6 +59,10 @@
 								<ul class="main_nav">
 									<li class="active"><a href="#">Home</a></li>
 									<li><a href="about.html">About</a></li>
+									<li class="active"><a href="courses.html">Courses</a></li>
+									<li><a href="blog.html">Hello, Sanchit</a></li>
+									<li><a href="#">Log Out</a></li>
+								{% comment %} <li><a href="contact.html">Contact</a></li> {% endcomment %}
 									<li><a href="courses.html">Courses</a></li>
 									<li><a href="contact.html">Contact</a></li>
 								</ul>
@@ -111,10 +115,12 @@
 		</div>
 		<nav class="menu_nav">
 			<ul class="menu_mm">
-				<li class="menu_mm"><a href="index">Home</a></li>
-				<li class="menu_mm"><a href="about">About</a></li>
-				<li class="menu_mm"><a href="courses">Courses</a></li>
-				<li class="menu_mm"><a href="contact">Contact</a></li>
+				<li class="menu_mm"><a href="index.html">Home</a></li>
+				<li class="menu_mm"><a href="#">About</a></li>
+				<li class="menu_mm"><a href="#">Courses</a></li>
+				<li class="menu_mm"><a href="#">Hello, Sanchit</a></li>
+				<li class="menu_mm"><a href="#">Logout</a></li>
+				<li class="menu_mm"><a href="contact.html">Contact</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -136,7 +142,7 @@
 
 
 
-						<div class="container">
+						{% comment %} <div class="container">
 							<ul>
 						 								{% if user.is_authenticated %}
 														<li id="namess">Hello {{ user.username}} </li>
@@ -146,7 +152,7 @@
 														<li><a href="account/login" >Login</a></li>
 														{% endif %}
 								</ul>
-						</div>
+						</div> {% endcomment %}
 
 
 
@@ -156,7 +162,7 @@
 							<!-- Course Info Item -->
 							<div class="course_info_item">
 								<div class="course_info_title">Teacher:</div>
-								<div class="course_info_text"><a href="#">Jacke Masito</a></div>
+								<div class="course_info_text"><a href="#">sanchit goel</a></div>
 							</div>
 
 							<!-- Course Info Item -->
@@ -181,7 +187,7 @@
 							<div class="tabs d-flex flex-row align-items-center justify-content-start">
 								<div class="tab active">description</div>
 								<div class="tab">curriculum</div>
-								<div class="tab">reviews</div>
+								<div class="tab">Discussion</div>
 							</div>
 							<div class="tab_panels">
 
@@ -262,88 +268,50 @@
 									<div class="tab_panel_content">
 										<div class="tab_panel_title">Software Training</div>
 										<div class="tab_panel_content">
-											<div class="tab_panel_text">
-												<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio.</p>
+											<div class="tab_panel_text">This course can be applied to multiple Specializations or Professional Certificates programs. Completing this course will count towards your learning in any of the following programs:</p>
 											</div>
 
 											<!-- Dropdowns -->
 											<ul class="dropdowns">
 												<li class="has_children">
 													<div class="dropdown_item">
-														<div class="dropdown_item_title"><span>Lecture 1:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
+														<div class="dropdown_item_title"><span>Module 1:</span>Front-End Web UI Frameworks and Tools: Bootstrap 4</div>
 														<div class="dropdown_item_text">
-															<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
+															<p>This course will give you an overview of client-side web UI frameworks, in particular Bootstrap 4. You will learn about grids and responsive design,
+Bootstrap CSS and JavaScript components. You will learn about CSS preprocessors, Less and Sass. You will also learn the basics of No...</p>
 														</div>
 													</div>
-													<ul>
-														<li>
-															<div class="dropdown_item">
-																<div class="dropdown_item_title"><span>Lecture 1.1:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
-																<div class="dropdown_item_text">
-																	<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
-																</div>
-															</div>
-														</li>
-														<li>
-															<div class="dropdown_item">
-																<div class="dropdown_item_title"><span>Lecture 1.2:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
-																<div class="dropdown_item_text">
-																	<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
-																</div>
-															</div>
-														</li>
-													</ul>
+													
 												</li>
 												<li class="has_children">
 													<div class="dropdown_item">
-														<div class="dropdown_item_title"><span>Lecture 2:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
+														<div class="dropdown_item_title"><span>Module 2:</span>Front-End Web UI Frameworks and Tools: Bootstrap 4</div>
 														<div class="dropdown_item_text">
-															<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
+															<p>This course will give you an overview of client-side web UI frameworks, in particular Bootstrap 4. You will learn about grids and responsive design,
+Bootstrap CSS and JavaScript components. You will learn about CSS preprocessors, Less and Sass. You will also learn the basics of No...</p>
 														</div>
 													</div>
-													<ul>
-														<li>
-															<div class="dropdown_item">
-																<div class="dropdown_item_title"><span>Lecture 2.1:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
-																<div class="dropdown_item_text">
-																	<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
-																</div>
-															</div>
-														</li>
-														<li>
-															<div class="dropdown_item">
-																<div class="dropdown_item_title"><span>Lecture 2.2:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
-																<div class="dropdown_item_text">
-																	<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
-																</div>
-															</div>
-														</li>
-													</ul>
+													
 												</li>
 												<li>
 													<div class="dropdown_item">
-														<div class="dropdown_item_title"><span>Lecture 3:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
+														<div class="dropdown_item_title"><span>Module 3:</span>Front-End Web UI Frameworks and Tools: Bootstrap 4.</div>
 														<div class="dropdown_item_text">
-															<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
+															<p>This course will give you an overview of client-side web UI frameworks, in particular Bootstrap 4. You will learn about grids and responsive design,
+Bootstrap CSS and JavaScript components. You will learn about CSS preprocessors, Less and Sass. You will also learn the basics of No....</p>
 														</div>
 													</div>
 												</li>
 												<li>
 													<div class="dropdown_item">
-														<div class="dropdown_item_title"><span>Lecture 4:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
+														<div class="dropdown_item_title"><span>Module 4:</span> Front-End Web UI Frameworks and Tools: Bootstrap 4.</div>
 														<div class="dropdown_item_text">
-															<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
+															<p>This course will give you an overview of client-side web UI frameworks, in particular Bootstrap 4. You will learn about grids and responsive design,
+Bootstrap CSS and JavaScript components. You will learn about CSS preprocessors, Less and Sass. You will also learn the basics of No...</p>
 														</div>
 													</div>
 												</li>
-												<li>
-													<div class="dropdown_item">
-														<div class="dropdown_item_title"><span>Lecture 5:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
-														<div class="dropdown_item_text">
-															<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
-														</div>
-													</div>
-												</li>
+
 											</ul>
 										</div>
 									</div>
