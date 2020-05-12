@@ -94,15 +94,14 @@ def loginCheckStudent(request):
 	#print("Hello")
 	
 	if lt:
-		request.session["id"]=eid
-		request.session["pw"]=pwd
+		
 		
 		b=lt[0].stuName
 		
-		request.session.username=b
-		c=b.capitalize()
+		request.session['username']=b
+		
 		request.session.modified = True
-		print(request.session.username)
+		print(request.session.get('username'))
 
 		return index(request)
 	else:
@@ -155,11 +154,14 @@ def changepasswordOpen(request):
 	a=request.GET["a"]
 	return render(request,'changepassword.html')
 
-def index(request):
-	return render(request,'index2.html')
 
 def homeBack(request):
 	b=request.GET["a"]
 			
 	k=request.session.get("iname").capitalize()
 	return render(request,'homeStudent.html',{"uname":k})
+
+def logout(request):
+	print(request.session.get('username'))
+	del request.session['username']
+	return index(request)

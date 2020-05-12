@@ -139,7 +139,35 @@
 					<br><br><br><br><br><br>
 					<div class="course_container">
 						<div class="course_title">Software Training</div>
+							{% for dest in dests %}
 
+					
+
+						<div class="col-lg-4 course_col">
+							<div class="course">
+								<div class="course_image ">
+									<img src="{{ dest.courseImage.url }}" alt="">
+								</div>
+								<div class="course_body">
+								<form method="POST" action="course/" id="san" name="{{ dest.courseName }}">
+									<input name="na" type="hidden" value="{{ dest.courseName }}" >
+									{%csrf_token%}
+									<a href="#" onclick="submitform('{{ dest.courseName }}')"><h3 class="course_title">{{dest.courseName}}</h3></a>
+								</form>	
+									<div class="course_teacher">Online</div>
+									<div class="course_text">
+										<p>{{ dest.courseDesc }}
+									</div>
+								</div>
+								<div class="course_footer">
+									<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+										<div class="course_price ml-auto">Price: ${{ dest.price }}</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					
+				{% endfor %}
 
 
 						{% comment %} <div class="container">

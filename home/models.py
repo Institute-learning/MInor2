@@ -33,7 +33,7 @@ class Student(models.Model):
 	dateofBirth = models.DateField()
 	address = models.CharField(max_length=50)
 	# enrolledCourses=list of courses elrolled
-	courses= models.ManyToManyField(Course,blank=True)
+	#courses= models.ManyToManyField(Course,blank=True)
 
 
 
