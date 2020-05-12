@@ -16,4 +16,5 @@ urlpatterns =[
     path('changepasswordOpen',views.changepasswordOpen),
     path('index',views.index),
     path('homeBack',views.homeBack),
+    path('register',views.register,name = 'register'),
 ]

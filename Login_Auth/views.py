@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from Login_Auth.models import user,Student 
 from django.core.mail import send_mail 
 from django.conf import settings
@@ -6,11 +6,27 @@ from django.http import HttpResponse
 import random
 from home.models import Course
 from home.views import index
+from django.contrib import messages
+from .forms import UserRegisterForms
 
 # Create your views here.
 
 def homeInstitute(request):
 	return render(request,'reg.html')
+
+def register(request):
+	#form = None 
+	if request.method == 'POST':
+		form = UserRegisterForms(request.POST)
+		if form.is_valid():
+			form.save()
+			username = form.cleaned_data.get('username')
+			messages.success(request, f'Account created for {username}!')
+			#return redirect('login')
+			
+	else:
+			form = UserRegisterForms()
+	return render(request,'Login_Auth/register.html', {'form': form})
 
 
 		
@@ -156,7 +172,7 @@ def changepasswordOpen(request):
 	return render(request,'changepassword.html')
 
 def index(request):
-	return render(request,'index2.html')
+	return render(request,'Login_Auth/base.html')
 
 def homeBack(request):
 	b=request.GET["a"]

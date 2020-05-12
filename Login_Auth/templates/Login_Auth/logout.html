@@ -1,0 +1,14 @@
+{% extends "Login_Auth/base.html" %}
+
+{% block content %}
+	<br><br><br><br><br>
+	<div class="boder-top pt-3">
+	<div class="ml-3">
+	<h2>You have been logged out</h2>
+	</div></div>
+	<div class="boder-top pt-3 text-muted">
+	
+		<a class="ml-3 pt-2" href="{% url 'login' %}" >Click here to login in again! </a>
+	</div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock content %}

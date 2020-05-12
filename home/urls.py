@@ -6,7 +6,7 @@ from django.conf.urls import url
 
 
 urlpatterns = [
-   path('home',views.index),
+   path('home',views.index, name = 'home'),
    path('acont',views.module),
    path('tp',views.idk),
    

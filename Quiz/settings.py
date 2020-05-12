@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'access',
     'home',
     'Login_Auth',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sessions',
@@ -144,3 +145,6 @@ EMAIL_PORT = 587
 
 #   09a913f vhjv
 #   2f1c4b3 sushant work
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'home'
