@@ -52,7 +52,6 @@ class question(models.Model):
 		("option3","option3"),
 		("option4","option4"),
 	)
-
 	correctoption=models.CharField(max_length=50,choices=ls,default=option1)
 
 
