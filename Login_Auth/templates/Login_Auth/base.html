@@ -33,71 +33,18 @@
 		height:300px;
 	}
 	</style>
-    <script>
-function check(){
-pw=$("#pwd").val()
-cpw=$("#cpwd").val()
-if(pw===cpw)
-{
-return true
-}
-else
-alert("Password don't match")
-return false
-
-}
-function check()
-{
-eid=$("#eid").val();
-//alert("eid");
-$.get("checkEmail?eid="+eid,function(data,status){
-if(data=="true")
-{
-$("eid").addClass("has-success")
-alert("available");
-}
-else
-{
-alert("Not available");
-}
-});
-}
-</script> 
-<style>
-fieldset.scheduler-border {
-    border: 3px groove #ddd !important;
-    padding: 0 1.4em 1.4em 1.4em !important;
-	width:60%; height=100%;
-    align:center;
-    -webkit-box-shadow:  0px 0px 0px 0px #000;
-            box-shadow:  0px 0px 0px 0px #000;
-			background-color:white;
-}
-
-    legend.scheduler-border {
-        font-size: 1.2em !important;
-        font-weight: bold !important;
-        text-align: left !important;
-        width:auto;
-        padding:0 10px;
-        border-bottom:none;
-    }
-</style>
 	
 
 </head>
+
 <body>
-
-
-
-
 
 <div class="super_container">
 
 	<!-- Header -->
 
-	<header class="header">
-			
+	<header class="fixed-top">
+
 
 
 		<!-- Header Content -->
@@ -108,19 +55,26 @@ fieldset.scheduler-border {
 						<div class="header_content d-flex flex-row align-items-center justify-content-start">
 							<div class="logo_container">
 								<a href="#">
-									<div class="logo_text"><span>E-</span>Learning</div>
+									<div class="logo_text"><span>E-</span>Learners</div>
 								</a>
 							</div>
-							<nav class="main_nav_contaner ml-auto">
+							
+							<nav class="main_nav_contaner ml-auto ">
 								<ul class="main_nav">
-									<li class="active"><a href="#">Home</a></li>
+									<li><a href="{% url 'home' %}">Home</a></li>
 									<li><a href="about">About</a></li>
 									<li><a href="courses">Courses</a></li>
 									<li><a href="contact">Contact</a></li>
+								{% if user.is_authenticated %}
+									<li><a href="#">Hello {{ user.username }} </a></li>
+									<li><a href="{% url 'logout' %}">Logout </a></li>
+								{% else %}
+									<li><a href="{% url 'register' %}">Register </a></li>
+									<li><a href="{% url 'login' %}">Login</a></li>
+								{% endif %}	
 								</ul>
 
-
-								<!-- Hamburger -->
+					<!-- Hamburger -->
 
 								<div class="shopping_cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
 								<div class="hamburger menu_mm">
@@ -149,11 +103,10 @@ fieldset.scheduler-border {
 						</div>
 					</div>
 				</div>
-			</div>			
-		</div>			
+			</div>
+		</div>
 	</header>
-
-	<!-- Menu -->
+<!-- Menu -->
 
 	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
 		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
@@ -167,65 +120,31 @@ fieldset.scheduler-border {
 		</div>
 		<nav class="menu_nav">
 			<ul class="menu_mm">
-				<li class="menu_mm"><a href="index">Home</a></li>
-				<li class="menu_mm"><a href="about">About</a></li>
-				<li class="menu_mm"><a href="courses">Courses</a></li>
-				<li class="menu_mm"><a href="contact">Contact</a></li>
+				<li class="menu_mm"><a href="index.html">Home</a></li>
+				<li class="menu_mm"><a href="#">About</a></li>
+				<li class="menu_mm"><a href="#">Courses</a></li>
+				<li class="menu_mm"><a href="#">Hello, Sanchit</a></li>
+				<li class="menu_mm"><a href="#">Logout</a></li>
+				<li class="menu_mm"><a href="contact.html">Contact</a></li>
 			</ul>
 		</nav>
 	</div>
-	
+
+
+
 	<!-- Home -->
 
+	{% block content %}
+	
+	{% endblock %}
+	<br>
+	<br>
 
-
-    <br><br><br><br><br><br><br>
-    <div >
-
-<br><br>
-<div class="container" style=" ">
-<div class="panel-group" style="">
-<div class="panel panel-danger">
-<div class="panel-heading"><h1>Student OTP Verification</h1></div><br><br>
-<form method=POST action="stuOTP" class="form-horizontal"  >
-{% csrf_token %}
-
-<input type="hidden" id="fname" name="fname" value="{{user.name}} ">
-<input type="hidden" id="pass" name="pass" value="{{user.pwd}} " readonly >
-<input type="hidden" id="dob" name="dob" value="{{user.dob}}" readonly >
-<input type="hidden" id="gen" name="gen" value="{{user.Gen}}" readonly >
-
-
-
-<div class="form-group">
-<label class="control-label col-sm-2 text-primary" for="eid" > Email Id </label>
-
-<div class="col-sm-6">
-<input type=text id="e_id" name="e_id" value={{user.email}} class=form-control readonly />
-</div> 
-</div>
-
-<div class="form-group">
-<label class="control-label col-sm-2 text-primary" for="pwd" > OTP </label>
-<div class="col-sm-6">
-<input type="number" id="otp" name="otp" class=form-control required />
-</div>
-</div>
-<label color = blue >OTP has been sent to the given Email address</label>
-<div style="text-align:left;">
-<button type=submit class="btn btn-danger">Submit</button>
-</div>
-<br><br><br><br>
-</form>
-</div>
-</div>
-</div>
-</div>
-
+	
 	<!-- Footer -->
 
 	<footer class="footer">
-		<div class="footer_background" style="background-image:url({% static 'images/footer_background.png' %})"></div>
+		<div class="footer_background" style="background-image:url(images/footer_background.png)"></div>
 		<div class="container">
 			<div class="row footer_row">
 				<div class="col">
@@ -238,11 +157,11 @@ fieldset.scheduler-border {
 								<div class="footer_section footer_about">
 									<div class="footer_logo_container">
 										<a href="#">
-											<div class="footer_logo_text"><span>E-</span>Learning</div>
+											<div class="footer_logo_text"><span>E-</span>Learners</div>
 										</a>
 									</div>
 									<div class="footer_about_text">
-										<p>Lorem ipsum dolor sit ametium, consectetur adipiscing elit.</p>
+										<p>Any time. Any where</p>
 									</div>
 									<div class="footer_social">
 										<ul>
@@ -276,7 +195,7 @@ fieldset.scheduler-border {
 
 								<!-- Footer links -->
 								<div class="footer_section footer_links">
-									<div class="footer_title">Contact Us</div>
+									<div class="footer_title">Navigate</div>
 									<div class="footer_links_container">
 										<ul>
 											<li><a href="index">Home</a></li>
@@ -292,7 +211,13 @@ fieldset.scheduler-border {
 							<div class="col-lg-3 footer_col clearfix">
 
 								<!-- Footer links -->
-								
+								<div class="footer_section footer_mobile">
+									<div class="footer_title">Mobile</div>
+									<div class="footer_mobile_content">
+										<div class="footer_image"><a href="#"><img src="{% static 'images/mobile_1.png' %}" alt=""></a></div>
+										<div class="footer_image"><a href="#"><img src="{% static 'images/mobile_2.png' %}" alt=""></a></div>
+									</div>
+								</div>
 
 							</div>
 
@@ -305,6 +230,13 @@ fieldset.scheduler-border {
 		</div>
 	</footer>
 </div>
+<script type="text/javascript">
+function submitForm(name1)
+{
+	document.forms[name1].submit();
+
+}
+</script>
 <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
 {% comment %} <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script> {% endcomment %}
 <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
@@ -316,7 +248,6 @@ fieldset.scheduler-border {
 <script src="{% static 'plugins/greensock/ScrollToPlugin.min.js' %}"></script>
 <script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
 <script src="{% static 'plugins/easing/easing.js' %}"></script>
-
 <script src="{% static 'js/custom.js' %}"></script>
 </body>
 </html>
