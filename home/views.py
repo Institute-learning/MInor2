@@ -1,18 +1,15 @@
 from django.shortcuts import render
 from .models import Course
 #from ..Quizz.models import Course
-from Login_Auth.models import Student
+#from Login_Auth.models import Student
 
 # Create your views here.
 def index(request):
     dests = Course.objects.all()
-    #print(request.session.username)
-    request.session.modified = True
-    na=request.session.get("username")
-    print(na)
-    #na=na+" "
-    l=Student.objects.all()
-    print(l[0].courses1.all()[0].courseName)
+
+
+    #l=Student.objects.all()
+    #print(l[0].courses1.all()[0].courseName)
     return render(request,'index.html', {'dests': dests})
     
 # Create your views here.
@@ -49,10 +46,7 @@ def course(request):
     return  render(request,'courses.html',{'dests':dests})
 
 
-def content(request):
-    dests = Course.objects.filter()
 
-    return render(request, 'coursepage.html', {'dests': dests})
 
 def courses(request):
     dests = Course.objects.all()

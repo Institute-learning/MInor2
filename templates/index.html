@@ -179,7 +179,7 @@
 								<form method="POST" action="course/" id="san" name="{{ dest.courseName }}">
 									<input name="na" type="hidden" value="{{ dest.courseName }}" >
 									{%csrf_token%}
-									<a href="#" onclick="submitform('{{ dest.courseName }}')"><h3 class="course_title">{{dest.courseName}}</h3></a>
+									<a onclick="submitform('{{ dest.courseName }}')"><h3 class="course_title">{{dest.courseName}}</h3></a>
 								</form>	
 									<div class="course_teacher">Online</div>
 									<div class="course_text">
@@ -278,7 +278,7 @@ function submitform(name1)
 							</div>
 						</div>
 					</div>
-					{% endfor %}
+					
 
 				</div>
 				<div class="row">
@@ -290,13 +290,7 @@ function submitform(name1)
 		</div>
 	<div>
 
-	<script type="text/javascript">
-	function submitform()
-	{
-		document.forms["myform"].submit();
-		alert("Value is sumitted");
-	}
-	</script>
+	
 
 	</div>
 

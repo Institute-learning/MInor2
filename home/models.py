@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-
+	
 class Course(models.Model):
 	courseName= models.CharField(max_length=50, default=" ")
 	courseDesc= models.TextField(default=" ")
@@ -10,8 +10,10 @@ class Course(models.Model):
 	price=models.IntegerField(default="100")
 	bought=models.BooleanField(default=True)
 
-
-
+class student1(models.Model):
+	name=models.CharField(max_length=50,default=" ")
+	user1=models.OneToOneField(User,on_delete=models.CASCADE,default="")
+	courses=models.ManyToManyField(Course,blank=True)
 
 class Module(models.Model):
 	moduleName=models.CharField(max_length=50,default=" ")
@@ -28,12 +30,10 @@ class studyMat(models.Model):
 		("pdf","pdf"),
 		("doc","doc"),
 	)
-
 	typ=models.CharField(max_length=6,choices=ls,default="video")
     #typ=models.CharField(max_length=6,choices=types,default=video)
 	#)
 	file1=models.FileField(upload_to='files12/',default=" ")
-
 
 class quiz(models.Model):
 	quizName=models.CharField(max_length=50,default=" ")
