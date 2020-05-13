@@ -163,46 +163,34 @@
 
 					<!-- Course -->
 					{% for dest in dests %}
-					<div class="col-lg-4 course_col">
-						<div class="course">
-	<!--						<div class="destination item">-->
-	<!--							<div class="destination_image">-->
-	<!--								<img src="{{ desc.courseImage.url }}" alt="">-->
-	<!--&lt;!&ndash;								{{ dest.img.url }}&ndash;&gt;-->
-	<!--								{% if dest.bought %}-->
-	<!--								<div class="spec_offer text-center"><a href="content">View Content</a></div>-->
-	<!--								{% else %}-->
-	<!--								<div class="spec_offer text-center"><a href="content">Buy Course</a></div>-->
-	<!--								{% endif %}-->
-	<!--							</div>-->
-	<!--						</div>-->
-							<div class="course_image ">
-								<img src="{{ dest.courseImage.url }}" alt="">
-	{% comment %}    add a function {% endcomment %}
-							</div>
-							<div class="course_body">
-								<h3 class="course_title" onclick="querySomething()">{{dest.courseName}}</h3>
-								<div class="course_teacher">Online</div>
-								<div class="course_text">
-									<p>{{ dest.courseDesc }}
+
+
+
+						<div class="col-lg-4 course_col">
+							<div class="course">
+								<div class="course_image ">
+									<img src="{{ dest.courseImage.url }}" alt="">
 								</div>
-							</div>
-							<div class="course_footer">
-								<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-	<!--								<div class="course_info">-->
-	<!--									<i class="fa fa-graduation-cap" aria-hidden="true"></i>-->
-	<!--									<span>20 Student</span>-->
-	<!--								</div>-->
-	<!--								<div class="course_info">-->
-	<!--									<i class="fa fa-star" aria-hidden="true"></i>-->
-	<!--									<span>5 Ratings</span>-->
-	<!--								</div>-->
-									<div class="course_price ml-auto">Price: ${{ dest.price }}</div>
+								<div class="course_body">
+								<form method="POST" action="course/" id="san" name="{{ dest.courseName }}">
+									<input name="na" type="hidden" value="{{ dest.courseName }}" >
+									{%csrf_token%}
+									<a href="#" onclick="submitform('{{ dest.courseName }}')"><h3 class="course_title">{{dest.courseName}}</h3></a>
+								</form>
+									<div class="course_teacher">Online</div>
+									<div class="course_text">
+										<p>{{ dest.courseDesc }}
+									</div>
+								</div>
+								<div class="course_footer">
+									<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+										<div class="course_price ml-auto">Price: ${{ dest.price }}</div>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					{% endfor %}
+
+				{% endfor %}
 
 				</div>
 				<div class="row">
@@ -214,14 +202,14 @@
 		</div>
 	<div>
 
-	<script type="text/javascript">
-	function submitform()
+<script type="text/javascript">
+	function submitform(name1)
 	{
-		document.forms["myform"].submit();
-		alert("Value is sumitted");
-	}
-	</script>
+		document.forms[name1].submit();
 
+	}
+</script>
+`
 	</div>
 
 {% endblock content %}

@@ -21,6 +21,23 @@
 <link rel="stylesheet" type="text/css" href="{% static 'styles/course_responsive.css' %}">
 
 	<style >
+	.btnn{
+	align-content:right ;
+	background-color:#14bdee;
+	color: white;
+	display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+	align-content:center;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
 		#sss{
 		padding:0px;
 		margin-bottom:55px;
@@ -42,7 +59,7 @@
 
 	<header class="header">
 
-
+	{% for dest in dests %}
 
 		<!-- Header Content -->
 		<div class="header_container">
@@ -55,12 +72,13 @@
 									<div class="logo_text"><span>E-</span>Learners</div>
 								</a>
 							</div>
+
 							<nav class="main_nav_contaner ml-auto">
 								<ul class="main_nav">
-									<li class="active"><a href="#">Home</a></li>
-									<li><a href="about.html">About</a></li>
+									<li class="active"><a href="home">Home</a></li>
+									<li><a href="about">About</a></li>
 									<li class="active"><a href="courses.html">Courses</a></li>
-									<li><a href="blog.html">Hello, Sanchit</a></li>
+									<li><a href="blog.html">Hello </a></li>
 									<li><a href="#">Log Out</a></li>
 								{% comment %} <li><a href="contact.html">Contact</a></li> {% endcomment %}
 									<li><a href="courses.html">Courses</a></li>
@@ -142,22 +160,16 @@
 
 
 
-						{% comment %} <div class="container">
-							<ul>
-						 								{% if user.is_authenticated %}
-														<li id="namess">Hello {{ user.username}} </li>
-														<li><a href="account/logout">Log Out</a></li>
-														{% else %}
-														<li><a href="ss/signup">Register</a></li>
-														<li><a href="account/login" >Login</a></li>
-														{% endif %}
-								</ul>
-						</div> {% endcomment %}
 
 
 
 
-						<div class="course_info d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
+
+
+
+
+
+						<div class="course_info d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start" style="background:white;">
 
 							<!-- Course Info Item -->
 							<div class="course_info_item">
@@ -165,17 +177,7 @@
 								<div class="course_info_text"><a href="#">sanchit goel</a></div>
 							</div>
 
-							<!-- Course Info Item -->
-							<div class="course_info_item">
-								<div class="course_info_title">Reviews:</div>
-								<div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div>
-							</div>
 
-							<!-- Course Info Item -->
-							<div class="course_info_item">
-								<div class="course_info_title">Categories:</div>
-								<div class="course_info_text"><a href="#">Languages</a></div>
-							</div>
 
 						</div>
 
@@ -193,10 +195,10 @@
 
 								<!-- Description -->
 								<div class="tab_panel active">
-									<div class="tab_panel_title">Software Training</div>
+									<div class="tab_panel_title">{{ dest.courseName }}</div>
 									<div class="tab_panel_content">
 										<div class="tab_panel_text">
-											<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosquad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit. Sed ut imperdiet nisi. Proin condimentum fermentum nunc. Lorem Ipsn gravida nibh vel velit auctor aliquet. Class aptent taciti sociosquad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+											<p>{{ dest.courseDesc }}</p>
 										</div>
 										<div class="tab_panel_section">
 											<div class="tab_panel_subtitle">Requirements</div>
@@ -264,53 +266,49 @@
 								</div>
 
 								<!-- Curriculum -->
+
+
+
 								<div class="tab_panel tab_panel_2">
 									<div class="tab_panel_content">
-										<div class="tab_panel_title">Software Training</div>
+										<div class="tab_panel_title">{{ dest.courseName }}</div>
 										<div class="tab_panel_content">
 											<div class="tab_panel_text">This course can be applied to multiple Specializations or Professional Certificates programs. Completing this course will count towards your learning in any of the following programs:</p>
 											</div>
 
 											<!-- Dropdowns -->
+
 											<ul class="dropdowns">
+												{% for mod in mods %}
 												<li class="has_children">
 													<div class="dropdown_item">
-														<div class="dropdown_item_title"><span>Module 1:</span>Front-End Web UI Frameworks and Tools: Bootstrap 4</div>
+														<div class="dropdown_item_title"><a href="about"><span>{{ mod.moduleName }}</span></a></div>
 														<div class="dropdown_item_text">
 															<p>This course will give you an overview of client-side web UI frameworks, in particular Bootstrap 4. You will learn about grids and responsive design,
 Bootstrap CSS and JavaScript components. You will learn about CSS preprocessors, Less and Sass. You will also learn the basics of No...</p>
 														</div>
 													</div>
-													
+													<ul>
+														<li>
+															<div class="dropdown_item">
+																<div class="dropdown_item_title"><span>Lecture 1.1:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
+																<div class="dropdown_item_text">
+																	<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
+																</div>
+															</div>
+														</li>
+														<li>
+															<div class="dropdown_item">
+																<div class="dropdown_item_title"><span>Lecture 1.2:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
+																<div class="dropdown_item_text">
+																	<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
+																</div>
+															</div>
+														</li>
+													</ul>
 												</li>
-												<li class="has_children">
-													<div class="dropdown_item">
-														<div class="dropdown_item_title"><span>Module 2:</span>Front-End Web UI Frameworks and Tools: Bootstrap 4</div>
-														<div class="dropdown_item_text">
-															<p>This course will give you an overview of client-side web UI frameworks, in particular Bootstrap 4. You will learn about grids and responsive design,
-Bootstrap CSS and JavaScript components. You will learn about CSS preprocessors, Less and Sass. You will also learn the basics of No...</p>
-														</div>
-													</div>
-													
-												</li>
-												<li>
-													<div class="dropdown_item">
-														<div class="dropdown_item_title"><span>Module 3:</span>Front-End Web UI Frameworks and Tools: Bootstrap 4.</div>
-														<div class="dropdown_item_text">
-															<p>This course will give you an overview of client-side web UI frameworks, in particular Bootstrap 4. You will learn about grids and responsive design,
-Bootstrap CSS and JavaScript components. You will learn about CSS preprocessors, Less and Sass. You will also learn the basics of No....</p>
-														</div>
-													</div>
-												</li>
-												<li>
-													<div class="dropdown_item">
-														<div class="dropdown_item_title"><span>Module 4:</span> Front-End Web UI Frameworks and Tools: Bootstrap 4.</div>
-														<div class="dropdown_item_text">
-															<p>This course will give you an overview of client-side web UI frameworks, in particular Bootstrap 4. You will learn about grids and responsive design,
-Bootstrap CSS and JavaScript components. You will learn about CSS preprocessors, Less and Sass. You will also learn the basics of No...</p>
-														</div>
-													</div>
-												</li>
+												{% endfor %}
+
 
 											</ul>
 										</div>
@@ -417,10 +415,14 @@ Bootstrap CSS and JavaScript components. You will learn about CSS preprocessors,
 				</div>
 
 			</div>
+			<br>
+			<center>
+				<button type="submit"  class="btnn" style="align:center;align-self: center;" >Buy now for {{ dest.price }}</button>
+			</center>
 		</div>
 	</div>
 
-
+{% endfor %}
 	<!-- Footer -->
 
 	<footer class="footer">
@@ -510,6 +512,13 @@ Bootstrap CSS and JavaScript components. You will learn about CSS preprocessors,
 		</div>
 	</footer>
 </div>
+<script type="text/javascript">
+function submitForm(name1)
+{
+	document.forms[name1].submit();
+
+}
+</script>
 <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
 <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
 <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>

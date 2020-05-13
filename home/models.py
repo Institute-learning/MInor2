@@ -19,7 +19,7 @@ class Course(models.Model):
 	courseImage= models.ImageField(upload_to='pics2/', default=" ")
 	price=models.IntegerField(default="100")
 	bought=models.BooleanField(default=True)
-
+	#courseId
 
 # modules
 
@@ -41,7 +41,8 @@ class Module(models.Model):
 	moduleName=models.CharField(max_length=50,default=" ")
 	course=models.ForeignKey(Course,on_delete=models.CASCADE,default=1)
 	file1=models.FileField(upload_to='files12/',default=" ")
-	#quizz
+	#content
+	#quizId if any
 	#material
 
 

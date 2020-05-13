@@ -61,12 +61,12 @@
 							
 							<nav class="main_nav_contaner ml-auto ">
 								<ul class="main_nav">
-									<li class="active"><a href="{% url 'home' %}">Home</a></li>
+									<li><a href="{% url 'home' %}">Home</a></li>
 									<li><a href="about">About</a></li>
 									<li><a href="courses">Courses</a></li>
 									<li><a href="contact">Contact</a></li>
 								{% if user.is_authenticated %}
-									<li><a href="{% url 'logout' %}">{{ user.username }} </a></li>
+									<li><a href="#">Hello {{ user.username }} </a></li>
 									<li><a href="{% url 'logout' %}">Logout </a></li>
 								{% else %}
 									<li><a href="{% url 'register' %}">Register </a></li>
@@ -74,11 +74,12 @@
 								{% endif %}	
 								</ul>
 
-
-								<!-- Hamburger -->
+					<!-- Hamburger -->
 
 								<div class="shopping_cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
-								
+								<div class="hamburger menu_mm">
+									<i class="fa fa-bars menu_mm" aria-hidden="true"></i>
+								</div>
 							</nav>
 
 						</div>
@@ -87,10 +88,48 @@
 			</div>
 		</div>
 
+		<!-- Header Search Panel -->
+		<div class="header_search_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="header_search_content d-flex flex-row align-items-center justify-content-end">
+							<form action="#" class="header_search_form">
+								<input type="search" class="search_input" placeholder="Search" required="required">
+								<button class="header_search_button d-flex flex-column align-items-center justify-content-center">
+									<i class="fa fa-search" aria-hidden="true"></i>
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</header>
+<!-- Menu -->
 
+	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
+		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
+		<div class="search">
+			<form action="#" class="header_search_form menu_mm">
+				<input type="search" class="search_input menu_mm" placeholder="Search" required="required">
+				<button class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
+					<i class="fa fa-search menu_mm" aria-hidden="true"></i>
+				</button>
+			</form>
+		</div>
+		<nav class="menu_nav">
+			<ul class="menu_mm">
+				<li class="menu_mm"><a href="index.html">Home</a></li>
+				<li class="menu_mm"><a href="#">About</a></li>
+				<li class="menu_mm"><a href="#">Courses</a></li>
+				<li class="menu_mm"><a href="#">Hello, Sanchit</a></li>
+				<li class="menu_mm"><a href="#">Logout</a></li>
+				<li class="menu_mm"><a href="contact.html">Contact</a></li>
+			</ul>
+		</nav>
+	</div>
 
-	<!-- Menu -->
 
 
 	<!-- Home -->
@@ -112,7 +151,7 @@
 					<div class="footer_content">
 						<div class="row">
 
-							<div class="col-lg-5 footer_col">
+							<div class="col-lg-3 footer_col">
 
 								<!-- Footer About -->
 								<div class="footer_section footer_about">
@@ -172,7 +211,13 @@
 							<div class="col-lg-3 footer_col clearfix">
 
 								<!-- Footer links -->
-								
+								<div class="footer_section footer_mobile">
+									<div class="footer_title">Mobile</div>
+									<div class="footer_mobile_content">
+										<div class="footer_image"><a href="#"><img src="{% static 'images/mobile_1.png' %}" alt=""></a></div>
+										<div class="footer_image"><a href="#"><img src="{% static 'images/mobile_2.png' %}" alt=""></a></div>
+									</div>
+								</div>
 
 							</div>
 
@@ -185,6 +230,13 @@
 		</div>
 	</footer>
 </div>
+<script type="text/javascript">
+function submitForm(name1)
+{
+	document.forms[name1].submit();
+
+}
+</script>
 <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
 {% comment %} <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script> {% endcomment %}
 <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>

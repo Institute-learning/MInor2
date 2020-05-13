@@ -829,8 +829,8 @@ section
 {
 	width: 100%;
 	height: 92px;
-	margin-top: 40px;
-	background: white;
+	margin-top: 68px;
+	background: #f2f4f5;
 }
 .course_info_item
 {
@@ -940,11 +940,12 @@ section
 {
 	background: #14bdee;
 	color: #FFFFFF;
-
+	width:100%;
+	margin:0px;
 }
 .tab_panels
 {
-
+	
 }
 .tab_panel
 {
@@ -1157,7 +1158,7 @@ section
 .dropdown_item_title
 {
 	font-family: 'Roboto Slab', serif;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: 700;
 	color: #384158;
 	padding-left: 24px;
@@ -1165,7 +1166,7 @@ section
 }
 .dropdown_item_title span
 {
-	font-size: 16px;
+	font-size: 14px;
 }
 .dropdown_item_title::before
 {
@@ -1174,7 +1175,7 @@ section
 	left: 0;
 	font-family: 'FontAwesome';
 	content: '\f0f6';
-	font-size: 16px;
+	font-size: 14px;
 	color: #384158;
 	opacity: 0.65;
 }
@@ -1199,7 +1200,7 @@ section
 }
 .dropdown_item_text p
 {
-	font-size: 16px;
+	font-size: 13px;
 	font-weight: 400;
 	color: #76777a;
 	line-height: 1.75;
