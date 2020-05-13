@@ -9,7 +9,6 @@ urlpatterns = [
    path('home',views.index),
    path('acont',views.module),
    path('tp',views.idk),
-   
    path('content',views.content),
    path('about',views.about),
    #path('course',views.course),

@@ -155,8 +155,6 @@ def changepasswordOpen(request):
 	a=request.GET["a"]
 	return render(request,'changepassword.html')
 
-def index(request):
-	return render(request,'index2.html')
 
 def homeBack(request):
 	b=request.GET["a"]
