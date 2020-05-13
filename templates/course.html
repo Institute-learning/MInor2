@@ -144,7 +144,7 @@
 				<!-- Course -->
 				{% for dest in dests %}
 
-
+					
 
 						<div class="col-lg-4 course_col">
 							<div class="course">
@@ -156,7 +156,7 @@
 									<input name="na" type="hidden" value="{{ dest.courseName }}" >
 									{%csrf_token%}
 									<a href="#" onclick="submitform('{{ dest.courseName }}')"><h3 class="course_title">{{dest.courseName}}</h3></a>
-								</form>
+								</form>	
 									<div class="course_teacher">Online</div>
 									<div class="course_text">
 										<p>{{ dest.courseDesc }}
@@ -169,8 +169,10 @@
 								</div>
 							</div>
 						</div>
-
+					
 				{% endfor %}
+
+				
 	</div>
 
 		</div>
