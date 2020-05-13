@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Course,Module,studyMat,quiz,question,student1
+from .models import Course,Module,quiz,question,student1,studyMat
 
 
 

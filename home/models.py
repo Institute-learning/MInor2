@@ -6,9 +6,11 @@ from django.contrib.auth.models import User
 class Course(models.Model):
 	courseName= models.CharField(max_length=50, default=" ")
 	courseDesc= models.TextField(default=" ")
+	longDesc=models.TextField(default=" ")
 	courseImage= models.ImageField(upload_to='pics2/', default=" ")
 	price=models.IntegerField(default="100")
-	bought=models.BooleanField(default=True)
+	#sbought=models.BooleanField(default=True)
+	teacher=models.CharField(max_length=50,default=" ")
 
 class student1(models.Model):
 	name=models.CharField(max_length=50,default=" ")
@@ -18,22 +20,23 @@ class student1(models.Model):
 class Module(models.Model):
 	moduleName=models.CharField(max_length=50,default=" ")
 	course=models.ForeignKey(Course,on_delete=models.CASCADE,default=1)
+	moduleNum=models.IntegerField(default=0)
+	disc=models.TextField(max_length=300,default=" ")
 	#file1=models.FileField(upload_to='files12/',default=" ")
 	#quizz
 	#material
 
 class studyMat(models.Model):
-	module=models.ForeignKey(Module,on_delete=models.CASCADE,default=1)
-	Title=models.CharField(max_length=50,default=" ")
-	ls = (
-		("video","video"),
-		("pdf","pdf"),
-		("doc","doc"),
-	)
-	typ=models.CharField(max_length=6,choices=ls,default="video")
-    #typ=models.CharField(max_length=6,choices=types,default=video)
-	#)
-	file1=models.FileField(upload_to='files12/',default=" ")
+ 	module=models.ForeignKey(Module,on_delete=models.CASCADE,default=1)
+ 	Title=models.CharField(max_length=50,default=" ")
+ 	ls = (
+ 		("video","video"),
+ 		("pdf","pdf"),
+ 		("doc","doc"),
+ 	)
+ 	typ=models.CharField(max_length=6,choices=ls,default="video")
+ 	file1=models.FileField(upload_to='files12/',default=" ")
+ 	desc=models.TextField(max_length=300,default=" ")
 
 class quiz(models.Model):
 	quizName=models.CharField(max_length=50,default=" ")

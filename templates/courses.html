@@ -157,57 +157,8 @@
 					<br><br><br><br><br><br>
 					<div class="course_container">
 						<div class="course_title">Software Training</div>
-							{% for dest in dests %}
-
-					
-
-						<div class="col-lg-4 course_col">
-							<div class="course">
-								<div class="course_image ">
-									<img src="{{ dest.courseImage.url }}" alt="">
-								</div>
-								<div class="course_body">
-								<form method="POST" action="course/" id="san" name="{{ dest.courseName }}">
-									<input name="na" type="hidden" value="{{ dest.courseName }}" >
-									{%csrf_token%}
-									<a href="#" onclick="submitform('{{ dest.courseName }}')"><h3 class="course_title">{{dest.courseName}}</h3></a>
-								</form>	
-									<div class="course_teacher">Online</div>
-									<div class="course_text">
-										<p>{{ dest.courseDesc }}
-									</div>
-								</div>
-								<div class="course_footer">
-									<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-										<div class="course_price ml-auto">Price: ${{ dest.price }}</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					
-				{% endfor %}
 
 
-
-
-
-
-
-
-
-
-
-						<div class="course_info d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start" style="background:white;">
-
-							<!-- Course Info Item -->
-							<div class="course_info_item">
-								<div class="course_info_title">Teacher:</div>
-								<div class="course_info_text"><a href="#">sanchit goel</a></div>
-							</div>
-
-
-
-						</div>
 
 						<!-- Course Image -->
 						<div class="course_image"><img src="images/course_image.jpg" alt=""></div>
@@ -228,6 +179,10 @@
 										<div class="tab_panel_text">
 											<p>{{ dest.courseDesc }}</p>
 										</div>
+										<br>
+										<div class="tab_panel_content">
+											<div class="tab_panel_subtitle">Teacher:  sanchit</div>
+										</div>
 										<div class="tab_panel_section">
 											<div class="tab_panel_subtitle">Requirements</div>
 											<ul class="tab_panel_bullets">
@@ -237,6 +192,7 @@
 												<li>Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio.</li>
 											</ul>
 										</div>
+
 										<div class="tab_panel_section">
 											<div class="tab_panel_subtitle">What is the target audience?</div>
 											<div class="tab_panel_text">
@@ -308,33 +264,30 @@
 
 											<ul class="dropdowns">
 												{% for mod in mods %}
-												<li class="has_children">
+												{% if bought %}
+												<li >
 													<div class="dropdown_item">
-														<div class="dropdown_item_title"><a href="about"><span>{{ mod.moduleName }}</span></a></div>
+													
+														<div class="dropdown_item_title"><a href="{% url 'vid' %}"><span>{{ mod.moduleName }}</span></a></div>
 														<div class="dropdown_item_text">
 															<p>This course will give you an overview of client-side web UI frameworks, in particular Bootstrap 4. You will learn about grids and responsive design,
 Bootstrap CSS and JavaScript components. You will learn about CSS preprocessors, Less and Sass. You will also learn the basics of No...</p>
 														</div>
+
 													</div>
-													<ul>
-														<li>
-															<div class="dropdown_item">
-																<div class="dropdown_item_title"><span>Lecture 1.1:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
-																<div class="dropdown_item_text">
-																	<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
-																</div>
-															</div>
-														</li>
-														<li>
-															<div class="dropdown_item">
-																<div class="dropdown_item_title"><span>Lecture 1.2:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
-																<div class="dropdown_item_text">
-																	<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
-																</div>
-															</div>
-														</li>
-													</ul>
-												</li>
+													{% else %}
+													<li class="has_children">
+													<div class="dropdown_item">
+													
+														<div class="dropdown_item_title"><span>{{ mod.moduleName }}</span></div>
+														<div class="dropdown_item_text">
+															<p>This course will give you an overview of client-side web UI frameworks, in particular Bootstrap 4. You will learn about grids and responsive design,
+Bootstrap CSS and JavaScript components. You will learn about CSS preprocessors, Less and Sass. You will also learn the basics of No...</p>
+														</div>
+
+													</div>
+													{% endif %}
+													
 												{% endfor %}
 
 
@@ -444,13 +397,25 @@ Bootstrap CSS and JavaScript components. You will learn about CSS preprocessors,
 
 			</div>
 			<br>
+			{% if bought %}
 			<center>
-				<button type="submit"  class="btnn" style="align:center;align-self: center;" >Buy now for {{ dest.price }}</button>
+				<form name="form1" action="{% url 'vid' %}" method="POST">
+				{% csrf_token %}
+				<input type="text" value='{{ dest.courseName }}' name="na"></input>
+				<a onclick="submitForm('form1')" ><button type="submit"  class="btnn" style="align:center;align-self: center;" >View course content</button></a>
+				</form>
 			</center>
+			{% else %}
+			<center>
+				<a href="{% url 'cart' %}"><button type="submit"  class="btnn" style="align:center;align-self: center;" >Buy now for {{ dest.price }}</button></a>
+			</center>
+
+			{% endif %}
 		</div>
 	</div>
 
 {% endfor %}
+
 	<!-- Footer -->
 
 	<footer class="footer">

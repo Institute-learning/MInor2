@@ -14,9 +14,9 @@ urlpatterns = [
    path('courses',views.courses),
    path('contact',views.contact),
    #path('check',views.check12),
-   path('cart',views.cart),
+   path('cart',views.cart,name="cart"),
    url(r'^course/$',views.course),
-   path('vid',views.vid),
+   url(r'^vid/$',views.vid,name='vid'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
