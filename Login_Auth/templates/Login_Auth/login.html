@@ -1,0 +1,30 @@
+{% extends "Login_Auth/base.html" %}
+	{% load crispy_forms_tags %}
+	
+
+{% block content %}
+	
+	<div class="row fill_height">
+		<div class="col fill_height">
+			<div class="panel panel-default">
+				<form class="counter_form_content d-flex flex-column align-items-center justify-content-center" method="POST" >
+				{% csrf_token %}
+						<fieldset>
+							<legend>Log In</legend>
+							{{ form|crispy}}
+						</fieldset>	
+						<div>
+						<button type="submit" class="btn btn-primary ml-2">Log In</button>
+						<small>
+							<div class="pt-2">
+							<a href="{% url 'register' %}" >Need an account? </a>
+							</div>
+						</small>
+						</div>
+				</form>
+				</div>
+			
+		</div>
+	</div>
+
+{% endblock content %}

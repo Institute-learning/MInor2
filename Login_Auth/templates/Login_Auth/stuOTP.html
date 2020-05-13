@@ -1,0 +1,50 @@
+{% extends "Login_Auth/base.html" %}
+{% load static  %}
+{% static "images" as baseUrl %}
+{% block content %}	
+
+	
+	<!-- Home -->
+
+
+
+    <br><br><br><br><br><br><br>
+    <div >
+
+<br><br>
+<div class="container ml-6 pl-4" >
+
+<h2>Student OTP Verification</h2><br><br>
+
+
+<form method=POST action="stuOTP" class="form-horizontal  align-items-center justify-content-center"  >
+{% csrf_token %}
+
+
+
+
+<div class="form-group">
+<label class="control-label col-sm-2 text-primary" for="eid" > Email Id </label>
+
+<div class="col-sm-6">
+<input type=text id="e_id" name="e_id" value={{email}} class=form-control readonly />
+</div> 
+</div>
+
+<div class="form-group">
+<label class="control-label col-sm-2 text-primary" for="pwd" > OTP </label>
+<div class="col-sm-6">
+<input type="number" id="otp" name="otp" class=form-control required />
+</div>
+</div>
+<div class="pl-3">
+<label color = blue >OTP has been sent to the given Email address</label></div>
+<div class="pl-3 " style="text-align:left;">
+<button type=submit class="btn btn-danger">Submit</button>
+</div>
+<br><br><br><br>
+</form>
+</div>
+</div>
+
+{% endblock content %}	

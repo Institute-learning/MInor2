@@ -1,0 +1,338 @@
+{% load static  %}
+{% static "images" as baseUrl %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>E-Learning</title>
+<meta name="csrf-token" content="{{ csrf_token }}" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Unicat project">
+<meta name="description2" content="Travello template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+
+
+
+	<style >
+		#sss{
+		padding:0px;
+		margin-bottom:55px;
+		}
+	.destination_image img
+	{
+		max-width: 100%;
+		height:300px;
+	}
+	</style>
+    <script>
+function check(){
+pw=$("#pwd").val()
+cpw=$("#cpwd").val()
+if(pw===cpw)
+{
+return true
+}
+else
+alert("Password don't match")
+return false
+
+}
+function check()
+{
+eid=$("#eid").val();
+//alert("eid");
+$.get("checkEmail?eid="+eid,function(data,status){
+if(data=="true")
+{
+$("eid").addClass("has-success")
+alert("available");
+}
+else
+{
+alert("Not available");
+}
+});
+}
+</script> 
+<style>
+fieldset.scheduler-border {
+    border: 3px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+	width:60%; height=100%;
+    align:center;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+            box-shadow:  0px 0px 0px 0px #000;
+			background-color:white;
+}
+
+    legend.scheduler-border {
+        font-size: 1.2em !important;
+        font-weight: bold !important;
+        text-align: left !important;
+        width:auto;
+        padding:0 10px;
+        border-bottom:none;
+    }
+</style>
+	
+
+</head>
+<body>
+
+
+
+
+
+<div class="super_container">
+
+	<!-- Header -->
+
+	<header class="header">
+			
+
+
+		<!-- Header Content -->
+		<div class="header_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="header_content d-flex flex-row align-items-center justify-content-start">
+							<div class="logo_container">
+								<a href="#">
+									<div class="logo_text"><span>E-</span>Learning</div>
+								</a>
+							</div>
+							<nav class="main_nav_contaner ml-auto">
+								<ul class="main_nav">
+									<li class="active"><a href="#">Home</a></li>
+									<li><a href="about">About</a></li>
+									<li><a href="courses">Courses</a></li>
+									<li><a href="contact">Contact</a></li>
+								</ul>
+
+
+								<!-- Hamburger -->
+
+								<div class="shopping_cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
+								<div class="hamburger menu_mm">
+									<i class="fa fa-bars menu_mm" aria-hidden="true"></i>
+								</div>
+							</nav>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Header Search Panel -->
+		<div class="header_search_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="header_search_content d-flex flex-row align-items-center justify-content-end">
+							<form action="#" class="header_search_form">
+								<input type="search" class="search_input" placeholder="Search" required="required">
+								<button class="header_search_button d-flex flex-column align-items-center justify-content-center">
+									<i class="fa fa-search" aria-hidden="true"></i>
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>			
+		</div>			
+	</header>
+
+	<!-- Menu -->
+
+	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
+		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
+		<div class="search">
+			<form action="#" class="header_search_form menu_mm">
+				<input type="search" class="search_input menu_mm" placeholder="Search" required="required">
+				<button class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
+					<i class="fa fa-search menu_mm" aria-hidden="true"></i>
+				</button>
+			</form>
+		</div>
+		<nav class="menu_nav">
+			<ul class="menu_mm">
+				<li class="menu_mm"><a href="index">Home</a></li>
+				<li class="menu_mm"><a href="about">About</a></li>
+				<li class="menu_mm"><a href="courses">Courses</a></li>
+				<li class="menu_mm"><a href="contact">Contact</a></li>
+			</ul>
+		</nav>
+	</div>
+	
+	<!-- Home -->
+
+
+
+    <br><br><br><br><br><br><br>
+    <div >
+<form method=post action="stuSave" class="form-horizontal" onSubmit="return check()" >
+{% csrf_token %}
+<div class="form-group">
+<label class="control-label col-sm-2 text-primary" for="name"  >Name</label>
+<div class="col-sm-6">
+<input type=text id="name" name="name" placeholder="Student Name" class=form-control required /></div>
+</div>
+
+<div class="form-group">
+<label class="control-label col-sm-2 text-primary" for="eid" > Email Id </label>
+<div class="col-sm-6">
+<input type=text id="eid" name="eid" placeholder=Email  class=form-control required /></div>
+</div>
+
+<div class="form-group">
+<label class="control-label col-sm-2 text-primary" for="pwd" > Password </label>
+<div class="col-sm-6">
+<input type=password id=pwd name=pwd class=form-control placeholder="Password" required />
+</div>
+</div>
+
+<div class="form-group">
+<label class="control-label col-sm-2 text-primary" for="cpwd" > Confirm Password</label>
+<div class="col-sm-6">
+<input type=password id=cpwd name=cpwd class=form-control placeholder="Confirm Password" required />
+</div>
+</div>
+
+
+<div class="form-group">
+<label class="control-label col-sm-2 text-primary" for="contact" >Gender</label>
+<div class="col-sm-6">
+<select id='gender' name='gender' class='form-control'  required>
+<option value=disabled>Select Gender</option>
+<option value="male">Male</option>
+<option value="female">Female</option>
+</select>
+</div>
+</div>
+
+
+<div class="form-group">
+<label class="control-label col-sm-2 text-primary" for="dob" >Date of Birth</label>
+<div class="col-sm-6">
+<input type=date id="dob" name="dob" class="form-control" required />
+</div>
+</div>
+
+
+
+
+<div style="text-align:center;">
+<button type=submit name=submit id=submit class="btn btn-info">Submit</button><br><br>
+</div>
+</div>
+</form>
+</div>
+
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="footer_background" style="background-image:url({% static 'images/footer_background.png' %})"></div>
+		<div class="container">
+			<div class="row footer_row">
+				<div class="col">
+					<div class="footer_content">
+						<div class="row">
+
+							<div class="col-lg-3 footer_col">
+
+								<!-- Footer About -->
+								<div class="footer_section footer_about">
+									<div class="footer_logo_container">
+										<a href="#">
+											<div class="footer_logo_text"><span>E-</span>Learning</div>
+										</a>
+									</div>
+									<div class="footer_about_text">
+										<p>Lorem ipsum dolor sit ametium, consectetur adipiscing elit.</p>
+									</div>
+									<div class="footer_social">
+										<ul>
+											<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+										</ul>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="col-lg-3 footer_col">
+
+								<!-- Footer Contact -->
+								<div class="footer_section footer_contact">
+									<div class="footer_title">Contact Us</div>
+									<div class="footer_contact_info">
+										<ul>
+											<li>Email: elearning@gmail.com</li>
+											<li>Phone:  +91 9811033118</li>
+
+										</ul>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="col-lg-3 footer_col">
+
+								<!-- Footer links -->
+								<div class="footer_section footer_links">
+									<div class="footer_title">Contact Us</div>
+									<div class="footer_links_container">
+										<ul>
+											<li><a href="index">Home</a></li>
+											<li><a href="about">About</a></li>
+											<li><a href="contact">Contact</a></li>
+											<li><a href="courses">Courses</a></li>
+										</ul>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="col-lg-3 footer_col clearfix">
+
+								<!-- Footer links -->
+								
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</footer>
+</div>
+<script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+{% comment %} <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script> {% endcomment %}
+<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TweenMax.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TimelineMax.min.js' %}"></script>
+<script src="{% static 'plugins/scrollmagic/ScrollMagic.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/animation.gsap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/ScrollToPlugin.min.js' %}"></script>
+<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+<script src="{% static 'plugins/easing/easing.js' %}"></script>
+
+<script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>

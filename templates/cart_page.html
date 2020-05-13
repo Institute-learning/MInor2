@@ -1,0 +1,403 @@
+{% load static  %}
+{% static "images" as baseUrl %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>E-Learning</title>
+<meta name="csrf-token" content="{{ csrf_token }}" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Unicat project">
+<meta name="description2" content="Travello template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+    <!--delete icon-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+	<style >
+		#sss{
+		padding:0px;
+		margin-bottom:55px;
+		}
+	.destination_image img
+	{
+		max-width: 100%;
+		height:300px;
+	}
+	</style>
+	<style>
+
+      div.col-sm-4{
+                      text-align:center;
+
+                              }
+
+
+            input[type=text] {
+                          width: 100%;
+                          margin-bottom: 20px;
+                          padding: 12px;
+                          border: 1px solid #ccc;
+                          border-radius: 3px;
+                          }
+
+
+                  .btn {
+                          background-color: #14bdee;
+                          color: white;
+                          padding: 12px;
+                          margin: 10px 0;
+                          border: none;
+                          width: 100%;
+                          border-radius: 3px;
+                          cursor: pointer;
+                          font-size: 17px;
+                        }
+
+
+        .jumbotron {
+
+                    min-height: 50%;
+
+
+        }
+        </style>
+
+</head>
+<body>
+
+
+
+
+
+<div class="super_container">
+
+	<!-- Header -->
+
+	<header class="header">
+			
+
+
+		<!-- Header Content -->
+		<div class="header_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="header_content d-flex flex-row align-items-center justify-content-start">
+							<div class="logo_container">
+								<a href="#">
+									<div class="logo_text"><span>E-</span>Learning</div>
+								</a>
+							</div>
+							<nav class="main_nav_contaner ml-auto">
+								<ul class="main_nav">
+									<li><a href="#">Home</a></li>
+									<li><a href="about">About</a></li>
+									<li><a href="courses">Courses</a></li>
+									<li><a href="contact">Contact</a></li>
+									<li><a href="#">Hello, Sanchit </a></li>
+									<li><a href="about">Logout</a></li>
+								</ul>
+
+
+								<!-- Hamburger -->
+
+								<div class="shopping_cart" ><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
+								<div class="hamburger menu_mm">
+									<i class="fa fa-bars menu_mm" aria-hidden="true"></i>
+								</div>
+								
+								
+									
+								
+
+							</nav>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Header Search Panel -->
+		<div class="header_search_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="header_search_content d-flex flex-row align-items-center justify-content-end">
+							<form action="#" class="header_search_form">
+								<input type="search" class="search_input" placeholder="Search" required="required">
+								<button class="header_search_button d-flex flex-column align-items-center justify-content-center">
+									<i class="fa fa-search" aria-hidden="true"></i>
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>			
+		</div>			
+	</header>
+
+	<!-- Menu -->
+
+	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
+		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
+		<div class="search">
+			<form action="#" class="header_search_form menu_mm">
+				<input type="search" class="search_input menu_mm" placeholder="Search" required="required">
+				<button class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
+					<i class="fa fa-search menu_mm" aria-hidden="true"></i>
+				</button>
+			</form>
+		</div>
+		<nav class="menu_nav">
+			<ul class="menu_mm">
+				<li class="menu_mm"><a href="index">Home</a></li>
+				<li class="menu_mm"><a href="about">About</a></li>
+				<li class="menu_mm"><a href="courses">Courses</a></li>
+				<li class="menu_mm"><a href="contact">Contact</a></li>
+			</ul>
+		</nav>
+	</div>
+	
+	<!-- Home -->
+
+
+
+		
+
+			
+
+
+	<!-- Features -->
+
+<br><br><br><br><br><br>
+      <div class="jumbotron jumbotron-fluid">
+              <div class="container">
+                <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Course Purchased</th>
+                              <th scope="col">Remove</th>
+                              <th scope="col">Price</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td>C++</td>
+                              <td>
+                                  <a href="#">
+                                  <i class="material-icons">&#xe872;</i>
+                                  </a>
+                              </td>
+                              <td>100</td>
+                            </tr>
+                            
+
+                          </tbody>
+                </table>
+
+                  <div class="row">
+                      <div class="col-sm-8"><h6> Total </h6></div>
+                      <div class="col-sm-4"><h6>100</h6></div>
+                  </div>
+
+              </div>
+            </div>
+
+
+           <div class="jumbotron jumbotron-fluid">
+              <div class="container">
+                  <div class="row">
+                <h1>Payment</h1>
+                  </div>
+                <form>
+                     <div class="row">
+                    <label><h6>Accepted Cards</h6><br></label><br>
+                        <div class="icon-container">
+                          <i class="fa fa-cc-visa" style="color:navy;"></i>
+                          <i class="fa fa-cc-amex" style="color:blue;"></i>
+                          <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                          <i class="fa fa-cc-discover" style="color:orange;"></i>
+                        </div>
+
+                     </div>
+
+                    <div class="row">
+                    <label for="cname">Name on Card</label>
+                        <input type="text" id="cname" name="cardname" placeholder="Your Full Name ">
+                    </div>
+
+                    <div class="row">
+                        <label for="ccnum">Credit card number</label>
+                        <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                    </div>
+
+                    <div class="row">
+                        <label for="expmonth">Exp Month</label>
+                        <input type="text" id="expmonth" name="expmonth" placeholder="September">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-50">
+                            <label for="expyear">Exp Year</label>
+                            <input type="text" id="expyear" name="expyear" placeholder="2024">
+
+                        </div>
+
+                        <div class="col-50">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" name="cvv" placeholder="352">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                    <input type="submit" value="Continue to checkout" class="btn">
+
+                    </div>
+
+
+
+
+                </form>
+              </div>
+            </div>
+
+        <!--div class="jumbotron">
+            <h6> this will be for checkout section</h6>
+        </div-->
+
+
+
+</div>
+			
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="footer_background" style="background-image:url({% static 'images/footer_background.png' %})"></div>
+		<div class="container">
+			<div class="row footer_row">
+				<div class="col">
+					<div class="footer_content">
+						<div class="row">
+
+							<div class="col-lg-3 footer_col">
+
+								<!-- Footer About -->
+								<div class="footer_section footer_about">
+									<div class="footer_logo_container">
+										<a href="#">
+											<div class="footer_logo_text"><span>E-</span>Learning</div>
+										</a>
+									</div>
+									<div class="footer_about_text">
+										<p>Lorem ipsum dolor sit ametium, consectetur adipiscing elit.</p>
+									</div>
+									<div class="footer_social">
+										<ul>
+											<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+										</ul>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="col-lg-3 footer_col">
+
+								<!-- Footer Contact -->
+								<div class="footer_section footer_contact">
+									<div class="footer_title">Contact Us</div>
+									<div class="footer_contact_info">
+										<ul>
+											<li>Email: elearning@gmail.com</li>
+											<li>Phone:  +91 9811033118</li>
+
+										</ul>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="col-lg-3 footer_col">
+
+								<!-- Footer links -->
+								<div class="footer_section footer_links">
+									<div class="footer_title">Contact Us</div>
+									<div class="footer_links_container">
+										<ul>
+											<li><a href="index">Home</a></li>
+											<li><a href="about">About</a></li>
+											<li><a href="contact">Contact</a></li>
+											<li><a href="courses">Courses</a></li>
+										</ul>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="col-lg-3 footer_col clearfix">
+
+								<!-- Footer links -->
+								<div class="footer_section footer_mobile">
+									<div class="footer_title">Mobile</div>
+									<div class="footer_mobile_content">
+										<div class="footer_image"><a href="#"><img src="{% static 'images/mobile_1.png' %}" alt=""></a></div>
+										<div class="footer_image"><a href="#"><img src="{% static 'images/mobile_2.png' %}" alt=""></a></div>
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</footer>
+</div>
+<script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+{% comment %} <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script> {% endcomment %}
+<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TweenMax.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TimelineMax.min.js' %}"></script>
+<script src="{% static 'plugins/scrollmagic/ScrollMagic.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/animation.gsap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/ScrollToPlugin.min.js' %}"></script>
+<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+<script src="{% static 'plugins/easing/easing.js' %}"></script>
+
+<script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>

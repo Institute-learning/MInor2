@@ -1,0 +1,38 @@
+{% extends "Login_Auth/base.html" %}
+	{% load crispy_forms_tags %}
+{% block content %}	
+	{% if messages %}
+		{% for message in messages %}
+			{ message }
+		{% endfor %}
+	{% endif %}
+	
+	
+		<div class="row fill_height">
+			<div class="col fill_height">
+			<div class="panel panel-default">
+			<div class="panel-body"><br><br><br>
+				<form class="counter_form_content d-flex flex-column align-items-center justify-content-center"  method="POST" >
+					{% csrf_token %}
+					<fieldset>
+						<legend>Join Today</legend>
+							{{ form|crispy}}
+
+					</fieldset>	
+					<div>
+						<input type="submit" class="btn btn-primary ml-4" id="submit" name="submit" value="Submit" >
+						<div>
+					<small >
+					<div class="pt-2">
+						<a  href="{% url 'login' %}" >Already has an account? </a>
+					</div>
+					</small>
+					</div>
+					</div>
+				</form>
+			</div>
+			</div>
+			</div>
+	</div>
+
+{% endblock content %}	

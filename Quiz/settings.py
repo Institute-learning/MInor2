@@ -34,10 +34,13 @@ INSTALLED_APPS = [
 	'Quizz',
     'access',
     'home',
+    'Login_Auth',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.contenttypes',
+    
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
@@ -130,4 +133,18 @@ STATICFILES_DIRS=[
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets' )
 
 MEDIA_URL = '/media/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'minor2temp@gmail.com'
+EMAIL_HOST_PASSWORD = '9868542156'
+EMAIL_PORT = 587
+
+#   09a913f vhjv
+#   2f1c4b3 sushant work
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'home'
