@@ -15,6 +15,8 @@ urlpatterns = [
    path('contact',views.contact),
    #path('check',views.check12),
    path('cart',views.cart,name="cart"),
+   path('quiz',views.quiz1),
+   path('score',views.score),
    url(r'^course/$',views.course),
    url(r'^vid/$',views.vid,name='vid'),
 ]

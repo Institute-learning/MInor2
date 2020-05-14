@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from .models import Course,Module,quiz,question,student1,studyMat
+from .models import Course,Module,quiz,student1,studyMat,question
 #from ..Quizz.models import Course
 #from Login_Auth.models import Student
 from django.contrib.auth.models import User
-
+from django.conf import settings
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -50,9 +51,12 @@ def course(request):
         id = Course.objects.only('id').get(courseName=name).id
         Uid = request.user.id
         stud=student1.objects.filter(user1=Uid)
-        cname=stud[0].courses.filter(courseName=name)
-        if(cname):
-            bought=True
+        if(stud):
+            cname=stud[0].courses.filter(courseName=name)
+            if(cname):
+                bought=True
+            else:
+                bought=False
         else:
             bought=False
         modules = Module.objects.filter(course= id)
@@ -93,6 +97,7 @@ def cart(request):
 def vid(request):
     if (request.method == 'POST'):
         name = request.POST["na"]
+        mname=request.POST["nam"]
         print(name)
         #print(request.user.id)
         dests = Course.objects.filter(courseName=name)
@@ -106,15 +111,79 @@ def vid(request):
         for m in modules :
             stu=[]
             print(m.id)
+            print("fuck")
             st=studyMat.objects.filter(module=m.id)
             for s in st :
                 stu.append(s)
+                print(s.fileNo)
+            stu = sorted(stu , key = lambda x: x.fileNo)    
             #mods.append(stu)
             d={'mo':m,'so':stu}
             mods.append(d)
+            
+        if(mname=='sanchit'):
+            mname=mods[0]["mo"].moduleName
+            print(mname)
 
     
-        for x in mods :
-            print (x["mo"].moduleName)
+        
 
-    return render(request, 'vid.html' ,{"mods":mods})
+    return render(request, 'vid.html' ,{"mods":mods,"mname":mname})
+
+
+
+ques = [
+	{	'qno': 'q1',
+		'a_id': 'a1',
+		'b_id': 'b1',
+		'c_id': 'c1',
+		'd_id': 'd1',
+		'q': 'Q1. What does HTML stand for?',
+		'a': 'Hyperlinks and Text Markup Language',
+		'b': 'Home Tool Markup Language',
+		'c': 'Hyper Text Markup Language',
+		'd': 'Home Text Markup Language',
+		'ans': 'c1'
+		
+	},
+	{   'qno': 'q2',
+		'a_id': 'a2',
+		'b_id': 'b2',
+		'c_id': 'c2',
+		'd_id': 'd2',
+		'q': 'Q2. What is the syntax to write the HTML tags ?',
+		'a': '(HTML)',
+		'b': '<%HTML%>',
+		'c': '"HTML"',
+		'd': '<HTML>',
+		'ans': 'd2'
+	}
+		
+	]
+
+
+def quiz1(request):
+    
+    ques1 = question.objects.filter(quiz=2)
+    for i in ques1 :
+        print(i.id)
+    return render(request,'quizSetup.html',{"ques1":ques1})
+
+    
+
+def score(request):
+
+    s=0
+    ques1 = question.objects.filter(quiz=2)
+    for q in ques1 :
+        a=request.POST.get(str(q.id))
+        print(q.correctoption)
+        print(a)
+        if q.correctoption == a:
+            
+            s =	s+1
+            print(s)
+
+    print('Score:',s)
+
+    return HttpResponse('Thanks for taking the text. View your total score on terminal')

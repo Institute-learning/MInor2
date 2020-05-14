@@ -27,34 +27,41 @@ class Module(models.Model):
 	#material
 
 class studyMat(models.Model):
- 	module=models.ForeignKey(Module,on_delete=models.CASCADE,default=1)
- 	Title=models.CharField(max_length=50,default=" ")
- 	ls = (
- 		("video","video"),
- 		("pdf","pdf"),
- 		("doc","doc"),
- 	)
- 	typ=models.CharField(max_length=6,choices=ls,default="video")
- 	file1=models.FileField(upload_to='files12/',default=" ")
- 	desc=models.TextField(max_length=300,default=" ")
+	module=models.ForeignKey(Module,on_delete=models.CASCADE,default=1)
+	Title=models.CharField(max_length=50,default=" ")
+	ls = (
+		("video","video"),
+		("pdf","pdf"),
+		("doc","doc"),
+	)
+	typ=models.CharField(max_length=6,choices=ls,default="video")
+	file1=models.FileField(upload_to='files12/',default=" ")
+	desc=models.TextField(max_length=300,default=" ")
+	fileNo=models.IntegerField(default=0)
 
 class quiz(models.Model):
 	quizName=models.CharField(max_length=50,default=" ")
 	module=models.ForeignKey(Module,on_delete=models.CASCADE,default=1)
 
 class question(models.Model):
-	quizName=models.ForeignKey(quiz,on_delete=models.CASCADE,default=1)
-	ques=models.CharField(max_length=100,default=" ")
-	option1=models.CharField(max_length=50,default=" ")
-	option2=models.CharField(max_length=50,default=" ")
-	option3=models.CharField(max_length=50,default=" ")
-	option4=models.CharField(max_length=50,default=" ")
-	ls=(
-		("option1","option1"),
-		("option2","option2"),
-		("option3","option3"),
-		("option4","option4"),
-	)
-	correctoption=models.CharField(max_length=50,choices=ls,default=option1)
+ 	quiz=models.ForeignKey(quiz,on_delete=models.CASCADE,default=1)
+ 	ques=models.CharField(max_length=100,default=" ")
+ 	option1=models.CharField(max_length=50,default=" ")
+ 	option2=models.CharField(max_length=50,default=" ")
+ 	option3=models.CharField(max_length=50,default=" ")
+ 	option4=models.CharField(max_length=50,default=" ")
+ 	ls=(		 
+ 		("option1","option1"),
+ 		("option2","option2"),
+ 		("option3","option3"),
+ 		("option4","option4"),
+ 	)
+ 	correctoption=models.CharField(max_length=50,choices=ls,default=option1)
+
+
+class cart(models.Model):
+	user=models.OneToOneField(student1,on_delete=models.CASCADE,default="")
+	courses=models.ManyToManyField(Course,blank=True)
+
 
 
