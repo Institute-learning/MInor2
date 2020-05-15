@@ -106,9 +106,9 @@
     <h1>Quiz </h1>      
     <p>Test what you learn.<br><br> 10 Questions. 10 Marks. 10 Minitues</p>
   </div>
-  <form  name="quiz" method="POST" action = "score">
+  <form  name="quiz" method="POST" action ="{% url 'score' %}">
   {% csrf_token %}
-
+<input type="text" hidden name="qid" value="{{ qid }}">
  {% for que in ques1 %}
  {% csrf_token %}
   <br>

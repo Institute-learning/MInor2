@@ -1,6 +1,6 @@
 {% load static  %}
 {% static "images" as baseUrl %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" xmlns="http://www.w3.org/1999/html"></script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -161,8 +161,25 @@ fieldset.scheduler-border {
 <!--												</div>-->
 											</div>
 										</li>
-										
-									{%endfor%}	
+										{%endfor%}
+									{% for i in key.qo %}
+										<li>
+											<div class="dropdown_item dis">
+
+												<div class="dropdown_item_title modsiz">
+													<div>
+													<form action="{% url 'quiz' %}" method="POST" name="{{ i.quizName }}">
+														{% csrf_token %}
+														<input type="text"  name="qid" value="{{ i.id }}" hidden>
+														<a href="#" onclick="submitform('{{ i.quizName }}')" ><span class="modsiz">Quiz:</span> {{ i.quizName }}</a>
+													</form>
+													</div>
+												</div>
+											</div>
+										</li>
+
+									{% endfor %}
+
 									</ul>
 								</li>
 							{% endfor %}	
@@ -181,13 +198,17 @@ fieldset.scheduler-border {
 				</a>
 			</div>
 
+
+
+
+
 			<div >
 				<hr>
 				<div class="flx">
-					<button type="submit"  class="btnn" style="float:left;align-self: center;" <a href="#" onclick="changemedia('{{ i.file1.url }}','{{i.typ}}')"> >Previous</button>
+					<button type="submit"  class="btnn" style="float:left;align-self: center;" <a href="#" onclick="changemedia('{{ i.file1.url }}','{{i.typ}}')"> Previous</button>
 					<h2 style="text-align:center;" style="float:inline;"><u> Module No-</u></h2>
 
-					<button type="submit" class="btnn" style="align:right;float:right;" <a href="#" onclick="changemedia('{{ i.file1.url }}','{{i.typ}}')">>Next</button>
+					<button type="submit" class="btnn" style="align:right;float:right;" <a href="#" onclick="changemedia('{{ i.file1.url }}','{{i.typ}}')">Next</button>
 
 <!--					pull-right-->
 	<!--				<button type="button" class=" btnn btn-outline-primary">Primary</button>-->
@@ -228,12 +249,17 @@ function changemedia(varr,ty){
 	{
 		document.getElementById("p1").innerHTML = "<center><embed type='application/pdf' src=" + varr + " style='margin:0px; width: 80%; height: 600px; padding: 40px;' ></embed></center>";
 	}
-	else{
-		document.getElementById("p1").innerHTML = "<center><object data="+ varr + " type='application/msword'></object></center>";
-	}
+
 }
 </script>
+<script type="text/javascript">
+	function submitform(name1)
+	{
 
+		document.forms[name1].submit();
+
+	}
+</script>
 
 
 

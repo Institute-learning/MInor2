@@ -91,6 +91,7 @@ def check12(request, name):
 
 
 def cart(request):
+
     return render(request, 'cart_page.html')
 
 
@@ -113,12 +114,15 @@ def vid(request):
             print(m.id)
             print("fuck")
             st=studyMat.objects.filter(module=m.id)
+            qu=quiz.objects.filter(module=m.id)
             for s in st :
                 stu.append(s)
-                print(s.fileNo)
-            stu = sorted(stu , key = lambda x: x.fileNo)    
+                # print(s.fileNo)
+            stu = sorted(stu , key = lambda x: x.fileNo)
             #mods.append(stu)
-            d={'mo':m,'so':stu}
+            for i in qu :
+                print(i.id)
+            d={'mo':m,'so':stu,'qo':qu}
             mods.append(d)
             
         if(mname=='sanchit'):
@@ -163,27 +167,33 @@ ques = [
 
 
 def quiz1(request):
-    
-    ques1 = question.objects.filter(quiz=2)
+    aid=request.POST["qid"]
+    print("quizz")
+    print(aid)
+    ques1 = question.objects.filter(quiz=aid)
     for i in ques1 :
         print(i.id)
-    return render(request,'quizSetup.html',{"ques1":ques1})
+    return render(request,'quizSetup.html',{"ques1":ques1,"qid":aid})
 
     
 
 def score(request):
-
+    id=request.POST["qid"]
     s=0
-    ques1 = question.objects.filter(quiz=2)
+    que=[]
+
+    ques1 = question.objects.filter(quiz=id)
     for q in ques1 :
         a=request.POST.get(str(q.id))
         print(q.correctoption)
         print(a)
+        abc={"your":a,"ques":q}
+
         if q.correctoption == a:
-            
             s =	s+1
             print(s)
+        que.append(abc)
 
     print('Score:',s)
 
-    return HttpResponse('Thanks for taking the text. View your total score on terminal')
+    return render(request, 'scorecardInstructor.html', {"score":s,"que":que})

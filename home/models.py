@@ -63,5 +63,12 @@ class cart(models.Model):
 	user=models.OneToOneField(student1,on_delete=models.CASCADE,default="")
 	courses=models.ManyToManyField(Course,blank=True)
 
+class scorecard(models.Model):
+	quiz=models.ForeignKey(quiz,on_delete=models.CASCADE,default=1)
+	attempt=models.IntegerField(default=0)
+	totalQues=models.IntegerField(default=0)
+	correctAns=models.IntegerField(default=0)
+	percentScore=models.FloatField(default=0.0)
+
 
 

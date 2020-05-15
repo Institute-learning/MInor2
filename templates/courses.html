@@ -156,7 +156,7 @@
 				<div class="col-lg-12">
 					<br><br><br><br><br><br>
 					<div class="course_container">
-						<div class="course_title">{{ dest.courseName }}<div>
+						<div class="course_title">{{ dest.courseName }}</div>
 
 
 
@@ -216,7 +216,9 @@
 										<div class="tab_panel_content">
 											<div class="tab_panel_text"><p>{{ dest.courseDesc }}</p>
 											</div>
-
+											<br>
+											<h4><b>The Topics covered in the course are:</b></h4>
+											<br>
 											<!-- Dropdowns -->
 
 											<ul class="dropdowns">
@@ -362,17 +364,27 @@
 				{% csrf_token %}
 				<input type="text" value='{{ dest.courseName }}' name="na" hidden></input>
 				<input type="text" value='sanchit' name="nam" hidden></input>
-				<a onclick="submitForm('form1')" ><button type="submit"  class="btnn" style="align:center;align-self: center;" >View course content</button></a>
+				<div class="courses_button trans_200" style="align:center;">
+					<a onclick="submitForm('form1')" >
+					<button type="submit"  class="btnn" style="align:center;align-self: center;" >View course content</button>
+					</a>
+					<br><br>
+				</div>
+
 				</form>
 			</center>
 			{% else %}
 			<center>
+				<div class="courses_button trans_200" style="align:center;">
 				<a href="{% url 'cart' %}"><button type="submit"  class="btnn" style="align:center;align-self: center;" >Buy now for {{ dest.price }}</button></a>
+				</div>
 			</center>
 
 			{% endif %}
 		</div>
 	</div>
+</div>
+
 
 {% endfor %}
 <br><br><br>
