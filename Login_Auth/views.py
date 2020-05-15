@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from Login_Auth.models import user,Student 
+#from Login_Auth.models import user
 from django.core.mail import send_mail 
 from django.conf import settings
 from django.http import HttpResponse
@@ -8,6 +8,8 @@ from home.models import Course
 from home.views import index
 from django.contrib import messages
 from .forms import UserRegisterForms
+#from home.models import student1
+from django.contrib.auth.models import User
 
 
 
@@ -44,6 +46,10 @@ def stuOTP(request):
 	global gobalForm 
 	otpGen = request.POST["otp"]
 	globalForm.save()
+	username = globalForm.cleaned_data.get('username')
+	user=User.objects.get(username=username)
+	#stud=student1(user=user)
+	#stud.save()
 	
 	return redirect('login') 
 
