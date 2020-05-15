@@ -156,36 +156,8 @@
 				<div class="col-lg-12">
 					<br><br><br><br><br><br>
 					<div class="course_container">
-						<div class="course_title">Software Training</div>
-							{% for dest in dests %}
+						<div class="course_title">{{ dest.courseName }}<div>
 
-					
-
-						<div class="col-lg-4 course_col">
-							<div class="course">
-								<div class="course_image ">
-									<img src="{{ dest.courseImage.url }}" alt="">
-								</div>
-								<div class="course_body">
-								<form method="POST" action="course/" id="san" name="{{ dest.courseName }}">
-									<input name="na" type="hidden" value="{{ dest.courseName }}" >
-									{%csrf_token%}
-									<a href="#" onclick="submitform('{{ dest.courseName }}')"><h3 class="course_title">{{dest.courseName}}</h3></a>
-								</form>	
-									<div class="course_teacher">Online</div>
-									<div class="course_text">
-										<p>{{ dest.courseDesc }}
-									</div>
-								</div>
-								<div class="course_footer">
-									<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-										<div class="course_price ml-auto">Price: ${{ dest.price }}</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					
-				{% endfor %}
 
 
 						<!-- Course Image -->
@@ -211,7 +183,7 @@
 										<div class="tab_panel_content">
 											<div class="tab_panel_subtitle">Teacher:  sanchit</div>
 										</div>
-										<div class="tab_panel_section">
+										{% comment %} <div class="tab_panel_section">
 											<div class="tab_panel_subtitle">Requirements</div>
 											<ul class="tab_panel_bullets">
 												<li>Lorem Ipsn gravida nibh vel velit auctor aliquet. Class aptent taciti sociosquad litora torquent.</li>
@@ -226,54 +198,11 @@
 											<div class="tab_panel_text">
 												<p>This course is intended for anyone interested in learning to master his or her own body.This course is aimed at beginners, so no previous experience with hand balancing skillts is necessary Aenean viverra tincidunt nibh, in imperdiet nunc. Suspendisse eu ante pretium, consectetur leo at, congue quam. Nullam hendrerit porta ante vitae tristique. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
 											</div>
-										</div>
-										<div class="tab_panel_faq">
-											<div class="tab_panel_title">FAQ</div>
+										</div> {% endcomment %}
 
-											<!-- Accordions -->
-											<div class="accordions">
+										
 
-												<div class="elements_accordions">
-
-													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center"><div>Can I just enroll in a single course?</div></div>
-														<div class="accordion_panel">
-															<p>Lorem ipsun gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a.</p>
-														</div>
-													</div>
-
-													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center active"><div>I'm not interested in the entire Specialization?</div></div>
-														<div class="accordion_panel">
-															<p>Lorem ipsun gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a.</p>
-														</div>
-													</div>
-
-													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center"><div>What is the refund policy?</div></div>
-														<div class="accordion_panel">
-															<p>Lorem ipsun gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a.</p>
-														</div>
-													</div>
-
-													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center"><div>What background knowledge is necessary?</div></div>
-														<div class="accordion_panel">
-															<p>Lorem ipsun gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a.</p>
-														</div>
-													</div>
-
-													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center"><div>Do i need to take the courses in a specific order?</div></div>
-														<div class="accordion_panel">
-															<p>Lorem ipsun gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a.</p>
-														</div>
-													</div>
-
-												</div>
-
-											</div>
-										</div>
+										
 									</div>
 								</div>
 
@@ -285,40 +214,39 @@
 									<div class="tab_panel_content">
 										<div class="tab_panel_title">{{ dest.courseName }}</div>
 										<div class="tab_panel_content">
-											<div class="tab_panel_text">This course can be applied to multiple Specializations or Professional Certificates programs. Completing this course will count towards your learning in any of the following programs:</p>
+											<div class="tab_panel_text"><p>{{ dest.courseDesc }}</p>
 											</div>
 
 											<!-- Dropdowns -->
 
 											<ul class="dropdowns">
 												{% for mod in mods %}
-												<li class="has_children">
+												{% if bought %}
+												<li >
 													<div class="dropdown_item">
-														<div class="dropdown_item_title"><a href="about"><span>{{ mod.moduleName }}</span></a></div>
+													<form name="{{ mod.moduleName }}" action="{% url 'vid' %}" method="POST">
+														{% csrf_token %}
+														<input type="text" value='{{ dest.courseName }}' name="na" hidden></input>
+														<input type="text" value='{{ mod.moduleName }}' name="nam" hidden></input>
+														<div class="dropdown_item_title"><a href="#" onclick="submitForm('{{ mod.moduleName }}')"><span>{{ mod.moduleName }}</span></a></div>
+													</form>	
 														<div class="dropdown_item_text">
-															<p>This course will give you an overview of client-side web UI frameworks, in particular Bootstrap 4. You will learn about grids and responsive design,
-Bootstrap CSS and JavaScript components. You will learn about CSS preprocessors, Less and Sass. You will also learn the basics of No...</p>
+															<p>{{ mod.disc }}</p>
 														</div>
+
 													</div>
-													<ul>
-														<li>
-															<div class="dropdown_item">
-																<div class="dropdown_item_title"><span>Lecture 1.1:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
-																<div class="dropdown_item_text">
-																	<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
-																</div>
-															</div>
-														</li>
-														<li>
-															<div class="dropdown_item">
-																<div class="dropdown_item_title"><span>Lecture 1.2:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
-																<div class="dropdown_item_text">
-																	<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
-																</div>
-															</div>
-														</li>
-													</ul>
-												</li>
+													{% else %}
+													<li>
+													<div class="dropdown_item">
+													
+														<div class="dropdown_item_title"><span>{{ mod.moduleName }}</span></div>
+														<div class="dropdown_item_text">
+															<p>{{ mod.disc }}</p>
+														</div>
+
+													</div>
+													{% endif %}
+													
 												{% endfor %}
 
 
@@ -428,13 +356,26 @@ Bootstrap CSS and JavaScript components. You will learn about CSS preprocessors,
 
 			</div>
 			<br>
+			{% if bought %}
 			<center>
-				<button type="submit"  class="btnn" style="align:center;align-self: center;" >Buy now for {{ dest.price }}</button>
+				<form name="form1" action="{% url 'vid' %}" method="POST">
+				{% csrf_token %}
+				<input type="text" value='{{ dest.courseName }}' name="na" hidden></input>
+				<input type="text" value='sanchit' name="nam" hidden></input>
+				<a onclick="submitForm('form1')" ><button type="submit"  class="btnn" style="align:center;align-self: center;" >View course content</button></a>
+				</form>
 			</center>
+			{% else %}
+			<center>
+				<a href="{% url 'cart' %}"><button type="submit"  class="btnn" style="align:center;align-self: center;" >Buy now for {{ dest.price }}</button></a>
+			</center>
+
+			{% endif %}
 		</div>
 	</div>
 
 {% endfor %}
+<br><br><br>
 	<!-- Footer -->
 
 	<footer class="footer">

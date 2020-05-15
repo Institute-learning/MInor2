@@ -121,7 +121,7 @@ fieldset.scheduler-border {
 
 
 </head>
-<body style="color:black">
+<body style="color:black" onload="myFunction()">
 <div class="row">
 	<div class="col-lg-3">
 
@@ -141,68 +141,31 @@ fieldset.scheduler-border {
 
 							<!-- Dropdowns -->
 							<ul class="dropdowns dis" >
+
+							{% for key in mods %}
 								<li class="has_children">
 									<div class="dropdown_item dis" >
-										<div class="dropdown_item_title modsiz"><span class="modsiz">Module 1:</span> Module no.</div>
+										<div class="dropdown_item_title modsiz"><span class="modsiz">Module {{ key.mo.moduleNum }}:</span> {{ key.mo.moduleName }}</div>
 <!--										<div class="dropdown_item_text dis" >-->
 <!--											<p class="modsiz">Module no. Content or description.</p>-->
 <!--										</div>-->
 									</div>
 									<ul>
+									{% for i in key.so%}
 										<li>
 											<div class="dropdown_item dis">
-												<div class="dropdown_item_title modsiz"><span class="modsiz">Module 1.1:</span> Module no.</div>
+											
+												<div class="dropdown_item_title modsiz"><a href="#" onclick="changemedia('{{ i.file1.url }}','{{i.typ}}')" id="{{ key.mo.moduleName }} + {{i.fileNo}}"  ><span class="modsiz">Module {{ key.mo.moduleNum }}.{{ i.fileNo }}:</span> {{ i.Title }}</a></div>
 <!--												<div class="dropdown_item_text dis">-->
 <!--													<p class="modsiz">Module no. Content or description.</p>-->
 <!--												</div>-->
 											</div>
 										</li>
-										<li>
-											<div class="dropdown_item dis">
-												<div class="dropdown_item_title modsiz"><span class="modsiz">Module 1.2:</span> Module no.</div>
-
-											</div>
-										</li>
+										
+									{%endfor%}	
 									</ul>
 								</li>
-								<li class="has_children">
-									<div class="dropdown_item dis">
-										 <div class="dropdown_item_title modsiz"><span >Module 2:</span> Module no.</div>
-
-									</div>
-									<ul>
-										<li>
-											<div class="dropdown_item dis">
-												 <div class="dropdown_item_title modsiz"><span >Module 2.1:</span> Module no.</div>
-
-											</div>
-										</li>
-										<li>
-											<div class="dropdown_item dis">
-												 <div class="dropdown_item_title modsiz"><span >Module 2.2:</span> Module no.</div>
-
-											</div>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<div class="dropdown_item dis">
-										 <div class="dropdown_item_title modsiz"><span >Module 3:</span> Module no.</div>
-
-									</div>
-								</li>
-								<li>
-									<div class="dropdown_item dis">
-										 <div class="dropdown_item_title modsiz"><span >Module 4:</span> Module no.</div>
-
-									</div>
-								</li>
-								<li>
-									<div class="dropdown_item dis">
-										 <div class="dropdown_item_title modsiz"><span >Module 5:</span> Module no.</div>
-
-									</div>
-								</li>
+							{% endfor %}	
 							</ul>
 						</div>
 					</div>
@@ -221,29 +184,30 @@ fieldset.scheduler-border {
 			<div >
 				<hr>
 				<div class="flx">
-					<button type="submit"  class="btnn" style="float:left;align-self: center;" >Previous</button>
+					<button type="submit"  class="btnn" style="float:left;align-self: center;" <a href="#" onclick="changemedia('{{ i.file1.url }}','{{i.typ}}')"> >Previous</button>
 					<h2 style="text-align:center;" style="float:inline;"><u> Module No-</u></h2>
 
-					<button type="submit" class="btnn" style="align:right;float:right;">Next</button>
+					<button type="submit" class="btnn" style="align:right;float:right;" <a href="#" onclick="changemedia('{{ i.file1.url }}','{{i.typ}}')">>Next</button>
 
 <!--					pull-right-->
 	<!--				<button type="button" class=" btnn btn-outline-primary">Primary</button>-->
 				</div>
 				<section class="container">
 
-			  <div >
+			  <div id="p1" >
 
-				<embed type="application/pdf" src="{% static 'abc/assignment solution.pdf' %}" style="width: 80%; height: 600px; padding: 40px;" ></embed>
+				
 			  </div>
 
 
 			</section>
-				<div class="col-lg-6" style="align-content:right;">
+
+				{% comment %} <div class="col-lg-6" style="align-content:right;">
 					<video width="400" controls >
 						  <source src="{% static 'videos/mov_bbb.mp4' %}" type="video/mp4">
 					<!--	  <source src="mov_bbb.ogg" type="video/ogg">-->
 					</video>
-					</div>
+					</div> {% endcomment %}
 			<br>
 
 		</div>
@@ -251,6 +215,24 @@ fieldset.scheduler-border {
 </div>
 
 
+<script>
+function changemedia(varr,ty){
+	
+	if(ty=='video')
+	{
+		
+		document.getElementById("p1").innerHTML ='<center><video width="400" controls > <source src=' + varr + ' type="video/mp4"></video></center>';
+		
+	}
+	else if (ty=="pdf")
+	{
+		document.getElementById("p1").innerHTML = "<center><embed type='application/pdf' src=" + varr + " style='margin:0px; width: 80%; height: 600px; padding: 40px;' ></embed></center>";
+	}
+	else{
+		document.getElementById("p1").innerHTML = "<center><object data="+ varr + " type='application/msword'></object></center>";
+	}
+}
+</script>
 
 
 
@@ -351,6 +333,12 @@ fieldset.scheduler-border {
 		</div>
 	</footer>
 </div>
+<script>
+function myFunction(){
+	
+	document.getElementById("{{ mname }} + 1").click()
+}
+</script>
 <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
 {% comment %} <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script> {% endcomment %}
 <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
