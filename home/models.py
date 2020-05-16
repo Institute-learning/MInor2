@@ -65,6 +65,7 @@ class cart(models.Model):
 
 class scorecard(models.Model):
 	quiz=models.ForeignKey(quiz,on_delete=models.CASCADE,default=1)
+	student=models.ForeignKey(student1,on_delete=models.CASCADE,default=1)
 	attempt=models.IntegerField(default=0)
 	totalQues=models.IntegerField(default=0)
 	correctAns=models.IntegerField(default=0)

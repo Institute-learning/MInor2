@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Course,Module,quiz,student1,studyMat,question
+from .models import Course,Module,quiz,student1,studyMat,question,scorecard
 #from ..Quizz.models import Course
 #from Login_Auth.models import Student
 from django.contrib.auth.models import User
@@ -135,37 +135,6 @@ def vid(request):
     return render(request, 'vid.html' ,{"mods":mods,"mname":mname})
 
 
-
-ques = [
-	{	'qno': 'q1',
-		'a_id': 'a1',
-		'b_id': 'b1',
-		'c_id': 'c1',
-		'd_id': 'd1',
-		'q': 'Q1. What does HTML stand for?',
-		'a': 'Hyperlinks and Text Markup Language',
-		'b': 'Home Tool Markup Language',
-		'c': 'Hyper Text Markup Language',
-		'd': 'Home Text Markup Language',
-		'ans': 'c1'
-		
-	},
-	{   'qno': 'q2',
-		'a_id': 'a2',
-		'b_id': 'b2',
-		'c_id': 'c2',
-		'd_id': 'd2',
-		'q': 'Q2. What is the syntax to write the HTML tags ?',
-		'a': '(HTML)',
-		'b': '<%HTML%>',
-		'c': '"HTML"',
-		'd': '<HTML>',
-		'ans': 'd2'
-	}
-		
-	]
-
-
 def quiz1(request):
     aid=request.POST["qid"]
     print("quizz")
@@ -178,22 +147,28 @@ def quiz1(request):
     
 
 def score(request):
-    id=request.POST["qid"]
+    id1=request.POST["qid"]
     s=0
     que=[]
-
-    ques1 = question.objects.filter(quiz=id)
+    sid=request.user.id
+    sc=scorecard.objects.filter(quiz=id1,student=sid)
+    q1=quiz.objects.filter(id=id1)
+    s1=student1.objects.filter(user1=id1)
+    t=0
+    ques1 = question.objects.filter(quiz=id1)
     for q in ques1 :
         a=request.POST.get(str(q.id))
         print(q.correctoption)
         print(a)
         abc={"your":a,"ques":q}
-
+        t=t+1
         if q.correctoption == a:
             s =	s+1
             print(s)
         que.append(abc)
 
     print('Score:',s)
-
+    p=s/t*100
+    sc=scorecard(quiz=q1[0],student=s1[0],attempt=1,totalQues=t,correctAns=s,percentScore=p)
+    sc.save()
     return render(request, 'scorecardInstructor.html', {"score":s,"que":que})
