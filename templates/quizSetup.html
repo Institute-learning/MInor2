@@ -1,97 +1,195 @@
+{% load static  %}
+{% static "images" as baseUrl %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<link rel="stylesheet" href="/static/bootstrap.min.css"/>
-<script src="/static/jquery.min.js"></script>
-<script src="/static/bootstrap.min.js"></script>
-<script src="/static/jquery-3.3.1.min.js"></script>
+<title>E-Learning</title>
+<meta name="csrf-token" content="{{ csrf_token }}" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Unicat project">
+<meta name="description2" content="Travello template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
 
-<script>
 
-$(document).ready(function(){
-$.get("getBatchFromTeacher",function(data,status){
-$("#b").html(data)
-});
-});
 
-function getSubject(){
-batch=$("#batch").val()
-
-$.get("getSubject?batch="+batch,function(data,status){
-$("#c").html(data)
-});
+	<style >
+		#sss{
+		padding:0px;
+		margin-bottom:55px;
+		}
+	.destination_image img
+	{
+		max-width: 100%;
+		height:300px;
+	}
+	.floating-div {
+	  position: fixed;
+	  right: 15%;
+	  top: 15%;
+	  z-index: 100000;
+	  padding: 8px;
 }
-function getQuiz(){
-batch=$("#batch").val()
-subject=$("#subject").val()
-$.get("getQuizForSetup?subject="+subject,function(data,status){
-$("#d").html(data)
-});
-}
-</script>    
+	</style>
+	
+
 </head>
-<body class="bg-warning" ><br><br>
 
-<div class="panel panel-danger" style="color:black;">
-<div class="panel-heading" style="background-color:black;" ><h1 align="center"><font color="white" >Activate Quiz</font><h1></div><br>
-<form method=post action="quizActivate" class="form-horizontal" >
-{% csrf_token %}
+<body>
+
+<div class="super_container">
+
+	<!-- Header -->
+
+	<header class="">
 
 
-<div class="form-group">
-<label class="control-label col-sm-2 text-primary"  for="batch" >Select Batch</label>
-<div  class="col-sm-6">
-<div id="b" name="b">
-<select id='batch' name='batch'  class='form-control'  required>
-<option value=disabled>No Batch to select</option>
-</select>
-</div>
-</div>
-</div>
 
-<div class="form-group">
-<label class="control-label col-sm-2 text-primary" for="subject" >Select Subject</label>
-<div  class="col-sm-6">
-<div id="c" name="c">
-<select id='subject' name='subject' class='form-control'  required>
-<option value=disabled>Select a batch first</option>
-</select>
-</div>
-</div>
-</div>
-<div id="e" name="e">
-<div class="form-group">
-<label class="control-label col-sm-2 text-primary" for="qnm" >Select Quizz</label>
-<div  class="col-sm-6">
-<div id="d" name="d">
-<select id='qnm' name='qnm' class='form-control'  required>
-<option value=disabled>Select a batch and subject first first</option>
-</select>
-</div>
-</div>
-</div>
-</div>
-<div class="form-group">
-<label class="control-label col-sm-2 text-primary" for="attempt" >Maximum attempts</label>
-<div class="col-sm-6">
-<input type="attempt" id="attempt" placeholder="Maximum no of attempts" name=attempt class=form-control />
-</div>
-</div>
-<div class="form-group">
-<label class="control-label col-sm-2 text-primary" for="time" >Quiz Time Limit</label>
-<div class="col-sm-6">
-<input type=number id=time placeholder="Quiz Time Limit In Minutes" name=time class=form-control />
-</div>
-</div>
-<div style="text-align:center;">
-<button type=submit name=submit id=submit class="btn btn-info">Activate Quiz</button><br><br>
-</div>
-</div>
-</form>
-</div>
-</div>
+		<!-- Header Content -->
+		<div class="header_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="header_content d-flex flex-row align-items-center justify-content-start">
+							<div class="logo_container">
+								<a href="#">
+									<div class="logo_text"><span>E-</span>Learners</div>
+								</a>
+							</div>
+							
+							<nav class="main_nav_contaner ml-auto ">
+								<ul class="main_nav">
+									<li class="active"><a href="{% url 'home' %}">Home</a></li>
+									<li><a href="about">About</a></li>
+									<li><a href="courses">Courses</a></li>
+									<li><a href="contact">Contact</a></li>
+								{% if user.is_authenticated %}
+									<li><a href="{% url 'logout' %}">{{ user.username }} </a></li>
+									<li><a href="{% url 'logout' %}">Logout </a></li>
+								{% else %}
+									<li><a href="{% url 'register' %}">Register </a></li>
+									<li><a href="{% url 'login' %}">Login</a></li>
+								{% endif %}	
+								</ul>
 
+
+								<!-- Hamburger -->
+
+								<div class="shopping_cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
+								
+							</nav>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
+	<div class = "floating-div card bg-danger"><h6 class="text-white pl-2">Time</h6>
+	<div text-align:center>
+	<input type="text" readonly="" id="timespent" value=" 0:00" style="background: transparent; border:none; color:white; width: 60px; padding-left:15px;">
+	</div>
+	</div>
+
+<div class="container" style="width:60%; ">
+  <div class="jumbotron" style="height:220px;">
+    <h1>Quiz </h1>      
+    <p>Test what you learn.<br><br> 10 Questions. 10 Marks. 10 Minitues</p>
+  </div>
+  <form  name="quiz" method="POST" action ="{% url 'score' %}">
+  {% csrf_token %}
+<input type="text" hidden name="qid" value="{{ qid }}">
+ {% for que in ques1 %}
+ {% csrf_token %}
+  <br>
+  <div class="card bg-secondary text-white ">
+    <div class="card-body">{{ que.ques }}</div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><input type="radio" id="{{que.option1}}" name ="{{ que.id }}" value = "option1"> {{ que.option1 }}</div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><input type="radio" id="{{que.option2}}" name = "{{ que.id }}" value = "option2"> {{ que.option2 }}</div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><input type="radio" id="{{que.option3}}" name = "{{ que.id }}" value = "option3"> {{ que.option3 }}</div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><input type="radio" id="{{que.option4}}" name = "{{ que.id }}" value = "option4"> {{ que.option4 }}</div>
+  </div>
+  <div>
+ {% endfor %}
+ <div style="text-align:center" class="mt-4 mb-4"><button id = "btn1" type="submit" class="btn btn-danger" >Submit</button></div>
+ </form>
+  
+  
+</div>
+<script>
+function startTimer() {
+      var tobj = document.getElementById("timespent")
+      var t = "0:00";
+      var s = 00;
+      var d = new Date();
+      var timeint = setInterval(function () {
+        s += 1;
+        d.setMinutes("0");
+        d.setSeconds(s);
+        min = d.getMinutes();
+        sec = d.getSeconds();
+        if (sec < 10) sec = "0" + sec;
+        document.getElementById("timespent").value = min + ":" + sec;
+		if (min == 10) document.getElementById("btn1").click();
+      }, 1000);
+      tobj.value = t;
+    }
+    if (window.addEventListener) {              
+      window.addEventListener("load", startTimer);
+    } else if (window.attachEvent) {                 
+      window.attachEvent("onload", startTimer);
+    }
+    
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+{% comment %} <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script> {% endcomment %}
+<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TweenMax.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TimelineMax.min.js' %}"></script>
+<script src="{% static 'plugins/scrollmagic/ScrollMagic.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/animation.gsap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/ScrollToPlugin.min.js' %}"></script>
+<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+<script src="{% static 'plugins/easing/easing.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
 </body>
 </html>
+

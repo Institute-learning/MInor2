@@ -8,7 +8,7 @@ from home.models import Course
 from home.views import index
 from django.contrib import messages
 from .forms import UserRegisterForms
-#from home.models import student1
+from home.models import student1
 from django.contrib.auth.models import User
 
 
@@ -48,8 +48,8 @@ def stuOTP(request):
 	globalForm.save()
 	username = globalForm.cleaned_data.get('username')
 	user=User.objects.get(username=username)
-	#stud=student1(user=user)
-	#stud.save()
+	stud=student1(user1=user)
+	stud.save()
 	
 	return redirect('login') 
 
