@@ -172,3 +172,7 @@ def score(request):
     sc=scorecard(quiz=q1[0],student=s1[0],attempt=1,totalQues=t,correctAns=s,percentScore=p)
     sc.save()
     return render(request, 'scorecardInstructor.html', {"score":s,"que":que})
+
+
+def progress(request):
+    return render(request,'score.html')
