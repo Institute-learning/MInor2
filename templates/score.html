@@ -1,0 +1,88 @@
+{% extends "Login_Auth/base.html" %}
+{% load static  %}
+{% block content %}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'styles/course.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/course_responsive.css' %}">
+<script>
+
+$(document).ready(function(){
+$.get("getBatchFromTeacher",function(data,status){
+$("#b").html(data)
+});
+});
+
+function getSubject(){
+batch=$("#batch").val()
+
+$.get("getSubject?batch="+batch,function(data,status){
+$("#c").html(data)
+});
+}
+function getQuiz(){
+batch=$("#batch").val()
+subject=$("#subject").val()
+$.get("getquiz?subject="+subject,function(data,status){
+$("#d").html(data)
+});
+}
+
+
+</script>
+<style>
+	.bg-correct{
+		background-color: lightgreen;
+	}
+	.bg-wrong{
+		background-color: #FFCCCB;
+	}
+</style>
+</head>
+
+
+
+
+<body>
+
+
+	<div class="container">
+		<br><br><br><br><br><br>
+
+
+		<div class="course_title" style="text-align:center;">Scorecard</div>
+
+	<table class='table' style="border-radius: 5px 5px 5px 5px;border:2px;">
+	<thead style="color:black;">
+		<tr style='background-color:#14bdee;';>
+			<th class='active'>Quiz name</th>
+			<th class='active'>Attempt No</th>
+			<th  class='active'>Quiz Name</th>
+			<th class='active'>Total Questions</th>
+			<th class='active'>Correct Answers</th>
+			<th class='active'>Percentage Score</th>
+		</tr>
+	</thead>
+		<tr>
+			<td class='info'> ds </td>
+			<td class='info'> sa </td>
+			<td class='info'> cx </td>
+			<td class='info'> cx </td>
+			<td class='info'> csa </td>
+			<td class='info'> asa </td>
+		</tr>
+
+    </table>
+
+
+	</div>
+
+
+	</div>
+</body>
+
+
+{% endblock content %}

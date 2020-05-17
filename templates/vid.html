@@ -182,13 +182,31 @@ fieldset.scheduler-border {
 
 									</ul>
 								</li>
-							{% endfor %}	
+							{% endfor %}
 							</ul>
 						</div>
 					</div>
-				</div>
+
+
+
+												<div class="tab "  style="background:grey; padding-left:0px;padding-right:10px;border-radius:10px;">
+													<a href="{% url 'progress' %}" style=" color:white;" >
+<!--														<span class="modsiz">Module {{ key.mo.moduleNum }}.{{ i.fileNo }}:</span>-->
+														View Progress
+													</a>
+												</div>
+<!--												<div class="dropdown_item_text dis">-->
+<!--													<p class="modsiz">Module no. Content or description.</p>-->
+<!--												</div>-->
+
 			</div>
+
+
+
+
+
 		</div>
+			</div>
 		</div>
 	<div class="col-lg-9" style="align-content:center;">
 		<div class="super_container"><br><br>
@@ -205,14 +223,15 @@ fieldset.scheduler-border {
 			<div >
 				<hr>
 				<div class="flx">
-					<button type="submit"  class="btnn" style="float:left;align-self: center;" <a href="#" onclick="changemedia('{{ i.file1.url }}','{{i.typ}}')"> Previous</button>
+					<button type="submit"  class="btnn" style="float:left;align-self: center;" ><a href="#" onclick="changemedia('{{ i.file1.url }}','{{i.typ}}')"> Previous</button>
 					<h2 style="text-align:center;" style="float:inline;"><u> Module No-</u></h2>
 
-					<button type="submit" class="btnn" style="align:right;float:right;" <a href="#" onclick="changemedia('{{ i.file1.url }}','{{i.typ}}')">Next</button>
+					<button type="submit" class="btnn" style="align:right;float:right;color:white;" ><a href="#" style="color:white;" onclick="changemedia('{{ i.file1.url }}','{{i.typ}}')">Next</button>
 
 <!--					pull-right-->
 	<!--				<button type="button" class=" btnn btn-outline-primary">Primary</button>-->
 				</div>
+				<br><br>
 				<section class="container">
 
 			  <div id="p1" >
@@ -223,14 +242,11 @@ fieldset.scheduler-border {
 
 			</section>
 
-				{% comment %} <div class="col-lg-6" style="align-content:right;">
-					<video width="400" controls >
-						  <source src="{% static 'videos/mov_bbb.mp4' %}" type="video/mp4">
-					<!--	  <source src="mov_bbb.ogg" type="video/ogg">-->
-					</video>
-					</div> {% endcomment %}
 			<br>
-
+<div class="container " style="width:70%;text-align:center; background:#D3D3D3;">
+asdcdvsvssdvav
+</div>
+				<br><br><br>
 		</div>
 	</div>
 </div>
@@ -242,7 +258,7 @@ function changemedia(varr,ty){
 	if(ty=='video')
 	{
 		
-		document.getElementById("p1").innerHTML ='<center><video width="400" controls > <source src=' + varr + ' type="video/mp4"></video></center>';
+		document.getElementById("p1").innerHTML ='<center><video width="80%" controls > <source src=' + varr + ' type="video/mp4"></video></center>';
 		
 	}
 	else if (ty=="pdf")

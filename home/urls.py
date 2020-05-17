@@ -19,6 +19,7 @@ urlpatterns = [
    url(r'^score/$',views.score,name="score"),
    url(r'^course/$',views.course),
    url(r'^vid/$',views.vid,name='vid'),
+   url(r'^progress/$',views.progress,name='progress'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
