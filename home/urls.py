@@ -10,7 +10,7 @@ urlpatterns = [
    path('mycourse',views.mycourse,name='mycourse'),
    path('acont',views.module),
    path('tp',views.idk),
-   path('about',views.about),
+   url(r'about/$',views.about,name="about"),
    #path('course',views.course),
    path('courses',views.courses),
    path('contact',views.contact),
