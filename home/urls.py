@@ -7,6 +7,7 @@ from django.conf.urls import url
 
 urlpatterns = [
    path('home',views.index, name = 'home'),
+   path('mycourse',views.mycourse,name='mycourse'),
    path('acont',views.module),
    path('tp',views.idk),
    path('about',views.about),
