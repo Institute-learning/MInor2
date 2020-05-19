@@ -11,10 +11,10 @@ urlpatterns = [
    path('tp',views.idk),
    path('about',views.about),
    #path('course',views.course),
-   path('courses',views.courses),
+   path('courses',views.courses, name = 'courses'),
    path('contact',views.contact),
    #path('check',views.check12),
-   path('cart',views.cart),
+   #path('cart',views.cart),
    url(r'^course/$',views.course),
    path('vid',views.vid),
 ]

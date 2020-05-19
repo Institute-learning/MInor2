@@ -1,6 +1,7 @@
+{% extends 'Login_Auth/base.html' %}
 {% load static  %}
 {% static "images" as baseUrl %}
-
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,43 +63,7 @@
 	{% for dest in dests %}
 
 		<!-- Header Content -->
-		<div class="header_container">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="header_content d-flex flex-row align-items-center justify-content-start">
-							<div class="logo_container">
-								<a href="#">
-									<div class="logo_text"><span>E-</span>Learners</div>
-								</a>
-							</div>
-
-							<nav class="main_nav_contaner ml-auto">
-								<ul class="main_nav">
-									<li class="active"><a href="home">Home</a></li>
-									<li><a href="about">About</a></li>
-									<li class="active"><a href="courses.html">Courses</a></li>
-									<li><a href="blog.html">Hello </a></li>
-									<li><a href="#">Log Out</a></li>
-								{% comment %} <li><a href="contact.html">Contact</a></li> {% endcomment %}
-									<li><a href="courses.html">Courses</a></li>
-									<li><a href="contact.html">Contact</a></li>
-								</ul>
-
-
-								<!-- Hamburger -->
-
-								<div class="shopping_cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
-								<div class="hamburger menu_mm">
-									<i class="fa fa-bars menu_mm" aria-hidden="true"></i>
-								</div>
-							</nav>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 
 		<!-- Header Search Panel -->
 		<div class="header_search_container">
@@ -121,28 +86,7 @@
 
 	<!-- Menu -->
 
-	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
-		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
-		<div class="search">
-			<form action="#" class="header_search_form menu_mm">
-				<input type="search" class="search_input menu_mm" placeholder="Search" required="required">
-				<button class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
-					<i class="fa fa-search menu_mm" aria-hidden="true"></i>
-				</button>
-			</form>
-		</div>
-		<nav class="menu_nav">
-			<ul class="menu_mm">
-				<li class="menu_mm"><a href="index.html">Home</a></li>
-				<li class="menu_mm"><a href="#">About</a></li>
-				<li class="menu_mm"><a href="#">Courses</a></li>
-				<li class="menu_mm"><a href="#">Hello, Sanchit</a></li>
-				<li class="menu_mm"><a href="#">Logout</a></li>
-				<li class="menu_mm"><a href="contact.html">Contact</a></li>
-			</ul>
-		</nav>
-	</div>
-
+	
 
 
 
@@ -157,14 +101,13 @@
 					<br><br><br><br><br><br>
 					<div class="course_container">
 						<div class="course_title">Software Training</div>
-							{% for dest in dests %}
-
-					
-
+							
+							
+					{% for dest in dests %}
 						<div class="col-lg-4 course_col">
 							<div class="course">
 								<div class="course_image ">
-									<img src="{{ dest.courseImage.url }}" alt="">
+									<img src="{{ dest.courseImage.url }}" alt="" >
 								</div>
 								<div class="course_body">
 								<form method="POST" action="course/" id="san" name="{{ dest.courseName }}">
@@ -178,14 +121,18 @@
 									</div>
 								</div>
 								<div class="course_footer">
-									<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-										<div class="course_price ml-auto">Price: ${{ dest.price }}</div>
+									<div class="course_footer_content d-flex flex-row ">
+										<div class="course_price mr-4 pr-4">Rs.{{ dest.price }}</div>
+									{% if user.is_authenticated %}
+										<button type="submit" data-course="{{dest.courseName}}" data-action="add"  class="btnn update-cart ">Add to Cart! </button>
+									{% else %}
+									<button type="button" onclick="location.href='{% url 'login' %}'" class="btnn">Buy</button>
+									{% endif %}
 									</div>
 								</div>
 							</div>
 						</div>
-					
-				{% endfor %}
+					{% endfor %}
 
 
 
@@ -445,7 +392,7 @@ Bootstrap CSS and JavaScript components. You will learn about CSS preprocessors,
 			</div>
 			<br>
 			<center>
-				<button type="submit"  class="btnn" style="align:center;align-self: center;" >Buy now for {{ dest.price }}</button>
+				
 			</center>
 		</div>
 	</div>
@@ -453,93 +400,9 @@ Bootstrap CSS and JavaScript components. You will learn about CSS preprocessors,
 {% endfor %}
 	<!-- Footer -->
 
-	<footer class="footer">
-		<div class="footer_background" style="background-image:url({% static 'images/footer_background.png' %})"></div>
-		<div class="container">
-			<div class="row footer_row">
-				<div class="col">
-					<div class="footer_content">
-						<div class="row">
-
-							<div class="col-lg-3 footer_col">
-
-								<!-- Footer About -->
-								<div class="footer_section footer_about">
-									<div class="footer_logo_container">
-										<a href="#">
-											<div class="footer_logo_text"><span>E-</span>Learning</div>
-										</a>
-									</div>
-									<div class="footer_about_text">
-										<p>Lorem ipsum dolor sit ametium, consectetur adipiscing elit.</p>
-									</div>
-									<div class="footer_social">
-										<ul>
-											<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-										</ul>
-									</div>
-								</div>
-
-							</div>
-
-							<div class="col-lg-3 footer_col">
-
-								<!-- Footer Contact -->
-								<div class="footer_section footer_contact">
-									<div class="footer_title">Contact Us</div>
-									<div class="footer_contact_info">
-										<ul>
-											<li>Email: elearning@gmail.com</li>
-											<li>Phone:  +91 9811033118</li>
-
-										</ul>
-									</div>
-								</div>
-
-							</div>
-
-							<div class="col-lg-3 footer_col">
-
-								<!-- Footer links -->
-								<div class="footer_section footer_links">
-									<div class="footer_title">Contact Us</div>
-									<div class="footer_links_container">
-										<ul>
-											<li><a href="index">Home</a></li>
-											<li><a href="about">About</a></li>
-											<li><a href="contact">Contact</a></li>
-											<li><a href="courses">Courses</a></li>
-										</ul>
-									</div>
-								</div>
-
-							</div>
-
-							<div class="col-lg-3 footer_col clearfix">
-
-								<!-- Footer links -->
-								<div class="footer_section footer_mobile">
-									<div class="footer_title">Mobile</div>
-									<div class="footer_mobile_content">
-										<div class="footer_image"><a href="#"><img src="{% static 'images/mobile_1.png' %}" alt=""></a></div>
-										<div class="footer_image"><a href="#"><img src="{% static 'images/mobile_2.png' %}" alt=""></a></div>
-									</div>
-								</div>
-
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-		</div>
-	</footer>
+	
 </div>
+{% endblock content %}
 <script type="text/javascript">
 function submitForm(name1)
 {
@@ -563,5 +426,5 @@ function submitForm(name1)
 <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
 <script src="{% static 'plugins/colorbox/jquery.colorbox-min.js' %}"></script>
 <script src="{% static 'js/course.js' %}"></script>
-
+<script src="{% static 'js/cart.js' %}"></script>
 </html>

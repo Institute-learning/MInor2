@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Course
+from .models import Course, Module
 #from ..Quizz.models import Course
 #from Login_Auth.models import Student
 

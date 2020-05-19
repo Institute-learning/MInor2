@@ -10,6 +10,7 @@ from django.contrib import messages
 from .forms import UserRegisterForms
 #from home.models import student1
 from django.contrib.auth.models import User
+from Login_Auth.models import Profile
 
 
 
@@ -29,7 +30,7 @@ def register(request):
 			username = form.cleaned_data.get('username')
 			Email=form.cleaned_data.get("email")
 			print(Email)
-			messages.success(request, f'Account created for {username}!')
+			messages.success(request, 'Account created for {username}!')
 			subject = 'Welcome to E-Learning'
 			message = 'Thank you for registering into our E-Learning platform. Your OTP  for verification is '+str(otpGen)
 			from_email = settings.EMAIL_HOST_USER	
@@ -48,8 +49,8 @@ def stuOTP(request):
 	globalForm.save()
 	username = globalForm.cleaned_data.get('username')
 	user=User.objects.get(username=username)
-	#stud=student1(user=user)
-	#stud.save()
+	stud=Profile(user = user)
+	stud.save()
 	
 	return redirect('login') 
 

@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'access',
     'home',
     'Login_Auth',
+    'cart',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',

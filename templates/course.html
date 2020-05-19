@@ -1,28 +1,26 @@
+{% extends 'Login_Auth/base.html' %}
 {% load static  %}
 {% static "images" as baseUrl %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>E-Learners</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="Unicat project">
-<meta name="description2" content="Travello template project">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
-<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'styles/courses.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'styles/courses_responsive.css' %}">
-<link href="{% static 'plugins/colorbox/colorbox.css' %}" rel="stylesheet" type="text/css">
-
-
-	<style >
+{% block content %}
+<style >
+	.btnn{
+	align-content:right ;
+	background-color:#14bdee;
+	color: white;
+	display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+	align-content:center;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
 		#sss{
 		padding:0px;
 		margin-bottom:55px;
@@ -33,94 +31,6 @@
 		height:300px;
 	}
 	</style>
-
-</head>
-
-
-<body>
-
-<div class="super_container">
-
-	<!-- Header -->
-
-	<header class="header">
-
-
-
-		<!-- Header Content -->
-		<div class="header_container">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="header_content d-flex flex-row align-items-center justify-content-start">
-							<div class="logo_container">
-								<a href="#">
-									<div class="logo_text"><span>E-</span>Learners</div>
-								</a>
-							</div>
-							<nav class="main_nav_contaner ml-auto">
-								<ul class="main_nav">
-									<li class="active"><a href="#">Home</a></li>
-									<li><a href="about.html">About</a></li>
-									<li><a href="courses.html">Courses</a></li>
-									<li><a href="contact.html">Contact</a></li>
-								</ul>
-
-
-								<!-- Hamburger -->
-
-								<div class="shopping_cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
-								<div class="hamburger menu_mm">
-									<i class="fa fa-bars menu_mm" aria-hidden="true"></i>
-								</div>
-							</nav>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Header Search Panel -->
-		<div class="header_search_container">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="header_search_content d-flex flex-row align-items-center justify-content-end">
-							<form action="#" class="header_search_form">
-								<input type="search" class="search_input" placeholder="Search" required="required">
-								<button class="header_search_button d-flex flex-column align-items-center justify-content-center">
-									<i class="fa fa-search" aria-hidden="true"></i>
-								</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
-
-	<!-- Menu -->
-
-	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
-		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
-		<div class="search">
-			<form action="#" class="header_search_form menu_mm">
-				<input type="search" class="search_input menu_mm" placeholder="Search" required="required">
-				<button class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
-					<i class="fa fa-search menu_mm" aria-hidden="true"></i>
-				</button>
-			</form>
-		</div>
-		<nav class="menu_nav">
-			<ul class="menu_mm">
-				<li class="menu_mm"><a href="index">Home</a></li>
-				<li class="menu_mm"><a href="about">About</a></li>
-				<li class="menu_mm"><a href="courses">Courses</a></li>
-				<li class="menu_mm"><a href="contact">Contact</a></li>
-			</ul>
-		</nav>
-	</div>
 
 	<!-- Course -->
 <div class="course">
@@ -142,7 +52,9 @@
 		<div class="row courses_row">
 
 				<!-- Course -->
-				{% for dest in dests %}
+				
+
+					{% for dest in dests %}
 
 					
 
@@ -163,14 +75,19 @@
 									</div>
 								</div>
 								<div class="course_footer">
-									<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-										<div class="course_price ml-auto">Price: ${{ dest.price }}</div>
+									<div class="course_footer_content d-flex flex-row ">
+										<div class="course_price mr-4 pr-4">Rs.{{ dest.price }}</div>
+										<button type="submit" data-course="{{dest.courseName}}" data-action="add"  class="btnn update-cart ">Add to Cart </button>
 									</div>
 								</div>
 							</div>
 						</div>
 					
 				{% endfor %}
+
+						
+					
+				
 
 				
 	</div>
@@ -180,93 +97,9 @@
 
 <!-- Footer -->
 
-	<footer class="footer">
-		<div class="footer_background" style="background-image:url(images/footer_background.png)"></div>
-		<div class="container">
-			<div class="row footer_row">
-				<div class="col">
-					<div class="footer_content">
-						<div class="row">
-
-							<div class="col-lg-3 footer_col">
-
-								<!-- Footer About -->
-								<div class="footer_section footer_about">
-									<div class="footer_logo_container">
-										<a href="#">
-											<div class="footer_logo_text"><span>E-</span>Learning</div>
-										</a>
-									</div>
-									<div class="footer_about_text">
-										<p>Lorem ipsum dolor sit ametium, consectetur adipiscing elit.</p>
-									</div>
-									<div class="footer_social">
-										<ul>
-											<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-										</ul>
-									</div>
-								</div>
-
-							</div>
-
-							<div class="col-lg-3 footer_col">
-
-								<!-- Footer Contact -->
-								<div class="footer_section footer_contact">
-									<div class="footer_title">Contact Us</div>
-									<div class="footer_contact_info">
-										<ul>
-											<li>Email: elearning@gmail.com</li>
-											<li>Phone:  +91 9811033118</li>
-
-										</ul>
-									</div>
-								</div>
-
-							</div>
-
-							<div class="col-lg-3 footer_col">
-
-								<!-- Footer links -->
-								<div class="footer_section footer_links">
-									<div class="footer_title">Contact Us</div>
-									<div class="footer_links_container">
-										<ul>
-											<li><a href="index">Home</a></li>
-											<li><a href="about">About</a></li>
-											<li><a href="contact">Contact</a></li>
-											<li><a href="courses">Courses</a></li>
-										</ul>
-									</div>
-								</div>
-
-							</div>
-
-							<div class="col-lg-3 footer_col clearfix">
-
-								<!-- Footer links -->
-								<div class="footer_section footer_mobile">
-									<div class="footer_title">Mobile</div>
-									<div class="footer_mobile_content">
-										<div class="footer_image"><a href="#"><img src="{% static 'images/mobile_1.png' %}" alt=""></a></div>
-										<div class="footer_image"><a href="#"><img src="{% static 'images/mobile_2.png' %}" alt=""></a></div>
-									</div>
-								</div>
-
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-		</div>
-	</footer>
+	
 </div>
+{% endblock content %}
 <script type="text/javascript">
 function submitform(name1)
 {
