@@ -155,7 +155,7 @@ fieldset.scheduler-border {
 										<li>
 											<div class="dropdown_item dis">
 											
-												<div class="dropdown_item_title modsiz"><a href="#" onclick="changemedia('{{ i.file1.url }}','{{i.typ}}')" id="{{ key.mo.moduleName }} + {{i.fileNo}}"  ><span class="modsiz">Module {{ key.mo.moduleNum }}.{{ i.fileNo }}:</span> {{ i.Title }}</a></div>
+												<div class="dropdown_item_title modsiz"><a href="#" onclick="changemedia('{{ i.file1.url }}','{{i.typ}}','{{i.desc|linebreaksbr}}','{{i.Title }}')" id="{{ key.mo.moduleName }} + {{i.fileNo}}"  ><span class="modsiz">Module {{ key.mo.moduleNum }}.{{ i.fileNo }}:</span> {{ i.Title }}</a></div>
 <!--												<div class="dropdown_item_text dis">-->
 <!--													<p class="modsiz">Module no. Content or description.</p>-->
 <!--												</div>-->
@@ -222,10 +222,10 @@ fieldset.scheduler-border {
 			<div >
 				<hr>
 				<div class="flx">
-					<button type="submit"  class="btnn" style="float:left;align-self: center;" ><a href="#" onclick="changemedia('{{ i.file1.url }}','{{i.typ}}')"> Previous</button>
-					<h2 style="text-align:center;" style="float:inline;"><u> Module No-</u></h2>
+<!--					<button type="submit"  class="btnn" style="float:left;align-self: center;color:white;" ><a href="#" onclick="changemedia('{{ i.file1.url }}','{{i.typ}}')"> Previous</button>-->
+					<h2 style="align:center;"><center><u id="nam"> </u></center></h2>
 
-					<button type="submit" class="btnn" style="align:right;float:right;color:white;" ><a href="#" style="color:white;" onclick="changemedia('{{ i.file1.url }}','{{i.typ}}')">Next</button>
+<!--					<button type="submit" class="btnn" style="align:right;float:right;color:white;" ><a href="#" style="color:white;" onclick="changemedia('{{ i.file1.url }}','{{i.typ}}')">Next</button>-->
 
 	<!--				<button type="button" class=" btnn btn-outline-primary">Primary</button>-->
 				</div>
@@ -241,8 +241,8 @@ fieldset.scheduler-border {
 			</section>
 
 			<br>
-<div class="container " style="width:70%;text-align:center; background:#D3D3D3;">
-asdcdvsvssdvav
+<div class="container " id="studdata" style="width:70%;text-align:center; background:#D3D3D3;">
+
 </div>
 				<br><br><br>
 		</div>
@@ -251,17 +251,20 @@ asdcdvsvssdvav
 
 
 <script>
-function changemedia(varr,ty){
-	
+function changemedia(varr,ty,var2,var3){
+
 	if(ty=='video')
 	{
-		
+
 		document.getElementById("p1").innerHTML ='<center><video width="80%" controls > <source src=' + varr + ' type="video/mp4"></video></center>';
-		
+		document.getElementById("studdata").innerHTML=var2;
+		document.getElementById("nam").innerHTML="Module " + var3;
 	}
 	else if (ty=="pdf")
 	{
 		document.getElementById("p1").innerHTML = "<center><embed type='application/pdf' src=" + varr + " style='margin:0px; width: 80%; height: 600px; padding: 40px;' ></embed></center>";
+		document.getElementById("studdata").innerHTML=var2;
+		document.getElementById("nam").innerHTML="Module " + var3;
 	}
 
 }
