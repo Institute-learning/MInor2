@@ -32,11 +32,14 @@ def module(request):
     return render(request, 'next2.html', {'dests': dests})
 
 
-def idk(request):
-    c = Student(courseName="sanchit", courseDesc="pta nhi ")
-    # c.save()
-    c.save()
-    return render(request, "hello")
+def mycourse(request):
+    uid=request.user.id
+    stud=student1.objects.filter(user1=uid)
+    dests=stud[0].courses.all()
+    for i in dests:
+        print (i)
+
+    return  render(request,'course.html',{'dests':dests})
 
 
 def about(request):
