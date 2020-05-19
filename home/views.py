@@ -40,7 +40,7 @@ def idk(request):
 
 
 def about(request):
-    return render(request, 'vid.html')
+    return render(request, 'about.html')
 
 
 def course(request):

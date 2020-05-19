@@ -1,24 +1,7 @@
+{% extends "Login_Auth/base.html" %}
 {% load static  %}
-{% static "images" as baseUrl %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" xmlns="http://www.w3.org/1999/html"></script>
+{% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>E-Learning</title>
-<meta name="csrf-token" content="{{ csrf_token }}" />
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="Unicat project">
-<meta name="description2" content="Travello template project">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
-<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'styles/module.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'styles/course_responsive.css' %}">
 
@@ -132,6 +115,19 @@ fieldset.scheduler-border {
 				<div class="tab active">Modules</div>
 
 			</div>
+			<div class="tabs d-flex flex-row align-items-center justify-content-start">
+				<div class="tab active">Modules</div>
+
+			</div>
+			<div class="tabs d-flex flex-row align-items-center justify-content-start">
+				<div class="row " style="color:white;">Modules<br></div>
+
+			</div>
+
+			<div class="tabs d-flex flex-row align-items-center justify-content-start">
+				<div class="tab active">Modules</div>
+
+			</div>
 			<div class="tab_panels" >
 				<!-- Description -->
 				<div class="tab_panel active  dis" style="padding-left:10px;">
@@ -221,7 +217,7 @@ fieldset.scheduler-border {
 
 			<div >
 				<hr>
-				<div class="flx">
+				<div class="">
 <!--					<button type="submit"  class="btnn" style="float:left;align-self: center;color:white;" ><a href="#" onclick="changemedia('{{ i.file1.url }}','{{i.typ}}')"> Previous</button>-->
 					<h2 style="align:center;"><center><u id="nam"> </u></center></h2>
 
@@ -279,102 +275,6 @@ function changemedia(varr,ty,var2,var3){
 </script>
 
 
-
-
-
-
-
-
-
-
-	<!-- Footer -->
-
-	<footer class="footer">
-		<div class="footer_background" style="background-image:url({% static 'images/footer_background.png' %})"></div>
-		<div class="container">
-			<div class="row footer_row">
-				<div class="col">
-					<div class="footer_content">
-						<div class="row">
-
-							<div class="col-lg-3 footer_col">
-
-								<!-- Footer About -->
-								<div class="footer_section footer_about">
-									<div class="footer_logo_container">
-										<a href="#">
-											<div class="footer_logo_text"><span>E-</span>Learning</div>
-										</a>
-									</div>
-									<div class="footer_about_text">
-										<p>Lorem ipsum dolor sit ametium, consectetur adipiscing elit.</p>
-									</div>
-									<div class="footer_social">
-										<ul>
-											<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-										</ul>
-									</div>
-								</div>
-
-							</div>
-
-							<div class="col-lg-3 footer_col">
-
-								<!-- Footer Contact -->
-								<div class="footer_section footer_contact">
-									<div class="footer_title">Contact Us</div>
-									<div class="footer_contact_info">
-										<ul>
-											<li>Email: elearning@gmail.com</li>
-											<li>Phone:  +91 9811033118</li>
-
-										</ul>
-									</div>
-								</div>
-
-							</div>
-
-							<div class="col-lg-3 footer_col">
-
-								<!-- Footer links -->
-								<div class="footer_section footer_links">
-									<div class="footer_title">Contact Us</div>
-									<div class="footer_links_container">
-										<ul>
-											<li><a href="index">Home</a></li>
-											<li><a href="about">About</a></li>
-											<li><a href="contact">Contact</a></li>
-											<li><a href="courses">Courses</a></li>
-										</ul>
-									</div>
-								</div>
-
-							</div>
-
-							<div class="col-lg-3 footer_col clearfix">
-
-								<!-- Footer links -->
-								<div class="footer_section footer_mobile">
-									<div class="footer_title">Mobile</div>
-									<div class="footer_mobile_content">
-										<div class="footer_image"><a href="#"><img src="{% static 'images/mobile_1.png' %}" alt=""></a></div>
-										<div class="footer_image"><a href="#"><img src="{% static 'images/mobile_2.png' %}" alt=""></a></div>
-									</div>
-								</div>
-
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-		</div>
-	</footer>
 </div>
 <script>
 function myFunction(){
@@ -398,3 +298,4 @@ function myFunction(){
 <script src="{% static 'js/course.js' %}"></script>
 </body>
 </html>
+{% endblock content %}
