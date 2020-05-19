@@ -5,6 +5,8 @@ from .models import Course,Module,quiz,student1,studyMat,question,scorecard
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.http import HttpResponse
+from datetime import datetime
+
 
 
 # Create your views here.
@@ -103,8 +105,8 @@ def vid(request):
         #print(request.user.id)
         dests = Course.objects.filter(courseName=name)
 
-        id = Course.objects.only('id').get(courseName=name).id
-        modules=Module.objects.filter(course=id)
+        id1 = Course.objects.only('id').get(courseName=name).id
+        modules=Module.objects.filter(course=id1)
         #modules=Course.module.all()
         print("hello")
         #print(modules)
@@ -132,7 +134,7 @@ def vid(request):
     
         
 
-    return render(request, 'vid.html' ,{"mods":mods,"mname":mname})
+    return render(request, 'vid.html' ,{"mods":mods,"mname":mname,"ca":id1})
 
 
 def quiz1(request):
@@ -151,9 +153,9 @@ def score(request):
     s=0
     que=[]
     sid=request.user.id
-    sc=scorecard.objects.filter(quiz=id1,student=sid)
+    
     q1=quiz.objects.filter(id=id1)
-    s1=student1.objects.filter(user1=id1)
+    s1=student1.objects.filter(user1=sid)
     t=0
     ques1 = question.objects.filter(quiz=id1)
     for q in ques1 :
@@ -169,10 +171,30 @@ def score(request):
 
     print('Score:',s)
     p=s/t*100
-    sc=scorecard(quiz=q1[0],student=s1[0],attempt=1,totalQues=t,correctAns=s,percentScore=p)
+    sc=scorecard(quiz=q1[0],student=s1[0],date=datetime.now(),totalQues=t,correctAns=s,percentScore=p)
     sc.save()
     return render(request, 'scorecardInstructor.html', {"score":s,"que":que})
 
 
 def progress(request):
-    return render(request,'score.html')
+    cid=request.POST["cid"]
+    id1=request.user.id
+    sid=student1.objects.only('id').get(user1=id1).id
+    #sid=s1=student1.objects.filter(user1=id1)
+    print (sid)
+    print("hello")
+    s=[]
+    mod=Module.objects.filter(course=cid)
+    for i in mod :
+        #print(i.moduleName)
+        q=quiz.objects.filter(module=i.id)
+        for z in q :
+            #print(z.quizName)
+            sc=scorecard.objects.filter(quiz=z.id,student=sid)
+            for j in sc :
+                #print(i)
+                a={"qname":z.quizName,"scorecd":j}
+                s.append(a)
+    print(s)
+
+    return render(request,'score.html',{"s":s})

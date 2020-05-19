@@ -10,28 +10,6 @@
 <link rel="stylesheet" type="text/css" href="{% static 'styles/course_responsive.css' %}">
 <script>
 
-$(document).ready(function(){
-$.get("getBatchFromTeacher",function(data,status){
-$("#b").html(data)
-});
-});
-
-function getSubject(){
-batch=$("#batch").val()
-
-$.get("getSubject?batch="+batch,function(data,status){
-$("#c").html(data)
-});
-}
-function getQuiz(){
-batch=$("#batch").val()
-subject=$("#subject").val()
-$.get("getquiz?subject="+subject,function(data,status){
-$("#d").html(data)
-});
-}
-
-
 </script>
 <style>
 	.bg-correct{
@@ -59,22 +37,21 @@ $("#d").html(data)
 	<thead style="color:black;">
 		<tr style='background-color:#14bdee;';>
 			<th class='active'>Quiz name</th>
-			<th class='active'>Attempt No</th>
-			<th  class='active'>Quiz Name</th>
+			<th class='active'>Date</th>
 			<th class='active'>Total Questions</th>
 			<th class='active'>Correct Answers</th>
 			<th class='active'>Percentage Score</th>
 		</tr>
 	</thead>
+	{% for i in s%}
 		<tr>
-			<td class='info'> ds </td>
-			<td class='info'> sa </td>
-			<td class='info'> cx </td>
-			<td class='info'> cx </td>
-			<td class='info'> csa </td>
-			<td class='info'> asa </td>
+			<td class='info'> {{ i.qname }}</td>
+			<td class='info'> {{ i.scorecd.date}} </td>
+			<td class='info'> {{ i.scorecd.totalQues}} </td>
+			<td class='info'> {{ i.scorecd.correctAns}} </td>
+			<td class='info'> {{ i.scorecd.percentScore}} </td>
 		</tr>
-
+	{% endfor %}
     </table>
 
 

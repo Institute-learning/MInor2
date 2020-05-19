@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 
 
 	
@@ -66,7 +67,8 @@ class cart(models.Model):
 class scorecard(models.Model):
 	quiz=models.ForeignKey(quiz,on_delete=models.CASCADE,default=1)
 	student=models.ForeignKey(student1,on_delete=models.CASCADE,default=1)
-	attempt=models.IntegerField(default=0)
+	date=models.DateTimeField(default=datetime.now(), blank=True)
+	#time=models.TimeField(blank=True)
 	totalQues=models.IntegerField(default=0)
 	correctAns=models.IntegerField(default=0)
 	percentScore=models.FloatField(default=0.0)

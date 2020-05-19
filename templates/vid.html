@@ -190,14 +190,13 @@ fieldset.scheduler-border {
 
 
 												<div class="tab "  style="background:grey; padding-left:0px;padding-right:10px;border-radius:10px;">
-													<a href="{% url 'progress' %}" style=" color:white;" >
-<!--														<span class="modsiz">Module {{ key.mo.moduleNum }}.{{ i.fileNo }}:</span>-->
-														View Progress
-													</a>
+													<form action="{% url 'progress' %}" method="POST" name="progress1">
+														{% csrf_token %}
+														<input type="text"  name="cid" value="{{ ca }}" hidden>
+														<a href="#" style=" color:white;" onclick="submitform('progress1')">View Progress</a>
+													</form>
+													
 												</div>
-<!--												<div class="dropdown_item_text dis">-->
-<!--													<p class="modsiz">Module no. Content or description.</p>-->
-<!--												</div>-->
 
 			</div>
 
@@ -228,7 +227,6 @@ fieldset.scheduler-border {
 
 					<button type="submit" class="btnn" style="align:right;float:right;color:white;" ><a href="#" style="color:white;" onclick="changemedia('{{ i.file1.url }}','{{i.typ}}')">Next</button>
 
-<!--					pull-right-->
 	<!--				<button type="button" class=" btnn btn-outline-primary">Primary</button>-->
 				</div>
 				<br><br>
