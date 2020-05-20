@@ -5,9 +5,10 @@ from django.conf import settings
 from django.contrib.auth import views as auth_views
 
 
-urlpatterns = [path('abc/', include('Quizz.urls')),
+urlpatterns = [
+    #path('abc/', include('Quizz.urls')),
     path('admin/', admin.site.urls),
-    path('access/', include('access.urls')),
+    #path('access/', include('access.urls')),
     path('', include('home.urls')),
     path('', include('Login_Auth.urls')),
     path('login/', auth_views.LoginView.as_view(template_name='Login_Auth/login.html'), name='login'),
