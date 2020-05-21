@@ -1,11 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
-from home.models import Course 
-from Login_Auth.models import Profile  
+from home.models import Course ,student1
+#from Login_Auth.models import Profile  
 # Create your models here.
 
 class Order(models.Model):
-    userProfile = models.ForeignKey(Profile, on_delete = models.SET_NULL, blank = True, null = True)
+    userProfile = models.ForeignKey(student1, on_delete = models.SET_NULL, blank = True, null = True)
     date_ordered = models.DateTimeField(auto_now_add = True)
     complete = models.BooleanField(default=False, blank = True, null = True)
     

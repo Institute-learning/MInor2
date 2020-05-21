@@ -7,7 +7,7 @@ import json
 # Create your views here.
 def cart(request):
     if request.user.is_authenticated:
-        stu_profile = request.user.profile
+        stu_profile = request.user.student1
         order, created = Order.objects.get_or_create(userProfile = stu_profile, complete = False  )
         items = order.orderitem_set.all()
     else:
@@ -22,7 +22,7 @@ def updateItem(request):
     action = data['action']
     print('Action1:', action)
     print('Course:', courseName)
-    stu_profile = request.user.profile
+    stu_profile = request.user.student1
     course = Course.objects.get(courseName=courseName)
     order, created = Order.objects.get_or_create(userProfile=stu_profile, complete=False)
     orderItem, created = OrderItem.objects.get_or_create(order=order, course=course)
@@ -45,14 +45,14 @@ def checkout(request):
 
     print(StuFname)
     print(StuLname)
-    stu_profile = request.user.profile
+    stu_profile = request.user.student1
     print(stu_profile)
     cardName = data['card']['Cname']
     cardNo = data['card']['Cno']
     cardType = data['card']['Ctype']
     cardExp = data['card']['Edate']
     u1= User.objects.get(username=stu_profile)
-    p=Profile.objects.get(user = u1)
+    p=student1.objects.get(user1 = u1)
     print('profile:')
     print(p.enrolledCourses)
     o = Order.objects.get(userProfile = p)
@@ -65,7 +65,7 @@ def checkout(request):
         print(oe.course.courseName)
         p.enrolledCourses.add(oe.course)
     u2= User.objects.get(username=stu_profile)
-    p1=Profile.objects.filter(user = u2)
+    p1=student1.objects.filter(user1 = u2)
     j=p1[0].enrolledCourses.all()
     for i in j:
         print(i.courseName)
