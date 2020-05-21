@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\access\\__pycache__",
+    "\\cart",
+    "\\Login_Auth",
+    "\\Login_Auth\\migrations\\__pycache__",
+    "\\Login_Auth\\templates\\Login_Auth",
+    "\\Quiz",
+    "\\Quiz\\__pycache__"
+  ],
+  "SelectedNode": "\\cart\\admin.py",
+  "PreviewInSolutionExplorer": false
+}

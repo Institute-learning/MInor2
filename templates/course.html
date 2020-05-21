@@ -1,4 +1,4 @@
-{% extends "Login_Auth/base.html" %}
+{% extends 'Login_Auth/base.html' %}
 {% load static  %}
 {% block content %}
 
@@ -8,6 +8,25 @@
 
 
 	<style >
+{% block content %}
+<style >
+	.btnn{
+	align-content:right ;
+	background-color:#14bdee;
+	color: white;
+	display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+	align-content:center;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
 		#sss{
 		padding:0px;
 		margin-bottom:55px;
@@ -19,6 +38,7 @@
 	}
 	</style>
 
+	<!-- Course -->
 <div class="course">
 		<div class="container">
 			<div class="row">
@@ -38,7 +58,9 @@
 		<div class="row courses_row">
 
 				<!-- Course -->
-				{% for dest in dests %}
+				
+
+					{% for dest in dests %}
 
 
 
@@ -59,8 +81,9 @@
 									</div>
 								</div>
 								<div class="course_footer">
-									<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-										<div class="course_price ml-auto">Price: ${{ dest.price }}</div>
+									<div class="course_footer_content d-flex flex-row ">
+										<div class="course_price mr-4 pr-4">Rs.{{ dest.price }}</div>
+										<button type="submit" data-course="{{dest.courseName}}" data-action="add"  class="btnn update-cart ">Add to Cart </button>
 									</div>
 								</div>
 							</div>
@@ -68,12 +91,10 @@
 
 				{% endfor %}
 
-
 	</div>
 
 		</div>
 </div>
-
 
 <script type="text/javascript">
 function submitform(name1)
