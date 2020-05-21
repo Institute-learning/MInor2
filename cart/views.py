@@ -36,4 +36,38 @@ def updateItem(request):
     return JsonResponse('Item was added', safe=False)
 
 def checkout(request):
+    data = json.loads(request.body)
+    print("hello")
+    print(data)
+    StuFname=data['form']['Fname']
+    StuLname=data['form']['Lname']
+    user = data['form']['user']
+
+    print(StuFname)
+    print(StuLname)
+    stu_profile = request.user.profile
+    print(stu_profile)
+    cardName = data['card']['Cname']
+    cardNo = data['card']['Cno']
+    cardType = data['card']['Ctype']
+    cardExp = data['card']['Edate']
+    u1= User.objects.get(username=stu_profile)
+    p=Profile.objects.get(user = u1)
+    print('profile:')
+    print(p.enrolledCourses)
+    o = Order.objects.get(userProfile = p)
+    print('orders:')
+    print(o)
+    oi=[]
+    oi= OrderItem.objects.filter(order = o)
+    print('Order I:')
+    for oe in oi:
+        print(oe.course.courseName)
+        p.enrolledCourses.add(oe.course)
+    u2= User.objects.get(username=stu_profile)
+    p1=Profile.objects.filter(user = u2)
+    j=p1[0].enrolledCourses.all()
+    for i in j:
+        print(i.courseName)
+
     return JsonResponse('Payment complete!', safe = False)

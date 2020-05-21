@@ -77,18 +77,21 @@ var csrftoken = getCookie('csrftoken');
           <ul class="list-group mb-3">
             {% for item in items %}
             <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
               <h6 class="my-0">{{ item.course.courseName }}</h6>
-              <span class="text-muted">${{ item.course.price }}</span>
+              <small class="text-muted">${{ item.course.price }}</small>
+              </div>
+              <span class="text-muted" ></span>
               <button  data-course="{{item.course.courseName}}" data-action="remove"  class="btn update-cart "><i class="fa fa-trash"></i></button>
             </li>
             {% endfor %}
             
             <li class="list-group-item d-flex justify-content-between bg-light">
               <div class="text-success">
-                <h6 class="my-0"><strong>Total (INR)</strong></h6>
+                <h6 class="my-0"><strong>Total (USD)</strong></h6>
                 <small></small>
               </div>
-              <span class="text-success"><strong>{{ order.get_cart_total}}</strong></span>
+              <span class="text-success"><strong>${{ order.get_cart_total}}</strong></span>
             </li>
             
           </ul>
@@ -101,7 +104,7 @@ var csrftoken = getCookie('csrftoken');
         </div>
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Billing details</h4>
-          <form class="needs-validation" novalidate="" id="form" method="POST">
+          <form class="needs-validation" novalidate="" id="form" method="POST" >
             {% csrf_token %}
             <div class="row">
               <div class="col-md-6 mb-3">
@@ -182,12 +185,12 @@ var csrftoken = getCookie('csrftoken');
 
             </div>
             <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="save-info" name="save" value="True">
+              <input type="checkbox" class="custom-control-input" id="save-info" name="save" value="">
               <label class="custom-control-label" for="save-info">Save this information for next time</label>
             </div>
                 
             <hr class="mb-4">
-            <button id="sub1" class="btn btn-primary btn-lg btn-block" type="submit" >Pay and Procced</button>
+            <button  class="btn btn-primary btn-lg btn-block" type="submit" onclick="submitFormData()" >Pay and Procced</button>
           </form>
         </div>
       </div>
@@ -203,21 +206,17 @@ var csrftoken = getCookie('csrftoken');
     <script src="../../assets/js/vendor/popper.min.js"></script>
     <script src="../../dist/js/bootstrap.min.js"></script>
     <script src="../../assets/js/vendor/holder.min.js"></script>
-    <script type="text/javascript">
     
-      // Example starter JavaScript for disabling form submissions if there are invalid fields
-        
-    document.getElementById('sub1').addEventListener('click', function(e){
-	    	submitFormData()
-	    })
-    
+ 
+    <script>
     function submitFormData(){
-	    	alert('Payment button clicked');
-
+	    	alert('Payment button clicked:{{request.user}}')
+            
 	    	var userFormData = {
+                'user' :'{{request.user}}',
 				'Fname':form.fname.value,
 				'Lname':form.lname.value,
-				'AllCourse':{% for item in items %} {{item.course.courseName}},{% endfor %}
+				//'AllCourse':{% for item in items %} ['{{item.course.courseName}}',]{% endfor %}
 			}
 
 			var cardDetails = {
@@ -234,7 +233,8 @@ var csrftoken = getCookie('csrftoken');
 	    	console.log('Card Info:', cardDetails)
 	    	console.log('User Info:', userFormData)
 
-	    	var url = "/process_order/"
+	    	var url = "/checkout";
+
 	    	fetch(url, {
 	    		method:'POST',
 	    		headers:{
@@ -249,15 +249,39 @@ var csrftoken = getCookie('csrftoken');
 				console.log('Success:', data);
 				alert('Transaction completed');  
 
-				cart = {}
-				document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+				//cart = {}
+				//document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
 
 				window.location.href = "{% url 'courses' %}"
 
 				})
 	    }
 	</script>
-  
+  <!--<script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+          
+        }, false);
+        
+      })();
+
+    </script> -->
 
 </body>
 <script src="{% static 'js/cart.js' %}"></script>
