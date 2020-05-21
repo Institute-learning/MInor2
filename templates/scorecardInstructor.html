@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<link rel="stylesheet" href="/static/bootstrap.min.css"/>
-<script src="/static/jquery.min.js"></script>
-<script src="/static/bootstrap.min.js"></script>
-<script src="/static/jquery-3.3.1.min.js"></script>
+{% extends "Login_Auth/base.html" %}
+{% load static  %}
+{% block content %}
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'styles/course.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/course_responsive.css' %}">
 <script>
 
 $(document).ready(function(){
@@ -32,57 +32,134 @@ $("#d").html(data)
 }
 
 
-</script>    
+</script>
+<style>
+	.bg-correct{
+		background-color: lightgreen;
+	}
+	.bg-wrong{
+		background-color: #FFCCCB;
+	}
+</style>
 </head>
-<body class="bg-warning" ><br><br>
-
-<div class="panel panel-danger" style="color:black;">
-<div class="panel-heading" style="background-color:black;" ><h1 align="center"><font color="white" >Update Quiz</font><h1></div><br>
-<form method=post action="scorecardInstructor" class="form-horizontal" >
-{% csrf_token %}
 
 
-<div class="form-group">
-<label class="control-label col-sm-2 text-primary"  for="batch" >Select Batch</label>
-<div  class="col-sm-6">
-<div id="b" name="b">
-<select id='batch' name='batch'  class='form-control'  required>
-<option value=disabled>No Batch to select</option>
-</select>
-</div>
-</div>
-</div>
-
-<div class="form-group">
-<label class="control-label col-sm-2 text-primary" for="subject" >Select Subject</label>
-<div  class="col-sm-6">
-<div id="c" name="c">
-<select id='subject' name='subject' class='form-control'  required>
-<option value=disabled>Select a batch first</option>
-</select>
-</div>
-</div>
-</div>
-<div id="e" name="e">
-<div class="form-group">
-<label class="control-label col-sm-2 text-primary" for="qnm" >Select Quizz</label>
-<div  class="col-sm-6">
-<div id="d" name="d">
-<select id='qnm' name='qnm' class='form-control'  required>
-<option value=disabled>Select a batch and subject first first</option>
-</select>
-</div>
-</div>
-</div>
-</div>
 
 
-<div style="text-align:center;">
-<button type=submit name=submit id=submit class="btn btn-info">get scorecard</button><br><br>
-</div>
-</div>
-</form>
-</div>
-</div>
+<body>
+
+
+	<div class="container">
+		<br><br><br><br><br><br>
+
+		<div class="course_title" style="text-align:center;">Your score is : {{ score }}   </div>
+
+		<div class="jumbotron" style="height:220px;">
+			<h1>Quiz name </h1>
+			<p> num of  Questions. numof  Marks. numof Minitues</p>
+		</div>
+
+
+		<div class="container">
+		<br>
+			{% for e in que %}
+		  <div class="card bg-dark text-white " >
+			  <div class="card-body">{{ e.ques.ques }}</div>
+		  </div>
+			{% if "option1" == e.ques.correctoption %}
+			<div class="card bg-correct text-dark">
+			  <div class="card-body">
+				  <input type="radio" >  {{ e.ques.option1 }}
+			  </div>
+		  </div>
+			{% elif "option1" == e.your %}
+
+		  <div class="card bg-wrong text-dark">
+			  <div class="card-body">
+				  <input type="radio" > {{ e.ques.option1 }}
+			  </div>
+		  </div>
+			{% else %}
+		  <div class="card bg-light text-dark">
+			  <div class="card-body">
+				  <input type="radio" >  {{ e.ques.option1 }}
+			  </div>
+		  </div>
+			{% endif %}
+
+			{% if "option2" == e.ques.correctoption %}
+			<div class="card bg-correct text-dark">
+			  <div class="card-body">
+				  <input type="radio" >  {{ e.ques.option2 }}
+			  </div>
+		  </div>
+			{% elif "option2" == e.your %}
+
+		  <div class="card bg-wrong text-dark">
+			  <div class="card-body">
+				  <input type="radio" > {{ e.ques.option2 }}
+			  </div>
+		  </div>
+			{% else %}
+		  <div class="card bg-light text-dark">
+			  <div class="card-body">
+				  <input type="radio" > {{ e.ques.option2 }}
+			  </div>
+		  </div>
+			{% endif %}
+
+			{% if "option3" == e.ques.correctoption %}
+			<div class="card bg-correct text-dark">
+			  <div class="card-body">
+				  <input type="radio" >  {{ e.ques.option3 }}
+			  </div>
+		  </div>
+			{% elif "option3" == e.your %}
+
+		  <div class="card bg-wrong text-dark">
+			  <div class="card-body">
+				  <input type="radio" > {{ e.ques.option3 }}
+			  </div>
+		  </div>
+			{% else %}
+		  <div class="card bg-light text-dark">
+			  <div class="card-body">
+				  <input type="radio" >  {{ e.ques.option3 }}
+			  </div>
+		  </div>
+			{% endif %}
+
+			{% if "option4" == e.ques.correctoption %}
+			<div class="card bg-correct text-dark">
+			  <div class="card-body">
+				  <input type="radio" >  {{ e.ques.option4 }}
+			  </div>
+		  </div>
+			{% elif "option4" == e.your %}
+
+		  <div class="card bg-wrong text-dark">
+			  <div class="card-body">
+				  <input type="radio" > {{ e.ques.option4 }}
+			  </div>
+		  </div>
+			{% else %}
+		  <div class="card bg-light text-dark">
+			  <div class="card-body">
+				  <input type="radio" >  {{ e.ques.option4 }}
+			  </div>
+		  </div>
+			{% endif %}
+
+			{% endfor %}
+		</div>
+
+
+	</div>
+
+
+	</div>
 </body>
-</html>
+
+
+
+{% endblock content %}

@@ -1,0 +1,65 @@
+{% extends "Login_Auth/base.html" %}
+{% load static  %}
+{% block content %}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'styles/course.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/course_responsive.css' %}">
+<script>
+
+</script>
+<style>
+	.bg-correct{
+		background-color: lightgreen;
+	}
+	.bg-wrong{
+		background-color: #FFCCCB;
+	}
+</style>
+</head>
+
+
+
+
+<body>
+
+
+	<div class="container">
+		<br><br><br><br><br><br>
+
+
+		<div class="course_title" style="text-align:center;">Scorecard</div>
+
+	<table class='table' style="border-radius: 5px 5px 5px 5px;border:2px;">
+	<thead style="color:black;">
+		<tr style='background-color:#14bdee;';>
+			<th class='active'>Quiz name</th>
+			<th class='active'>Date</th>
+			<th class='active'>Total Questions</th>
+			<th class='active'>Correct Answers</th>
+			<th class='active'>Percentage Score</th>
+		</tr>
+	</thead>
+	{% for i in s%}
+		<tr>
+			<td class='info'> {{ i.qname }}</td>
+			<td class='info'> {{ i.scorecd.date}} </td>
+			<td class='info'> {{ i.scorecd.totalQues}} </td>
+			<td class='info'> {{ i.scorecd.correctAns}} </td>
+			<td class='info'> {{ i.scorecd.percentScore}} </td>
+		</tr>
+	{% endfor %}
+    </table>
+
+
+	</div>
+
+
+	</div>
+</body>
+
+
+{% endblock content %}

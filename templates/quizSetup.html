@@ -1,97 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<link rel="stylesheet" href="/static/bootstrap.min.css"/>
-<script src="/static/jquery.min.js"></script>
-<script src="/static/bootstrap.min.js"></script>
-<script src="/static/jquery-3.3.1.min.js"></script>
+{% extends "Login_Auth/base.html" %}
+{% load static  %}
+{% block content %}
 
+	<style >
+		#sss{
+		padding:0px;
+		margin-bottom:55px;
+		}
+	.destination_image img
+	{
+		max-width: 100%;
+		height:300px;
+	}
+	.floating-div {
+	  position: fixed;
+	  right: 15%;
+	  top: 15%;
+	  z-index: 100000;
+	  padding: 8px;
+}
+	</style>
+
+<body>
+
+<br><br><br><br><br>
+	<div class = "floating-div card bg-danger"><h6 class="text-white pl-2">Time</h6>
+	<div text-align:center>
+	<input type="text" readonly="" id="timespent" value=" 0:00" style="background: transparent; border:none; color:white; width: 60px; padding-left:15px;">
+	</div>
+	</div>
+
+<div class="container" style="width:60%; ">
+  <div class="jumbotron" style="height:220px;">
+    <h1>Quiz </h1>      
+    <p>Test what you learn.<br><br> 10 Questions. 10 Marks. 10 Minitues</p>
+  </div>
+  <form  name="quiz" method="POST" action ="{% url 'score' %}">
+  {% csrf_token %}
+<input type="text" hidden name="qid" value="{{ qid }}">
+ {% for que in ques1 %}
+ {% csrf_token %}
+  <br>
+  <div class="card bg-secondary text-white ">
+    <div class="card-body">{{ que.ques }}</div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><input type="radio" id="{{que.option1}}" name ="{{ que.id }}" value = "option1"> {{ que.option1 }}</div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><input type="radio" id="{{que.option2}}" name = "{{ que.id }}" value = "option2"> {{ que.option2 }}</div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><input type="radio" id="{{que.option3}}" name = "{{ que.id }}" value = "option3"> {{ que.option3 }}</div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><input type="radio" id="{{que.option4}}" name = "{{ que.id }}" value = "option4"> {{ que.option4 }}</div>
+  </div>
+  <div>
+ {% endfor %}
+ <div style="text-align:center" class="mt-4 mb-4"><button id = "btn1" type="submit" class="btn btn-danger" >Submit</button></div>
+ </form>
+  
+  
+</div>
 <script>
-
-$(document).ready(function(){
-$.get("getBatchFromTeacher",function(data,status){
-$("#b").html(data)
-});
-});
-
-function getSubject(){
-batch=$("#batch").val()
-
-$.get("getSubject?batch="+batch,function(data,status){
-$("#c").html(data)
-});
-}
-function getQuiz(){
-batch=$("#batch").val()
-subject=$("#subject").val()
-$.get("getQuizForSetup?subject="+subject,function(data,status){
-$("#d").html(data)
-});
-}
-</script>    
-</head>
-<body class="bg-warning" ><br><br>
-
-<div class="panel panel-danger" style="color:black;">
-<div class="panel-heading" style="background-color:black;" ><h1 align="center"><font color="white" >Activate Quiz</font><h1></div><br>
-<form method=post action="quizActivate" class="form-horizontal" >
-{% csrf_token %}
-
-
-<div class="form-group">
-<label class="control-label col-sm-2 text-primary"  for="batch" >Select Batch</label>
-<div  class="col-sm-6">
-<div id="b" name="b">
-<select id='batch' name='batch'  class='form-control'  required>
-<option value=disabled>No Batch to select</option>
-</select>
+function startTimer() {
+      var tobj = document.getElementById("timespent")
+      var t = "0:00";
+      var s = 00;
+      var d = new Date();
+      var timeint = setInterval(function () {
+        s += 1;
+        d.setMinutes("0");
+        d.setSeconds(s);
+        min = d.getMinutes();
+        sec = d.getSeconds();
+        if (sec < 10) sec = "0" + sec;
+        document.getElementById("timespent").value = min + ":" + sec;
+		if (min == 10) document.getElementById("btn1").click();
+      }, 1000);
+      tobj.value = t;
+    }
+    if (window.addEventListener) {              
+      window.addEventListener("load", startTimer);
+    } else if (window.attachEvent) {                 
+      window.attachEvent("onload", startTimer);
+    }
+    
+    </script>
 </div>
 </div>
-</div>
-
-<div class="form-group">
-<label class="control-label col-sm-2 text-primary" for="subject" >Select Subject</label>
-<div  class="col-sm-6">
-<div id="c" name="c">
-<select id='subject' name='subject' class='form-control'  required>
-<option value=disabled>Select a batch first</option>
-</select>
-</div>
-</div>
-</div>
-<div id="e" name="e">
-<div class="form-group">
-<label class="control-label col-sm-2 text-primary" for="qnm" >Select Quizz</label>
-<div  class="col-sm-6">
-<div id="d" name="d">
-<select id='qnm' name='qnm' class='form-control'  required>
-<option value=disabled>Select a batch and subject first first</option>
-</select>
-</div>
-</div>
-</div>
-</div>
-<div class="form-group">
-<label class="control-label col-sm-2 text-primary" for="attempt" >Maximum attempts</label>
-<div class="col-sm-6">
-<input type="attempt" id="attempt" placeholder="Maximum no of attempts" name=attempt class=form-control />
-</div>
-</div>
-<div class="form-group">
-<label class="control-label col-sm-2 text-primary" for="time" >Quiz Time Limit</label>
-<div class="col-sm-6">
-<input type=number id=time placeholder="Quiz Time Limit In Minutes" name=time class=form-control />
-</div>
-</div>
-<div style="text-align:center;">
-<button type=submit name=submit id=submit class="btn btn-info">Activate Quiz</button><br><br>
-</div>
-</div>
-</form>
-</div>
-</div>
-
 </body>
-</html>
+
+{% endblock content %}
