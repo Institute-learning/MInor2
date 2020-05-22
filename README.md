@@ -1,10 +1,10 @@
 # E-Learning-Project
 
-#Steps for Installing
+# Steps for Installing
 
-#Open command promt and input these lines
+# Open command promt and input these lines
 
-venv\Scripts\activate
+venv\Scripts\activate<br>
 python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
