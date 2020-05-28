@@ -7,12 +7,12 @@
 <link href="{% static 'plugins/colorbox/colorbox.css' %}" rel="stylesheet" type="text/css">
 
 
-	<style >
+
 
 <style >
 	.btnn{
 	align-content:right ;
-	background-color:#14bdee;
+	
 	color: white;
 	display: inline-block;
     font-weight: 400;
@@ -26,7 +26,7 @@
     line-height: 1.5;
     border-radius: .25rem;
     transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
+    }
 		#sss{
 		padding:0px;
 		margin-bottom:55px;
@@ -83,7 +83,16 @@
 								<div class="course_footer">
 									<div class="course_footer_content d-flex flex-row ">
 										<div class="course_price mr-4 pr-4">Rs.{{ dest.price }}</div>
-										<button type="submit" data-course="{{dest.courseName}}" data-action="add"  class="btnn update-cart ">Add to Cart </button>
+                                    
+									{% if dest in cartItem %}
+										<button type="submit"   class="btnn" style="background-color:#0029FA;" onclick="location.href='{% url 'cart' %}'" type="button" >Go to Cart </button>
+									{% elif dest in j %}
+										<button type="submit"   class="btnn" style="background-color:#230A59;">View Course </button>
+									{% else %}
+										<button type="submit" data-course="{{dest.courseName}}" data-action="add"  class="update-cart btnn" style="background-color:#829FD9;">Add to Cart </button>
+									{% endif %}
+									
+									
 									</div>
 								</div>
 							</div>

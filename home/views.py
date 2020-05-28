@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Course,Module,quiz,student1,studyMat,question,scorecard
 #from ..Quizz.models import Course
 #from Login_Auth.models import Student
+from cart.models import Order, OrderItem
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.http import HttpResponse
@@ -74,11 +75,34 @@ def content(request):
     dests = Course.objects.all()
 
 
-
 def courses(request):
     dests = Course.objects.all()
 
-    return  render(request,'course.html',{'dests':dests})
+    stu_profile = request.user.student1
+    u2= User.objects.get(username=stu_profile.user1.username)
+    p1=student1.objects.filter(user1 = u2).first()
+    j=p1.courses.all()
+    if (Order.objects.get(userProfile = stu_profile, complete = False)):
+        order = Order.objects.get(userProfile = stu_profile, complete = False)
+        items = order.orderitem_set.all()
+        cartItem=[]
+        for i in items:
+            cartItem.append(i.course)
+    else:
+        cartItem=[]
+    
+    context = {'dests':dests ,'j':j,'cartItem':cartItem}
+    print(context)
+    return  render(request,'course.html',context)
+
+
+
+
+
+
+
+
+
 
 def contact(request):
     return render(request, 'contact.html')

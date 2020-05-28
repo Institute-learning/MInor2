@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.sessions',
     'django.contrib.contenttypes',
-    
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
@@ -148,3 +147,8 @@ EMAIL_PORT = 587
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'home'
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}

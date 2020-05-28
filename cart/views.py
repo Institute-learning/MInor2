@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from home.models import Course
-from .models import * 
+from .models import Order, OrderItem 
 from django.http import JsonResponse
+from django.contrib.auth.models import User
 import json
+from .models import Course,student1
+
 
 # Create your views here.
 def cart(request):
@@ -46,16 +49,19 @@ def checkout(request):
     print(StuFname)
     print(StuLname)
     stu_profile = request.user.student1
-    print(stu_profile)
+    print(stu_profile.user1.username)
+    print('WTF:')
     cardName = data['card']['Cname']
     cardNo = data['card']['Cno']
     cardType = data['card']['Ctype']
     cardExp = data['card']['Edate']
-    u1= User.objects.get(username=stu_profile)
+    u1= User.objects.get(username=stu_profile.user1.username)
     p=student1.objects.get(user1 = u1)
     print('profile:')
-    print(p.enrolledCourses)
-    o = Order.objects.get(userProfile = p)
+    print(p.courses)
+    o = Order.objects.get(userProfile = p,complete = False)
+    o.complete = True
+    o.save()
     print('orders:')
     print(o)
     oi=[]
@@ -63,11 +69,14 @@ def checkout(request):
     print('Order I:')
     for oe in oi:
         print(oe.course.courseName)
-        p.enrolledCourses.add(oe.course)
-    u2= User.objects.get(username=stu_profile)
-    p1=student1.objects.filter(user1 = u2)
-    j=p1[0].enrolledCourses.all()
+        p.courses.add(oe.course)
+    u2= User.objects.get(username=stu_profile.user1.username)
+    p1=student1.objects.filter(user1 = u2).first()
+    j=p1.courses.all()
     for i in j:
         print(i.courseName)
+    print('THE END')
+
+
 
     return JsonResponse('Payment complete!', safe = False)
