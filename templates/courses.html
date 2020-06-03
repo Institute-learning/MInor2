@@ -257,7 +257,10 @@
 			<br>
 			{% if user.is_authenticated %}
 				{% if dest in cartItem %}
-					<button type="submit"   class="btnn" style="background-color:#0029FA;" onclick="location.href='{% url 'cart' %}'" type="button" >Go to Cart </button>
+					{% comment %} <button type="submit"   class="btnn" style="background-color:#0029FA;" onclick="location.href='{% url 'cart' %}'" type="button" >Go to Cart </button> {% endcomment %}
+					<div class="courses_button trans_200" style="align:center;">
+					<button type="submit"  class="btnn" style="align:center;align-self: center;"  onclick="location.href='{% url 'cart' %}'" type="button" >Go to Cart </button>
+					</div>
 				{% elif dest in j %}
 					{% comment %} <button type="submit"   class="btnn" style="background-color:#230A59;">View Course </button> {% endcomment %}
 					<form name="form1" action="{% url 'vid' %}" method="POST">

@@ -62,6 +62,8 @@ def checkout(request):
     o = Order.objects.get(userProfile = p,complete = False)
     o.complete = True
     o.save()
+    order=Order(userProfile = p)
+    order.save()
     print('orders:')
     print(o)
     oi=[]
