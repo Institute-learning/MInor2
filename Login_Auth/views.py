@@ -45,14 +45,22 @@ def register(request):
 
 def stuOTP(request):
 	global gobalForm 
-	otpGen = request.POST["otp"]
-	globalForm.save()
-	username = globalForm.cleaned_data.get('username')
-	user=User.objects.get(username=username)
-	stud1=student1(user1=user)
-	stud=Profile(user = user)
-	stud.save()
-	stud1.save()
-	return redirect('login') 
-
+	global otpGen
+	otp = request.POST["otp"]
+	print(str(otpGen))
+	print(str(otp))
+	if (str(otp) == str(otpGen)): 
+		print("IF")
+		globalForm.save()
+		username = globalForm.cleaned_data.get('username')
+		user=User.objects.get(username=username)
+		stud1=student1(user1=user)
+		stud=Profile(user = user)
+		stud.save()
+		stud1.save()
+		return redirect('login') 
+	else:
+		print("Else")
+		form = UserRegisterForms()
+		return render(request,'Login_Auth/register.html', {'form': form})
 
