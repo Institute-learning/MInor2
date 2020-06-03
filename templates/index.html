@@ -218,7 +218,7 @@
 								</div>
 								<div class="course_footer">
 									<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-									<div class="course_price ml-auto">Price: ${{ dest.price }}</div>
+										<div class="course_price mr-4 pr-4">Rs. {{ dest.price }}</div>
 									{% if user.is_authenticated %}
 										
 										{% if dest in cartItem %}

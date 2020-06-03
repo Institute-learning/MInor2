@@ -11,7 +11,7 @@ from .forms import UserRegisterForms
 from home.models import student1
 from django.contrib.auth.models import User
 from Login_Auth.models import Profile
-
+from cart.models import Order
 
 
 
@@ -47,6 +47,7 @@ def stuOTP(request):
 	global gobalForm 
 	global otpGen
 	otp = request.POST["otp"]
+	Email = request.POST["e_id"]
 	print(str(otpGen))
 	print(str(otp))
 	if (str(otp) == str(otpGen)): 
@@ -56,11 +57,15 @@ def stuOTP(request):
 		user=User.objects.get(username=username)
 		stud1=student1(user1=user)
 		stud=Profile(user = user)
+		
 		stud.save()
 		stud1.save()
+		order=Order(userProfile = stud1)
+		order.save()
 		return redirect('login') 
 	else:
 		print("Else")
 		form = UserRegisterForms()
-		return render(request,'Login_Auth/register.html', {'form': form})
+		return render(request,'Login_Auth/stuOTP.html',{'email':Email})
+		#return render(request,'Login_Auth/register.html', {'form': form})
 
