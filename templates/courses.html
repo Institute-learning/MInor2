@@ -255,27 +255,29 @@
 
 			</div>
 			<br>
-			{% if bought %}
-			<center>
-				<form name="form1" action="{% url 'vid' %}" method="POST">
-				{% csrf_token %}
-				<input type="text" value='{{ dest.courseName }}' name="na" hidden></input>
-				<input type="text" value='sanchit' name="nam" hidden></input>
-				<div class="courses_button trans_200" style="align:center;">
-					<a onclick="submitForm('form1')" >
-					<button type="submit"  class="btnn" style="align:center;align-self: center;" >View course content</button>
-					</a>
-					<br><br>
-				</div>
+			{% if user.is_authenticated %}
+				{% if dest in cartItem %}
+					<button type="submit"   class="btnn" style="background-color:#0029FA;" onclick="location.href='{% url 'cart' %}'" type="button" >Go to Cart </button>
+				{% elif dest in j %}
+					{% comment %} <button type="submit"   class="btnn" style="background-color:#230A59;">View Course </button> {% endcomment %}
+					<form name="form1" action="{% url 'vid' %}" method="POST">
+					{% csrf_token %}
+					<input type="text" value='{{ dest.courseName }}' name="na" hidden></input>
+					<input type="text" value='sanchit' name="nam" hidden></input>
+					<div class="courses_button trans_200" style="align:center;">
+						<a onclick="submitForm('form1')" >
+						<button type="submit"  class="btnn" style="align:center;align-self: center;" >View course content</button>
+						</a>
+						<br><br>
+					</div>
 
-				</form>
-			</center>
+					</form>
+				{% else %}
+					<button type="submit" data-course="{{dest.courseName}}" data-action="add"  class="update-cart btnn" style="background-color:#829FD9;">Add to Cart </button>
+				{% endif %}
+
 			{% else %}
-			<center>
-				<div class="courses_button trans_200" style="align:center;">
-				<a href="{% url 'cart' %}"><button type="submit"  class="btnn" style="align:center;align-self: center;" >Buy now for {{ dest.price }}</button></a>
-				</div>
-			</center>
+				<button type="submit" onclick="plslogin()"  data-course="{{dest.courseName}}" data-action="add"  class="update-cart btnn" style="background-color:#829FD9;">Add to Cart </button>
 
 			{% endif %}
 		</div>

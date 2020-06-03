@@ -210,8 +210,8 @@ var csrftoken = getCookie('csrftoken');
  
     <script>
     function submitFormData(){
-	    	alert('Payment success for user:{{request.user}}')
-            alert('Click Back to course button')
+	    	//alert('Payment success for user:{{request.user}}')
+            //alert('Click Back to course button')
 	    	var userFormData = {
                 'user' :'{{request.user}}',
 				'Fname':form.fname.value,
@@ -247,7 +247,7 @@ var csrftoken = getCookie('csrftoken');
 	    	.then((response) => response.json())
 	    	.then((data) => {
 				console.log('Success:', data);
-				alert('Transaction completed');  
+				//alert('Transaction completed');  
 
 				//cart = {}
 				//document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"

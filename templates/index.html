@@ -4,6 +4,35 @@
 			<!-- Header Search Panel -->
 			<!-- Menu -->
 <link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
+<style >
+	.btnn{
+	align-content:right ;
+	
+	color: white;
+	display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+	align-content:center;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+		#sss{
+		padding:0px;
+		margin-bottom:55px;
+		}
+	.destination_image img
+	{
+		max-width: 100%;
+		height:300px;
+	}
+	</style>
+
 
 		
 
@@ -189,7 +218,22 @@
 								</div>
 								<div class="course_footer">
 									<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-										<div class="course_price ml-auto">Price: ${{ dest.price }}</div>
+									<div class="course_price ml-auto">Price: ${{ dest.price }}</div>
+									{% if user.is_authenticated %}
+										
+										{% if dest in cartItem %}
+											<button type="submit"   class="btnn" style="background-color:#0029FA;" onclick="location.href='{% url 'cart' %}'" type="button" >Go to Cart </button>
+										{% elif dest in j %}
+											{% comment %} <button type="submit"   class="btnn" style="background-color:#230A59;">View Course </button> {% endcomment %}
+											<form method="POST" action="course/" id="san" name="{{ dest.courseName }}">
+												<input name="na" type="hidden" value="{{ dest.courseName }}" >
+												{%csrf_token%}
+												<a href="#" onclick="submitform('{{ dest.courseName }}')"><button type="submit"   class="btnn" style="background-color:#230A59;">View Course </button></h3></a>
+											</form>
+										{% else %}
+											<button type="submit" data-course="{{dest.courseName}}" data-action="add"  class="update-cart btnn" style="background-color:#829FD9;">Add to Cart </button>
+										{% endif %}
+									{% endif %}
 									</div>
 								</div>
 							</div>

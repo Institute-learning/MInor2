@@ -14,10 +14,29 @@ from datetime import datetime
 def index(request):
     dests = Course.objects.all()
 
+    if request.user.is_authenticated:
+        stu_profile = request.user.student1
+        u2= User.objects.get(username=stu_profile.user1.username)
+        p1=student1.objects.filter(user1 = u2).first()
+        j=p1.courses.all()
+        if (Order.objects.get(userProfile = stu_profile, complete = False)):
+            order = Order.objects.get(userProfile = stu_profile, complete = False)
+            items = order.orderitem_set.all()
+            cartItem=[]
+            for i in items:
+                cartItem.append(i.course)
+        else:
+            cartItem=[]
+        
+        context = {'dests':dests ,'j':j,'cartItem':cartItem}
+        print(context)
+        return render(request,'index.html', context)
+
+    else:
 
     #l=Student.objects.all()
     #print(l[0].courses1.all()[0].courseName)
-    return render(request,'index.html', {'dests': dests})
+        return render(request,'index.html', {'dests':dests})
     
 # Create your views here.
 
@@ -37,10 +56,28 @@ def mycourse(request):
     uid=request.user.id
     stud=student1.objects.filter(user1=uid)
     dests=stud[0].courses.all()
-    for i in dests:
-        print (i)
+    if request.user.is_authenticated:
+        stu_profile = request.user.student1
+        u2= User.objects.get(username=stu_profile.user1.username)
+        p1=student1.objects.filter(user1 = u2).first()
+        j=p1.courses.all()
+        if (Order.objects.get(userProfile = stu_profile, complete = False)):
+            order = Order.objects.get(userProfile = stu_profile, complete = False)
+            items = order.orderitem_set.all()
+            cartItem=[]
+            for i in items:
+                cartItem.append(i.course)
+        else:
+            cartItem=[]
+        
+        context = {'dests':dests ,'j':j,'cartItem':cartItem}
+        print(context)
+        return  render(request,'course.html',context)
 
-    return  render(request,'course.html',{'dests':dests})
+    # for i in dests:
+    #     print (i)
+    else:
+        return  render(request,'course.html',{'dests':dests})
 
 
 def about(request):
@@ -65,35 +102,63 @@ def course(request):
                 bought=False
         else:
             bought=False
+            
         modules = Module.objects.filter(course= id)
         
+        if request.user.is_authenticated:
+            stu_profile = request.user.student1
+            u2= User.objects.get(username=stu_profile.user1.username)
+            p1=student1.objects.filter(user1 = u2).first()
+            j=p1.courses.all()
+            if (Order.objects.get(userProfile = stu_profile, complete = False)):
+                order = Order.objects.get(userProfile = stu_profile, complete = False)
+                items = order.orderitem_set.all()
+                cartItem=[]
+                for i in items:
+                    cartItem.append(i.course)
+            else:
+                cartItem=[]
+    
+            context = {'dests':dests ,'j':j,'cartItem':cartItem}
+            return render(request, 'courses.html', {'dests': dests, 'mods': modules,'bought':bought,'j':j,'cartItem':cartItem})
+        
+        
+        
+        
+        return render(request, 'courses.html', {'dests': dests, 'mods': modules})
+        
+        
+        
 
-    return render(request, 'courses.html', {'dests': dests, 'mods': modules,'bought':bought})
+    
 
 
-def content(request):
-    dests = Course.objects.all()
 
 
 def courses(request):
     dests = Course.objects.all()
-
-    stu_profile = request.user.student1
-    u2= User.objects.get(username=stu_profile.user1.username)
-    p1=student1.objects.filter(user1 = u2).first()
-    j=p1.courses.all()
-    if (Order.objects.get(userProfile = stu_profile, complete = False)):
-        order = Order.objects.get(userProfile = stu_profile, complete = False)
-        items = order.orderitem_set.all()
-        cartItem=[]
-        for i in items:
-            cartItem.append(i.course)
-    else:
-        cartItem=[]
     
-    context = {'dests':dests ,'j':j,'cartItem':cartItem}
-    print(context)
-    return  render(request,'course.html',context)
+
+    if request.user.is_authenticated:
+        stu_profile = request.user.student1
+        u2= User.objects.get(username=stu_profile.user1.username)
+        p1=student1.objects.filter(user1 = u2).first()
+        j=p1.courses.all()
+        if (Order.objects.get(userProfile = stu_profile, complete = False)):
+            order = Order.objects.get(userProfile = stu_profile, complete = False)
+            items = order.orderitem_set.all()
+            cartItem=[]
+            for i in items:
+                cartItem.append(i.course)
+        else:
+            cartItem=[]
+        
+        context = {'dests':dests ,'j':j,'cartItem':cartItem}
+        print(context)
+        return  render(request,'course.html',context)
+
+    else:
+        return  render(request,'course.html',{'dests':dests})
 
 
 

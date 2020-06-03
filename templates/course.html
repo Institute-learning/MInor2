@@ -83,15 +83,22 @@
 								<div class="course_footer">
 									<div class="course_footer_content d-flex flex-row ">
 										<div class="course_price mr-4 pr-4">Rs.{{ dest.price }}</div>
-                                    
-									{% if dest in cartItem %}
-										<button type="submit"   class="btnn" style="background-color:#0029FA;" onclick="location.href='{% url 'cart' %}'" type="button" >Go to Cart </button>
-									{% elif dest in j %}
-										<button type="submit"   class="btnn" style="background-color:#230A59;">View Course </button>
+                                    {% if user.is_authenticated %}
+										{% if dest in cartItem %}
+											<button type="submit"   class="btnn" style="background-color:#0029FA;" onclick="location.href='{% url 'cart' %}'" type="button" >Go to Cart </button>
+										{% elif dest in j %}
+											{% comment %} <button type="submit"   class="btnn" style="background-color:#230A59;">View Course </button> {% endcomment %}
+										<form method="POST" action="course/" id="san" name="{{ dest.courseName }}">
+										<input name="na" type="hidden" value="{{ dest.courseName }}" >
+											{%csrf_token%}
+											<a href="#" onclick="submitform('{{ dest.courseName }}')"><button type="submit"   class="btnn" style="background-color:#230A59;">View Course </button></h3></a>
+										</form>
+										{% else %}
+											<button type="submit" data-course="{{dest.courseName}}" data-action="add"  class="update-cart btnn" style="background-color:#829FD9;">Add to Cart </button>
+										{% endif %}
 									{% else %}
-										<button type="submit" data-course="{{dest.courseName}}" data-action="add"  class="update-cart btnn" style="background-color:#829FD9;">Add to Cart </button>
+											<button type="submit" onclick="plslogin()" data-course="{{dest.courseName}}" data-action="add"  class="update-cart btnn" style="background-color:#829FD9;">Add to Cart </button>
 									{% endif %}
-									
 									
 									</div>
 								</div>
