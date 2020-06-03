@@ -144,7 +144,7 @@ def courses(request):
         u2= User.objects.get(username=stu_profile.user1.username)
         p1=student1.objects.filter(user1 = u2).first()
         j=p1.courses.all()
-        if (Order.objects.get(userProfile = stu_profile, complete = False).first()):
+        if (Order.objects.get(userProfile = stu_profile, complete = False)):
             order = Order.objects.get(userProfile = stu_profile, complete = False)
             items = order.orderitem_set.all()
             cartItem=[]
